@@ -1,0 +1,1 @@
+[IDENTIFIER $] [CALL_START (] [STRING '.account'] [CALL_END )] [. .] [IDENTIFIER attr] [CALL_START (] [{ {] [IDENTIFIER class] [: :] [STRING 'active'] [} }] [CALL_END )] [TERMINATOR \n]

@@ -1,7 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ea1a860-0655-405f-87c2-c4b179377534" name="Default" comment="" />
+    <list default="true" id="8ea1a860-0655-405f-87c2-c4b179377534" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/coffeemine/lang/coffee-script.flex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.4.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.5.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.6.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/alias.7.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/array.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/array.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/array.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/array.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.4.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.5.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.6.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/assignment.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/binding.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/chained_comparisson.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/class.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/class.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/do.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/existential.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/existential.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/existential.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/existential.4.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/expression.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/expression.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/expression.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/expression.4.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/extended_regular_expression.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/for.3.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/function.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/function.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/function.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/function.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/heredoc.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/heredoc.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.3.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.4.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/if.4.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/interpolation.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/interpolation.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/javascript.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/multiline.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/object.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/object.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/object.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/object.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/or.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/or.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/prototype.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/quote_reserved_words.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/quote_reserved_words.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/quote_reserved_words.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/quote_reserved_words.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/range.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/range.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/range.3.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/splat.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/splat.1.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/splat.2.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/splat.2.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/switch.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/try.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/while.1.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/coffee-script/while.2.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffeemine.ipr" afterPath="$PROJECT_DIR$/coffeemine.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffeemine.iws" afterPath="$PROJECT_DIR$/coffeemine.iws" />
+    </list>
     <ignored path="coffeemine.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,10 +144,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <file leaf-file-name="switch.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/switch.1.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="2" selection-start="585" selection-end="585" vertical-scroll-proportion="0.20869565">
+            <state line="9" column="14" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="try.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/try.1.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="11" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chained_comparisson.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/chained_comparisson.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interpolation.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/interpolation.1.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="46" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interpolation.2.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/interpolation.2.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="55" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multiline.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/multiline.1.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="10" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="heredoc.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/heredoc.1.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="10" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="heredoc.2.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/heredoc.2.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="27" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extended_regular_expression.1.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/coffee-script/extended_regular_expression.1.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="18" selection-start="28" selection-end="28" vertical-scroll-proportion="0.014319809">
               <folding />
             </state>
           </provider>
@@ -70,10 +236,34 @@
       </file>
     </leaf>
   </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
+    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
+        <option value="$PROJECT_DIR$/test/coffee-script/assignment.2.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/assignment.4.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/assignment.5.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/assignment.6.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/assignment.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/binding.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/javascript.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/switch.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/try.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/interpolation.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/interpolation.2.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/multiline.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/heredoc.1.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/heredoc.2.coffee" />
+        <option value="$PROJECT_DIR$/test/coffee-script/extended_regular_expression.1.coffee" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -91,7 +281,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -139,7 +329,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coffee-script" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coffeemine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="coffeemine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -150,15 +362,24 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Project" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
+    <property name="options.lastSelected" value="preferences.editor" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/coffee-script-reference" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -170,6 +391,38 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -255,6 +508,7 @@
     <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <configuration useDefault="true">$USER_HOME$/.subversion_IDEA</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -270,16 +524,17 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.67001545" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32998455" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.67001545" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -318,10 +573,127 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <antCommandLine value="" />
+      <runInBackground value="true" />
+      <targetFilters />
+      <treeView value="true" />
+      <verbose value="true" />
+      <viewClosedWhenNoErrors value="false" />
+    </buildFile>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/assignment.4.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="2" selection-start="585" selection-end="585" vertical-scroll-proportion="0.20869565">
+        <state line="4" column="53" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/assignment.5.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="51" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/assignment.6.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="42" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/assignment.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="7" selection-start="7" selection-end="7" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/binding.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="28" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/javascript.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="2" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/switch.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="14" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/try.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="11" selection-start="102" selection-end="102" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/chained_comparisson.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/interpolation.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="46" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/interpolation.2.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="55" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/multiline.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="10" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/heredoc.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="10" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/heredoc.2.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="27" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/coffee-script/extended_regular_expression.1.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="18" selection-start="28" selection-end="28" vertical-scroll-proportion="0.014319809">
           <folding />
         </state>
       </provider>
@@ -339,6 +711,11 @@
               </list>
             </option>
           </splitter-proportions>
+        </settings>
+      </state>
+      <state key="Copyright.UI">
+        <settings>
+          <splitter-proportions />
         </settings>
       </state>
       <state key="FacetStructureConfigurable.UI">
@@ -398,6 +775,11 @@
               </list>
             </option>
           </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions />
         </settings>
       </state>
     </states>

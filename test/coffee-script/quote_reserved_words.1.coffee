@@ -1,0 +1,2 @@
+$('.account').attr class: 'active'
+

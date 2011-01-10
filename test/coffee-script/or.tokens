@@ -1,0 +1,1 @@
+[IDENTIFIER options] [COMPOUND_ASSIGN ||=] [IDENTIFIER defaults] [TERMINATOR \n]

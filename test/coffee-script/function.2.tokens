@@ -1,0 +1,1 @@
+[IDENTIFIER fill] [= =] [PARAM_START (] [IDENTIFIER container] [, ,] [IDENTIFIER liquid] [= =] [STRING "coffee"] [PARAM_END )] [-> ->] [INDENT 2] [( (] [STRING "Filling the "] [+ +] [IDENTIFIER container] [+ +] [STRING " with "] [+ +] [IDENTIFIER liquid] [+ +] [STRING "..."] [) )] [OUTDENT 2] [TERMINATOR \n]

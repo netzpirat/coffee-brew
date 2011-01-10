@@ -1,0 +1,1 @@
+[theBait, theSwitch] = [theSwitch, theBait]

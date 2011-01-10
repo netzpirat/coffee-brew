@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="coffeemine">
+
+    <target name="generate-tokens">
+        <delete dir="test/coffee-script/*.tokens"/>
+        <apply executable="/usr/local/bin/node">
+            <arg value="/usr/local/share/npm/bin/coffee"/>
+            <arg value="-t"/>
+            <fileset dir="test/coffee-script" includes="*.coffee"/>
+            <redirector>
+                <outputmapper type="glob" from="*.coffee" to="test/coffee-script/*.tokens"/>
+            </redirector>
+        </apply>
+    </target>
+
+</project>

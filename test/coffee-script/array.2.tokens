@@ -1,1 +1,0 @@
-[IDENTIFIER bitlist] [= =] [[ [] [INDENT 2] [NUMBER 1] [, ,] [NUMBER 0] [, ,] [NUMBER 1] [TERMINATOR \n] [NUMBER 0] [, ,] [NUMBER 0] [, ,] [NUMBER 1] [TERMINATOR \n] [NUMBER 1] [, ,] [NUMBER 1] [, ,] [NUMBER 0] [OUTDENT 2] [] ]] [TERMINATOR \n]

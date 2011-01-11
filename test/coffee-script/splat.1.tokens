@@ -1,1 +1,0 @@
-[IDENTIFIER awardMedals] [= =] [PARAM_START (] [IDENTIFIER first] [, ,] [IDENTIFIER second] [, ,] [IDENTIFIER others] [... ...] [PARAM_END )] [-> ->] [INDENT 2] [IDENTIFIER gold] [= =] [IDENTIFIER first] [TERMINATOR \n] [IDENTIFIER silver] [= =] [IDENTIFIER second] [TERMINATOR \n] [IDENTIFIER rest] [= =] [IDENTIFIER others] [OUTDENT 2] [TERMINATOR \n]

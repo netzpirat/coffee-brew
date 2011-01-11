@@ -1,16 +1,118 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="coffeemine">
+<project name="coffee-brew">
 
-    <target name="generate-tokens">
-        <delete dir="test/coffee-script/*.tokens"/>
+    <!-- Define build properties -->
+
+    <property name="version" value="0.1.0"/>
+    <property name="idea.home" value="/Users/michi/Repositories/idea"/>
+
+    <!-- Reference the IDEA classpath from the local IDE installation -->
+
+    <path id="idea.classpath">
+        <fileset dir="${idea.home}">
+            <include name="lib/*.jar"/>
+            <include name="redist/*.jar"/>
+        </fileset>
+        <fileset dir="/Applications/IntelliJ IDEA 10 CE.app/lib/">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Define the java compiler task -->
+
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2">
+        <classpath refid="idea.classpath"/>
+    </taskdef>
+
+    <!-- Define the jflex compiler task -->
+
+    <taskdef name="jflex" classname="JFlex.anttask.JFlexTask">
+        <classpath location="${idea.home}/tools/lexer/jflex-1.4/lib/JFlex.jar"/>
+    </taskdef>
+
+    <!-- Clean up generated files -->
+
+    <target name="clean">
+        <delete dir="target"/>
+    </target>
+
+    <!-- Create target directories -->
+
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <mkdir dir="target/junit"/>
+        <mkdir dir="target/test-reports"/>
+        <mkdir dir="target/coffee-script"/>
+        <mkdir dir="target/jar"/>
+    </target>
+
+    <!-- Copy compilation resources -->
+
+    <target name="resources" depends="init">
+        <copy todir="target/classes">
+            <fileset dir="resources/org"/>
+            <filterchain ><expandproperties/></filterchain>
+        </copy>
+    </target>
+
+    <!-- Generate the tokens from the CoffeeScript resources for testing the plugion -->
+
+    <target name="generate-tokens" depends="init">
         <apply executable="/usr/local/bin/node">
             <arg value="/usr/local/share/npm/bin/coffee"/>
             <arg value="-t"/>
-            <fileset dir="test/coffee-script" includes="*.coffee"/>
+            <fileset dir="resources/coffee-script" includes="*.coffee"/>
             <redirector>
-                <outputmapper type="glob" from="*.coffee" to="test/coffee-script/*.tokens"/>
+                <outputmapper type="glob" from="*.coffee" to="target/coffee-script/*.tokens"/>
             </redirector>
         </apply>
+    </target>
+
+    <!-- Generate the lexer class -->
+
+    <target name="generate-lexer">
+        <jflex skeleton="${idea.home}/tools/lexer/idea-flex.skeleton" nobak="true"
+               file="src/org/coffeebrew/lang/lexer/coffee-script.flex"
+               destdir="src"
+               charat="true"/>
+    </target>
+
+    <!-- Compile the plugin -->
+
+    <target name="compile" depends="resources">
+        <javac2 srcdir="src" destdir="target/classes" source="1.5" target="1.5" includeantruntime="yes">
+            <classpath refid="idea.classpath"/>
+        </javac2>
+        <javac2 srcdir="test" destdir="target/test-classes" source="1.5" target="1.5" includeantruntime="yes">
+            <classpath refid="idea.classpath"/>
+            <classpath location="target/classes"/>
+        </javac2>
+    </target>
+
+    <!-- Test the plugin -->
+
+    <target name="test" depends="compile">
+        <junit failureproperty="unit-test.fail" forkmode="once" fork="yes" includeantruntime="yes"
+               tempdir="${basedir}/target/junit" printsummary="yes" showoutput="yes">
+            <classpath location="${basedir}/target/classes"/>
+            <classpath location="${basedir}/target/test-classes"/>
+            <classpath refid="idea.classpath"/>
+            <formatter type="xml"/>
+            <batchtest todir="${basedir}/target/test-reports" fork="yes">
+                <fileset dir="${basedir}/target/test-classes" includes="**/*Test.class"/>
+            </batchtest>
+        </junit>
+        <fail if="unit-test.fail" message="unit tests failed see target/test-reports"/>
+    </target>
+
+    <!-- Build the jar -->
+
+    <target name="jar" depends="test, compile" description="Build the plugin jar">
+        <jar file="target/jar/coffee-brew-${version}.jar" compress="true">
+            <metainf includes="LICENSE"/>
+            <zipfileset dir="target/classes"/>
+        </jar>
     </target>
 
 </project>

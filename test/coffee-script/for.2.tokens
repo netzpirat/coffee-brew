@@ -1,1 +1,0 @@
-[IDENTIFIER countdown] [= =] [( (] [IDENTIFIER num] [FOR for] [IDENTIFIER num] [FORIN in] [[ [] [NUMBER 10] [.. ..] [NUMBER 1] [] ]] [) )] [TERMINATOR \n]

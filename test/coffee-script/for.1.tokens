@@ -1,1 +1,0 @@
-[IDENTIFIER eat] [CALL_START (] [IDENTIFIER food] [CALL_END )] [FOR for] [IDENTIFIER food] [FORIN in] [[ [] [STRING 'toast'] [, ,] [STRING 'cheese'] [, ,] [STRING 'wine'] [] ]] [TERMINATOR \n]

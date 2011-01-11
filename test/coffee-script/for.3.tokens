@@ -1,1 +1,0 @@
-[IDENTIFIER ages] [= =] [FOR for] [IDENTIFIER child] [, ,] [IDENTIFIER age] [FOROF of] [IDENTIFIER yearsOld] [INDENT 2] [IDENTIFIER child] [+ +] [STRING " is "] [+ +] [IDENTIFIER age] [OUTDENT 2] [TERMINATOR \n]

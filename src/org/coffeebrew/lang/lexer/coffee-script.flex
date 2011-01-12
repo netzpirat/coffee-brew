@@ -25,12 +25,14 @@ NUMBER             = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 DOUBLEQUOTE_STRING = (\\.|[^\"])*
 SINGLEQUOTE_STRING = (\\.|[^\'])*
 
+RESERVED = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
+
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
 
 %%
 
 <YYINITIAL> {
-
+  {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.RESERVED;       }
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;     }
 
   {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;         }
@@ -40,6 +42,7 @@ SINGLEQUOTE_STRING = (\\.|[^\'])*
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
+
 }
 
 <YYIDENTIFIER> {

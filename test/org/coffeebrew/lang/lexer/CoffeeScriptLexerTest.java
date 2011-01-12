@@ -29,4 +29,14 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void strings() {
     assertLexerExample("strings");
   }
+
+  @Test
+  public void aliases() {
+    //assertLexerExample("aliases");
+  }
+
+  @Test
+  public void reserved() {
+    assertLexerExample("reserved");
+  }
 }

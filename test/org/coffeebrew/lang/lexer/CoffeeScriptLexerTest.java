@@ -44,4 +44,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void comments() {
     assertLexerExample("comments");
   }
+
+  @Test
+  public void arrays() {
+    assertLexerExample("arrays");
+  }
 }

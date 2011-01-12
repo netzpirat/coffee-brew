@@ -25,6 +25,9 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
   public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");
 
+  public static final IElementType BRACKET_START = new CoffeeScriptElementType("BRACKET_START");
+  public static final IElementType BRACKET_END = new CoffeeScriptElementType("BRACKET_END");
+
   public static final IElementType LINE_COMMENT = new CoffeeScriptElementType("COMMENT");
   public static final IElementType BLOCK_COMMENT = new CoffeeScriptElementType("BLOCK_COMMENT");
 
@@ -38,8 +41,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType IF = new CoffeeScriptElementType("IF");
   public static final IElementType POST_IF = new CoffeeScriptElementType("POST_IF");
 
-  public static final IElementType DOT = new CoffeeScriptElementType(".");
-  public static final IElementType COMMA = new CoffeeScriptElementType(",");
+  public static final IElementType DOT = new CoffeeScriptElementType("DOT");
+  public static final IElementType COMMA = new CoffeeScriptElementType("COMMA");
 
-  public static final IElementType BRACKET_START = new CoffeeScriptElementType("[");
 }

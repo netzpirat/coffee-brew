@@ -42,8 +42,13 @@ RESERVED = case|default|function|var|void|with|const|let|enum|export|import|nati
   \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
   \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
+  "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;  }
+  "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;    }
+
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
+
   {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;   }
-  {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;   }
+  {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;  }
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
@@ -57,6 +62,7 @@ RESERVED = case|default|function|var|void|with|const|let|enum|export|import|nati
 }
 
 <YYNUMBER> {
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
 }

@@ -58,7 +58,7 @@ class CoffeeScriptLexerExampleTestCase {
     ArrayList<CoffeeScriptLexerTestToken> tokens = new ArrayList<CoffeeScriptLexerTestToken>();
     StringBuffer content = readFile(example, FileType.TOKENS);
 
-    Pattern pattern = Pattern.compile("(\\[.*?\\])+", Pattern.MULTILINE);
+    Pattern pattern = Pattern.compile("(\\[.*?\\]{1,2})+", Pattern.MULTILINE);
     Matcher matcher = pattern.matcher(content);
 
     while (matcher.find()) {

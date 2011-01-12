@@ -42,6 +42,8 @@ RESERVED = case|default|function|var|void|with|const|let|enum|export|import|nati
   \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
   \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
+  "="                         {                          return CoffeeScriptTokenTypes.EQUALS;         }
+
   "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;  }
   "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;    }
 
@@ -57,6 +59,8 @@ RESERVED = case|default|function|var|void|with|const|let|enum|export|import|nati
 
 <YYIDENTIFIER> {
   "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUALS;         }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;    }
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
 }

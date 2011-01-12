@@ -39,7 +39,7 @@ class CoffeeScriptLexerExampleTestCase {
    */
   protected void assertLexerExample(String example) {
     try {
-      assertThat(getGeneratedTokens(example), equalTo(getExpectedTokens(example)));
+      assertThat(getExpectedTokens(example), equalTo(getGeneratedTokens(example)));
 
     } catch (FileNotFoundException e) {
       fail("File not found: " + e.getMessage());

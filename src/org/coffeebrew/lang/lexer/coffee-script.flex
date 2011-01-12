@@ -27,100 +27,124 @@ SINGLE_QUOTE_STRING = (\\.|[^\'])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
 
-RESERVED = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
-LOGIC    = and|&&
+THIS            = @|this
+RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
+LOGIC           = and|&&|or|\|\||&|\||\^
+COMPARE         = ==|\!=|<|>|<=|>=
+COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
 
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
-%state YYCOLON
+%state YYCOLON, YYFOR
 %state YYCALLSTART, YYPARAMSTART
 
 %%
 
 <YYINITIAL> {
-  {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.RESERVED;       }
+  {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.RESERVED;           }
 
-  "class"                     {                          return CoffeeScriptTokenTypes.CLASS;          }
-  "extends"                   {                          return CoffeeScriptTokenTypes.EXTENDS;        }
-  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
-  "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;       }
+  "class"                     {                          return CoffeeScriptTokenTypes.CLASS;              }
+  "extends"                   {                          return CoffeeScriptTokenTypes.EXTENDS;            }
+  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
+  "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;           }
 
-  "if"                        {                          return CoffeeScriptTokenTypes.IF;             }
-  "then"                      {                          return CoffeeScriptTokenTypes.THEN;           }
-  "else"                      {                          return CoffeeScriptTokenTypes.ELSE;           }
-  "unless"                    {                          return CoffeeScriptTokenTypes.UNLESS;         }
+  "if"                        {                          return CoffeeScriptTokenTypes.IF;                 }
+  "then"                      {                          return CoffeeScriptTokenTypes.THEN;               }
+  "else"                      {                          return CoffeeScriptTokenTypes.ELSE;               }
+  "unless"                    {                          return CoffeeScriptTokenTypes.UNLESS;             }
 
-  {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;          }
+  "for"                       { yybegin(YYFOR);          return CoffeeScriptTokenTypes.FOR;                }
 
-  {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;     }
+  "while"                     {                          return CoffeeScriptTokenTypes.WHILE;              }
+  "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
 
-  {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;         }
+  {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;              }
+  {COMPARE}                   {                          return CoffeeScriptTokenTypes.COMPARE;            }
+  {COMPOUND_ASSIGN}           { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMPOUND_ASSIGN;    }
 
-  \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
-  \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
+  {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;         }
 
-  "="                         {                          return CoffeeScriptTokenTypes.EQUAL;          }
+  {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;             }
 
-  "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;  }
-  "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;    }
+  \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+  \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL;     }
 
-  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
+  "="                         {                          return CoffeeScriptTokenTypes.EQUAL;              }
 
-  "+"                         {                          return CoffeeScriptTokenTypes.PLUS;           }
+  "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;      }
+  "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;        }
 
-  {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;   }
-  {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;  }
+  "("                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
+  ")"                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
 
-  {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
+  "."                         {                          return CoffeeScriptTokenTypes.DOT  ;              }
+  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
+
+  "+"                         {                          return CoffeeScriptTokenTypes.PLUS;               }
+
+  {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;       }
+  {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }
+
+  {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
+  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
 
 }
 
 <YYIDENTIFIER> {
-  "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUAL;          }
-  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;    }
-  ":"                         { yybegin(YYCOLON);        return CoffeeScriptTokenTypes.COLON;          }
-  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
-  "("                         { yybegin(YYCALLSTART);    return CoffeeScriptTokenTypes.CALL_START;     }
-
-  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
-  {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;     }
+  "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUAL;              }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  ":"                         { yybegin(YYCOLON);        return CoffeeScriptTokenTypes.COLON;              }
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
+  "("                         { yybegin(YYCALLSTART);    return CoffeeScriptTokenTypes.CALL_START;         }
+  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
+  {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
 
 <YYNUMBER> {
-  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
-  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
+  ".."                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
+  "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
+  {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
 
 <YYDOUBLEQUOTE> {
-  \"                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL; }
-  {DOUBLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;         }
+  \"                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+  {DOUBLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 
 <YYSINGLEQUOTE> {
-  \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL; }
-  {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;         }
+  \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+  {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 
 <YYCALLSTART> {
-  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;          }
-  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.CALL_END;       }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
+  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
+  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
+  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.CALL_END;           }
+  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
 }
 
 <YYCOLON> {
-  "("                         { yybegin(YYPARAMSTART);   return CoffeeScriptTokenTypes.PARAM_START;    }
-  "->"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;       }
-  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
+  "("                         { yybegin(YYPARAMSTART);   return CoffeeScriptTokenTypes.PARAM_START;        }
+  "->"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;           }
+  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
+  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
 
 <YYPARAMSTART> {
-  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;          }
-  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARAM_END;      }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
+  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
+  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
+  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARAM_END;          }
+  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
 }
 
-.                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;  }
+<YYFOR> {
+  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
+  "of"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FOROF;              }
+  "in"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FORIN;              }
+  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
+  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
+}
+
+.                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;      }

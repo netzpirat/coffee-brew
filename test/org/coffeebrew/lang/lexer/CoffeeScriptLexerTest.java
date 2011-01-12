@@ -60,4 +60,14 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("ifs");
   }
 
+  @Test
+  public void fors() {
+    assertLexerExample("fors");
+  }
+
+  @Test
+  public void whiles() {
+    assertLexerExample("whiles");
+  }
+
 }

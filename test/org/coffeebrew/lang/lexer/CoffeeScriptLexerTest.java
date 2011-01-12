@@ -11,19 +11,22 @@ import org.junit.Test;
 public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
 
   @Test
-  public void lineTerminator() {
-    assertLexerExample("line_terminator");
+  public void terminators() {
+    assertLexerExample("terminators");
   }
 
   @Test
-  public void whiteSpace() {
-    assertLexerExample("white_space");
+  public void whitespaces() {
+    assertLexerExample("whitespaces");
   }
 
   @Test
-  public void assignments() {
-    assertLexerExample("number_assignment");
-    assertLexerExample("string_assignment");
+  public void numbers() {
+    assertLexerExample("numbers");
   }
 
+  @Test
+  public void strings() {
+    assertLexerExample("strings");
+  }
 }

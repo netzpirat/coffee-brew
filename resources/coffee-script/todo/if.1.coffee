@@ -1,1 +1,0 @@
-mood = greatlyImproved if singing

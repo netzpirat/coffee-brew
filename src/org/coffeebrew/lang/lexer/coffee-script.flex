@@ -28,10 +28,7 @@ LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
 
 RESERVED = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
-CLASS    = class
-EXTENDS  = extends
-THIS     = @
-FUNCTION = ->
+LOGIC    = and|&&
 
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
 %state YYCOLON
@@ -42,10 +39,17 @@ FUNCTION = ->
 <YYINITIAL> {
   {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.RESERVED;       }
 
-  {CLASS}                     {                          return CoffeeScriptTokenTypes.CLASS;          }
-  {EXTENDS}                   {                          return CoffeeScriptTokenTypes.EXTENDS;        }
-  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;           }
-  {FUNCTION}                  {                          return CoffeeScriptTokenTypes.FUNCTION;       }
+  "class"                     {                          return CoffeeScriptTokenTypes.CLASS;          }
+  "extends"                   {                          return CoffeeScriptTokenTypes.EXTENDS;        }
+  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
+  "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;       }
+
+  "if"                        {                          return CoffeeScriptTokenTypes.IF;             }
+  "then"                      {                          return CoffeeScriptTokenTypes.THEN;           }
+  "else"                      {                          return CoffeeScriptTokenTypes.ELSE;           }
+  "unless"                    {                          return CoffeeScriptTokenTypes.UNLESS;         }
+
+  {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;          }
 
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;     }
 
@@ -54,7 +58,7 @@ FUNCTION = ->
   \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
   \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  "="                         {                          return CoffeeScriptTokenTypes.EQUALS;         }
+  "="                         {                          return CoffeeScriptTokenTypes.EQUAL;          }
 
   "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;  }
   "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;    }
@@ -72,11 +76,12 @@ FUNCTION = ->
 }
 
 <YYIDENTIFIER> {
-  "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUALS;         }
+  "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUAL;          }
   "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;    }
   ":"                         { yybegin(YYCOLON);        return CoffeeScriptTokenTypes.COLON;          }
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;          }
   "("                         { yybegin(YYCALLSTART);    return CoffeeScriptTokenTypes.CALL_START;     }
+
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;     }
 }
@@ -98,24 +103,24 @@ FUNCTION = ->
 }
 
 <YYCALLSTART> {
-  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;           }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
+  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
   ","                         {                          return CoffeeScriptTokenTypes.COMMA;          }
   ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.CALL_END;       }
+  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
 }
 
 <YYCOLON> {
-  "("                         { yybegin(YYPARAMSTART);   return CoffeeScriptTokenTypes.PARAM_START;     }
-  {FUNCTION}                  { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;       }
+  "("                         { yybegin(YYPARAMSTART);   return CoffeeScriptTokenTypes.PARAM_START;    }
+  "->"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;       }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
 }
 
 <YYPARAMSTART> {
-  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;           }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
+  "@"                         {                          return CoffeeScriptTokenTypes.THIS;           }
   ","                         {                          return CoffeeScriptTokenTypes.COMMA;          }
   ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARAM_END;      }
+  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;     }
 }
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;  }

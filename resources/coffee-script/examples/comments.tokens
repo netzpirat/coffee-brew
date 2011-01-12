@@ -1,0 +1,5 @@
+[COMMENT # This is a line comment] [TERMINATOR \n]
+[TERMINATOR \n]
+[BLOCK_COMMENT ### Block comment ###] [TERMINATOR \n]
+[TERMINATOR \n]
+[BLOCK_COMMENT ###\nAnother multi line\nblock comment\n###] [TERMINATOR \n]

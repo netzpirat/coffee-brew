@@ -39,4 +39,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void reserved() {
     assertLexerExample("reserved");
   }
+
+  @Test
+  public void comments() {
+    assertLexerExample("comments");
+  }
 }

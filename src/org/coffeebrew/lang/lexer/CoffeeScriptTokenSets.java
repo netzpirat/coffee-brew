@@ -15,12 +15,13 @@ public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
   );
 
   public static TokenSet COMMENTS_TOKEN_SET = TokenSet.create(
-    COMMENT,
-    HERECOMMENT
+    LINE_COMMENT,
+    BLOCK_COMMENT
   );
 
   public static TokenSet STRING_TOKEN_SET = TokenSet.create(
-    STRING
+    STRING,
+    STRING_LITERAL
   );
 
 }

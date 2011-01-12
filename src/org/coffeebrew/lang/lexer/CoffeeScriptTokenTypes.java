@@ -18,16 +18,15 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType WHITESPACE = new CoffeeScriptElementType("WHITESPACE");
   public static final IElementType TERMINATOR = new CoffeeScriptElementType("TERMINATOR");
 
-  public static final IElementType STRING_LITERAL = new CoffeeScriptElementType("STRING_LITERAL");
+  public static final IElementType IDENTIFIER = new CoffeeScriptElementType("IDENTIFIER");
 
+  public static final IElementType STRING_LITERAL = new CoffeeScriptElementType("STRING_LITERAL");
   public static final IElementType STRING = new CoffeeScriptElementType("STRING");
   public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
-
-  public static final IElementType COMMENT = new CoffeeScriptElementType("COMMENT");
-  public static final IElementType HERECOMMENT = new CoffeeScriptElementType("HERECOMMENT");
-
-  public static final IElementType IDENTIFIER = new CoffeeScriptElementType("IDENTIFIER");
   public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");
+
+  public static final IElementType LINE_COMMENT = new CoffeeScriptElementType("COMMENT");
+  public static final IElementType BLOCK_COMMENT = new CoffeeScriptElementType("BLOCK_COMMENT");
 
   public static final IElementType EQUALS = new CoffeeScriptElementType("EQUALS");
   public static final IElementType COMPARE = new CoffeeScriptElementType("COMPARE");

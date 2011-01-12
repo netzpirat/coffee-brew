@@ -1,1 +1,0 @@
-[theBait, theSwitch] = [theSwitch, theBait]

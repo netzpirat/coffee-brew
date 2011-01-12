@@ -1,1 +1,0 @@
-gold = silver = rest = "unknown"

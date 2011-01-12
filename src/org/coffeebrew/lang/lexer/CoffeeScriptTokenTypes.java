@@ -25,9 +25,6 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType NUMBER            = new CoffeeScriptElementType("NUMBER");
   public static final IElementType BOOL              = new CoffeeScriptElementType("BOOL");
 
-  public static final IElementType BRACKET_START     = new CoffeeScriptElementType("BRACKET_START");
-  public static final IElementType BRACKET_END       = new CoffeeScriptElementType("BRACKET_END");
-
   public static final IElementType CLASS             = new CoffeeScriptElementType("CLASS");
   public static final IElementType EXTENDS           = new CoffeeScriptElementType("EXTENDS");
 
@@ -39,17 +36,19 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType COMPARE           = new CoffeeScriptElementType("COMPARE");
   public static final IElementType LOGIC             = new CoffeeScriptElementType("LOGIC");
 
-  public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION");
-  public static final IElementType SPLAT             = new CoffeeScriptElementType("SPLAT");
+  public static final IElementType RANGE             = new CoffeeScriptElementType("RANGE");
 
   public static final IElementType CALL_START        = new CoffeeScriptElementType("CALL_START");
   public static final IElementType CALL_END          = new CoffeeScriptElementType("CALL_END");
-
   public static final IElementType PARAM_START       = new CoffeeScriptElementType("PARAM_START");
   public static final IElementType PARAM_END         = new CoffeeScriptElementType("PARAM_END");
-
   public static final IElementType PARENTHESIS_START = new CoffeeScriptElementType("PARENTHESIS_START");
   public static final IElementType PARENTHESIS_END   = new CoffeeScriptElementType("PARENTHESIS_END");
+
+  public static final IElementType BRACKET_START     = new CoffeeScriptElementType("BRACKET_START");
+  public static final IElementType BRACKET_END       = new CoffeeScriptElementType("BRACKET_END");
+  public static final IElementType INDEX_START       = new CoffeeScriptElementType("INDEX_START");
+  public static final IElementType INDEX_END         = new CoffeeScriptElementType("INDEX_END");
 
   public static final IElementType IF                = new CoffeeScriptElementType("IF");
   public static final IElementType ELSE              = new CoffeeScriptElementType("ELSE");

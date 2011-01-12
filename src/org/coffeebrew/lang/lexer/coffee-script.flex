@@ -4,6 +4,7 @@ package org.coffeebrew.lang.lexer;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
+import java.util.Stack;
 
 %%
 
@@ -18,10 +19,23 @@ import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 
 %function advance
 
+%{
+    private Stack<IElementType> bracketStack = new Stack<IElementType>();
+
+    private void pushBracket(IElementType bracket) {
+        bracketStack.push(bracket);
+    }
+
+    private IElementType popBracket() {
+        return bracketStack.pop();
+    }
+
+%}
+
 TERMINATOR          = [\n\r]
 WHITESPACE          = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-NUMBER              = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 DOUBLE_QUOTE_STRING = (\\.|[^\"])*
 SINGLE_QUOTE_STRING = (\\.|[^\'])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
@@ -70,8 +84,9 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
 
   "="                         {                          return CoffeeScriptTokenTypes.EQUAL;              }
 
-  "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;      }
-  "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;        }
+  "["                         {                          pushBracket(CoffeeScriptTokenTypes.BRACKET_END);
+                                                         return CoffeeScriptTokenTypes.BRACKET_START;      }
+  "]"                         {                          return popBracket();                              }
 
   "("                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
   ")"                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
@@ -91,19 +106,24 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
 
 <YYIDENTIFIER> {
   "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUAL;              }
-  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
   ":"                         { yybegin(YYCOLON);        return CoffeeScriptTokenTypes.COLON;              }
+  "."                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.DOT  ;              }
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
   "("                         { yybegin(YYCALLSTART);    return CoffeeScriptTokenTypes.CALL_START;         }
+  "]"                         { yybegin(YYINITIAL);      return popBracket();                              }
+  "["                         { yybegin(YYINITIAL);      pushBracket(CoffeeScriptTokenTypes.INDEX_END);
+                                                         return CoffeeScriptTokenTypes.INDEX_START;        }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
 
 <YYNUMBER> {
-  ".."                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
-  "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
+  ".."                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
+  "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
-  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  "]"                         { yybegin(YYINITIAL);      return popBracket();                              }
+  "["                         { yybegin(YYINITIAL);      pushBracket(CoffeeScriptTokenTypes.INDEX_END);
+                                                         return CoffeeScriptTokenTypes.INDEX_START;        }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }

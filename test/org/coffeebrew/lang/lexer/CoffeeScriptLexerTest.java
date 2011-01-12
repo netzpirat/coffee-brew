@@ -70,4 +70,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("whiles");
   }
 
+  @Test
+  public void ranges() {
+    assertLexerExample("ranges");
+  }
+
 }

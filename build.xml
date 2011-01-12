@@ -38,10 +38,9 @@
 
     <!-- Create target directories -->
 
-    <target name="init">
+    <target name="init" depends="clean">
         <mkdir dir="target/classes"/>
         <mkdir dir="target/test-classes"/>
-        <mkdir dir="target/junit"/>
         <mkdir dir="target/test-reports"/>
         <mkdir dir="target/coffee-script"/>
         <mkdir dir="target/jar"/>
@@ -51,27 +50,27 @@
 
     <target name="resources" depends="init">
         <copy todir="target/classes">
-            <fileset dir="resources/org"/>
+            <fileset dir="resources" excludes="coffee-script"/>
             <filterchain ><expandproperties/></filterchain>
         </copy>
     </target>
 
     <!-- Generate the tokens from the CoffeeScript resources for testing the plugion -->
 
-    <target name="generate-tokens" depends="init">
+    <target name="generate-original-tokens" depends="init" description="Generate the CoffeeScript tokens within resources/coffee-script">
         <apply executable="/usr/local/bin/node">
             <arg value="/usr/local/share/npm/bin/coffee"/>
             <arg value="-t"/>
             <fileset dir="resources/coffee-script" includes="*.coffee"/>
             <redirector>
-                <outputmapper type="glob" from="*.coffee" to="target/coffee-script/*.tokens"/>
+                <outputmapper type="glob" from="*.coffee" to="resources/coffee-script/*.tokens"/>
             </redirector>
         </apply>
     </target>
 
     <!-- Generate the lexer class -->
 
-    <target name="generate-lexer">
+    <target name="generate-lexer" description="Generate the CoffeeScriptLexer class from the flex definition">
         <jflex skeleton="${idea.home}/tools/lexer/idea-flex.skeleton" nobak="true"
                file="src/org/coffeebrew/lang/lexer/coffee-script.flex"
                destdir="src"
@@ -80,7 +79,7 @@
 
     <!-- Compile the plugin -->
 
-    <target name="compile" depends="resources">
+    <target name="compile" depends="resources, generate-lexer">
         <javac2 srcdir="src" destdir="target/classes" source="1.5" target="1.5" includeantruntime="yes">
             <classpath refid="idea.classpath"/>
         </javac2>

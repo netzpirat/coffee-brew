@@ -12,33 +12,33 @@ import org.coffeebrew.lang.lexer.CoffeeScriptElementType;
  */
 public interface CoffeeScriptTokenTypes {
 
-  public static final IElementType WRONG_TOKEN = TokenType.BAD_CHARACTER;
+  public static final IElementType BAD_CHARACTER = TokenType.BAD_CHARACTER;
 
-  /* **************************************************************************************************
- *  Whitespaces & NewLines
- * ****************************************************************************************************/
-
-  public static final IElementType WHITESPACE = new CoffeeScriptElementType("WHITESPACE", true);
+  public static final IElementType WHITESPACE = new CoffeeScriptElementType("WHITESPACE");
   public static final IElementType TERMINATOR = new CoffeeScriptElementType("TERMINATOR");
 
-  /* **************************************************************************************************
- *  Comments
- * ****************************************************************************************************/
+  public static final IElementType STRING_LITERAL = new CoffeeScriptElementType("STRING_LITERAL");
 
-  public static final IElementType COMMENT = new CoffeeScriptElementType("COMMENT", true);
+  public static final IElementType COMMENT = new CoffeeScriptElementType("COMMENT");
   public static final IElementType HERECOMMENT = new CoffeeScriptElementType("HERECOMMENT");
 
-  /* **************************************************************************************************
- *  Identifiers
- * ****************************************************************************************************/
-
   public static final IElementType IDENTIFIER = new CoffeeScriptElementType("IDENTIFIER");
-
-
-  /* **************************************************************************************************
- *  Strings & regular expressions
- * ****************************************************************************************************/
-
   public static final IElementType STRING = new CoffeeScriptElementType("STRING");
+  public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
+  public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");
 
+  public static final IElementType EQUALS = new CoffeeScriptElementType("=");
+  public static final IElementType COMPARE = new CoffeeScriptElementType("COMPARE");
+  public static final IElementType RELATION = new CoffeeScriptElementType("RELATION");
+
+  public static final IElementType CALL_START = new CoffeeScriptElementType("CALL_START");
+  public static final IElementType CALL_END = new CoffeeScriptElementType("CALL_END");
+
+  public static final IElementType IF = new CoffeeScriptElementType("IF");
+  public static final IElementType POST_IF = new CoffeeScriptElementType("POST_IF");
+
+  public static final IElementType DOT = new CoffeeScriptElementType(".");
+  public static final IElementType COMMA = new CoffeeScriptElementType(",");
+
+  public static final IElementType BRACKET_START = new CoffeeScriptElementType("[");
 }

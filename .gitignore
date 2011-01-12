@@ -1,3 +1,4 @@
 .DS_Store
 target
+out
 src/org/coffeebrew/lang/lexer/CoffeeScriptLexer.java

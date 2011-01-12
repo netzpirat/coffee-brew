@@ -2,10 +2,7 @@ package org.coffeebrew.lang.lexer;
 
 import com.intellij.lexer.FlexAdapter;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
@@ -22,13 +19,18 @@ import static org.junit.Assert.fail;
  * <p/>
  * Examples should be placed as plain CoffeeScript files under /resources/coffee-script
  * <p/>
- * The Ant target 'generate-tokes' will then pass these examples to the CoffeeScript
+ * The Ant target 'generate-tokes' will then pass these example to the CoffeeScript
  * compiler and stores the generated lexer token output to /target/coffee-script
  *
  * @author Michael Kessler
  * @since 0.1.0
  */
-class CoffeeScriptLexerTestBase {
+class CoffeeScriptLexerExampleTestCase {
+
+  private static final String NL = System.getProperty("line.separator");
+  private static final String FS = System.getProperty("file.separator");
+
+  private enum FileType { TOKENS, COFFEE }
 
   /**
    * Assert that the CoffeeScript tokens from the original lexer
@@ -37,7 +39,7 @@ class CoffeeScriptLexerTestBase {
    */
   protected void assertLexerExample(String example) {
     try {
-      assertThat(getOriginalTokens(example), equalTo(getPluginTokens(example)));
+      assertThat(getGeneratedTokens(example), equalTo(getExpectedTokens(example)));
 
     } catch (FileNotFoundException e) {
       fail("File not found: " + e.getMessage());
@@ -52,9 +54,9 @@ class CoffeeScriptLexerTestBase {
    * @param example The example file name
    * @return the lexer tokens
    */
-  private static Collection<CoffeeScriptLexerTestToken> getOriginalTokens(String example) throws FileNotFoundException, IOException {
+  private static Collection<CoffeeScriptLexerTestToken> getGeneratedTokens(String example) throws FileNotFoundException, IOException {
     ArrayList<CoffeeScriptLexerTestToken> tokens = new ArrayList<CoffeeScriptLexerTestToken>();
-    StringBuffer content = readFile("/target/coffee-script/", example, "tokens");
+    StringBuffer content = readFile(example, FileType.TOKENS);
 
     Pattern pattern = Pattern.compile("(\\[.*?\\])+", Pattern.MULTILINE);
     Matcher matcher = pattern.matcher(content);
@@ -73,10 +75,10 @@ class CoffeeScriptLexerTestBase {
    * @param example The example file name
    * @return the lexer tokens
    */
-  private static Collection<CoffeeScriptLexerTestToken> getPluginTokens(String example) throws FileNotFoundException, IOException {
+  private static Collection<CoffeeScriptLexerTestToken> getExpectedTokens(String example) throws FileNotFoundException, IOException {
 
     final FlexAdapter lexer = new CoffeeScriptFlexLexer();
-    lexer.start(readFile("/resources/coffee-script/", example, "coffee"));
+    lexer.start(readFile(example, FileType.COFFEE));
 
     ArrayList<CoffeeScriptLexerTestToken> tokens = new ArrayList<CoffeeScriptLexerTestToken>();
     while (lexer.getCurrentPosition().getOffset() < lexer.getBufferEnd()) {
@@ -91,23 +93,42 @@ class CoffeeScriptLexerTestBase {
   /**
    * Reads the given file and returns its content as StringBuffer
    *
-   * @param prefix
-   * @param filename
-   * @param extension
+   * @param example
+   * @param type
    * @return
    * @throws FileNotFoundException
    * @throws IOException
    */
-  private static StringBuffer readFile(String prefix, String filename, String extension) throws FileNotFoundException, IOException {
-    BufferedReader reader = new BufferedReader(new FileReader(getProjectHome() + prefix + filename + "." + extension));
+  private static StringBuffer readFile(String example, FileType type) throws FileNotFoundException, IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(getExampleFilePath(example, type)));
     StringBuffer buffer = new StringBuffer();
     String line = "";
 
     while ((line = reader.readLine()) != null) {
-      buffer.append(line);
+      buffer.append(line + NL);
     }
 
     return buffer;
+  }
+
+  /**
+   * Returns the path and filename to the example file for the given type
+   *
+   * @param example
+   * @param type
+   * @return
+   */
+  private static String getExampleFilePath(String example, FileType type) {
+    String filename;
+    String basepath = getProjectHome() + FS + "resources" + FS + "coffee-script" + FS + "examples" + FS;
+
+    if (type == FileType.COFFEE) {
+      filename = basepath + example + ".coffee";
+    } else {
+      filename = basepath + example + ".tokens";
+    }
+
+    return filename;
   }
 
   /**

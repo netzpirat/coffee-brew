@@ -8,11 +8,11 @@ import org.junit.Test;
  * @author Michael Kessler
  * @since 0.1.0
  */
-public class CoffeeScriptLexerTest extends CoffeeScriptLexerTestBase {
+public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
 
   @Test
-  public void comments() {
-    assertLexerExample("comment.1");
+  public void lineTerminator() {
+    assertLexerExample("line_terminator");
   }
 
 }

@@ -7,6 +7,8 @@ import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 
 %%
 
+%debug
+
 %unicode
 
 %public
@@ -16,12 +18,12 @@ import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 
 %function advance
 
-TERMINATOR = [\n\r;]
+TERMINATOR = [\n\r]
 
 %%
 
 <YYINITIAL> {
-    {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+  {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
 }
 
-.                               { yybegin(YYINITIAL);   return CoffeeScriptTokenTypes.WRONG_TOKEN; }
+.                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;  }

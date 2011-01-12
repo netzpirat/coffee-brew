@@ -19,11 +19,13 @@ import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 %function advance
 
 TERMINATOR = [\n\r]
+WHITESPACE = [\ ]+
 
 %%
 
 <YYINITIAL> {
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
+  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
 }
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;  }

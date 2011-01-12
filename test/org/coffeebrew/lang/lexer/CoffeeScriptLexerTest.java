@@ -15,4 +15,14 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("line_terminator");
   }
 
+  @Test
+  public void whiteSpace() {
+    assertLexerExample("white_space");
+  }
+
+  @Test
+  public void identifier() {
+    assertLexerExample("identifier_equals");
+  }
+
 }

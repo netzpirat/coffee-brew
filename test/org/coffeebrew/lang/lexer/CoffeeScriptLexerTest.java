@@ -22,7 +22,7 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
 
   @Test
   public void identifier() {
-    assertLexerExample("identifier_equals");
+    assertLexerExample("number_assignment");
   }
 
 }

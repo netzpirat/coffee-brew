@@ -27,7 +27,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
   public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");
 
-  public static final IElementType EQUALS = new CoffeeScriptElementType("=");
+  public static final IElementType EQUALS = new CoffeeScriptElementType("EQUALS");
   public static final IElementType COMPARE = new CoffeeScriptElementType("COMPARE");
   public static final IElementType RELATION = new CoffeeScriptElementType("RELATION");
 

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc608186-1256-4722-8216-f3160d2fe694" name="Default" comment="Changed example test to ignore hidden token types for comparison">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.tokens" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/white_space.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/white_space.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.tokens" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/string_assignment.coffee" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp/alias.5.coffee" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp/comment.3.coffee" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp/multiline.2.coffee" />
@@ -15,8 +14,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/alias_unless.tokens" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/assign_multiple.tokens" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/comment_line.tokens" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/coffee-script/alias.5.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/coffee-script/assignment.1.coffee" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/resources/coffee-script/alias.1.coffee" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/alias_is.coffee" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/resources/coffee-script/alias.2.coffee" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/alias_isnt.coffee" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/resources/coffee-script/alias.3.coffee" afterPath="$PROJECT_DIR$/resources/coffee-script/temp2/alias_unless.coffee" />
@@ -76,6 +73,7 @@
       <change type="MOVED" beforePath="$PROJECT_DIR$/resources/coffee-script/while.1.coffee" afterPath="$PROJECT_DIR$/resources/coffee-script/temp/while.1.coffee" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/resources/coffee-script/while.2.coffee" afterPath="$PROJECT_DIR$/resources/coffee-script/temp/while.2.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coffee-brew.iws" afterPath="$PROJECT_DIR$/coffee-brew.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java" afterPath="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex" afterPath="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerTest.java" afterPath="$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerTest.java" />
     </list>
@@ -143,37 +141,28 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="coffee-script.flex" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="coffee-script.flex" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="22" column="0" selection-start="330" selection-end="330" vertical-scroll-proportion="0.32234433">
+                <state line="24" column="0" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="identifier_equals.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.coffee">
+          <file leaf-file-name="number_assignment.tokens" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.tokens">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1" column="0" selection-start="11" selection-end="11" vertical-scroll-proportion="0.0">
+                <state line="0" column="44" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="white_space.tokens" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/white_space.tokens">
+          <file leaf-file-name="number_assignment.coffee" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="30" selection-start="30" selection-end="30" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="line_terminator.tokens" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.tokens">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="15" vertical-scroll-proportion="0.0">
+                <state line="3" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.043956045">
                   <folding />
                 </state>
               </provider>
@@ -188,10 +177,19 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="CoffeeScriptLexerExampleTestCase.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerExampleTestCase.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="6" selection-start="847" selection-end="847" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="CoffeeScriptTokenTypes.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                <state line="35" column="0" selection-start="1648" selection-end="1648" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -210,28 +208,55 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="CoffeeScriptLexerTest.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="CoffeeScriptLexerTest.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="32" selection-start="488" selection-end="488" vertical-scroll-proportion="0.3432658">
+                <state line="24" column="41" selection-start="497" selection-end="497" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="alias_then.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/coffee-script/temp2/alias_then.coffee">
+          <file leaf-file-name="number_assignment.tokens" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.tokens">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                <state line="2" column="44" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="alias_then.tokens" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/coffee-script/temp2/alias_then.tokens">
+          <file leaf-file-name="string_assignment.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/string_assignment.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="220" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+                <state line="1" column="8" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="line_terminator.tokens" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.tokens">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="2" selection-start="2" selection-end="2" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="line_terminator.coffee" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="number_assignment.coffee" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="7" selection-start="30" selection-end="30" vertical-scroll-proportion="0.02930403">
                   <folding />
                 </state>
               </provider>
@@ -253,22 +278,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerExampleTestCase.java" />
-        <option value="$PROJECT_DIR$/resources/coffee-script/examples/assign_number.tokens" />
-        <option value="$PROJECT_DIR$/resources/coffee-script/examples/comment_line.tokens" />
-        <option value="$PROJECT_DIR$/resources/coffee-script/examples/assign_number.coffee" />
         <option value="$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerTestToken.java" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/alias_if.tokens" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/assign_multiple.tokens" />
-        <option value="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/alias_unless.tokens" />
         <option value="$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerTest.java" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.coffee" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.tokens" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/whitespace.coffee" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/whitespace.tokens" />
-        <option value="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex" />
         <option value="$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.tokens" />
+        <option value="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java" />
+        <option value="$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex" />
+        <option value="$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.coffee" />
+        <option value="$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.tokens" />
+        <option value="$PROJECT_DIR$/resources/coffee-script/examples/string_assignment.coffee" />
+        <option value="$PROJECT_DIR$/resources/coffee-script/string_assignment.coffee" />
       </list>
     </option>
   </component>
@@ -335,7 +360,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lexer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,14 +379,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="coffee-script" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="temp2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -641,14 +662,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1744325" sideWeight="0.6707882" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32921174" sideWeight="0.6419753" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32921174" sideWeight="0.6610912" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967507" sideWeight="0.67001545" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12903225" sideWeight="0.6707882" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32921174" sideWeight="0.3548387" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32921174" sideWeight="0.33572283" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -669,7 +690,7 @@
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assert line terminator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove old examples" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -684,6 +705,8 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Rename and reorganize project. &#10;Initial plugin classes are in shape and added initial lexer test framework." />
     <MESSAGE value="Assert line terminator" />
+    <MESSAGE value="Assert whitespace" />
+    <MESSAGE value="Remove old examples" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -701,20 +724,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="71" selection-start="2206" selection-end="2206" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/coffee-script/temp2/alias_then.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -743,30 +752,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.014302742">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/white_space.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="15" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -778,16 +766,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.tokens">
+    <entry file="file://$PROJECT_DIR$/coffee-script/src/lexer.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="42" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/coffee-script/src/lexer.coffee">
+    <entry file="file://$PROJECT_DIR$/test/org/coffeebrew/lang/lexer/CoffeeScriptLexerExampleTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="27" column="6" selection-start="847" selection-end="847" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/CoffeeScriptTokenTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1648" selection-end="1648" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -799,16 +801,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/identifier_equals.coffee">
+    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.tokens">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="11" selection-end="11" vertical-scroll-proportion="0.0">
+        <state line="0" column="44" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/coffeebrew/lang/lexer/coffee-script.flex">
+    <entry file="file://$PROJECT_DIR$/resources/coffee-script/string_assignment.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="330" selection-end="330" vertical-scroll-proportion="0.32234433">
+        <state line="1" column="8" selection-start="20" selection-end="20" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="2" selection-start="2" selection-end="2" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/line_terminator.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/coffee-script/examples/number_assignment.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.043956045">
           <folding />
         </state>
       </provider>

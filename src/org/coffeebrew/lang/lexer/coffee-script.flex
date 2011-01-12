@@ -44,8 +44,9 @@ BLOCK_COMMENT       = ###~###
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^
-COMPARE         = ==|\!=|<|>|<=|>=
+COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
+BOOL            = true|yes|on|false|no|off
 
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
 %state YYCOLON, YYFOR
@@ -68,12 +69,12 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
   "then"                      {                          return CoffeeScriptTokenTypes.THEN;               }
   "else"                      {                          return CoffeeScriptTokenTypes.ELSE;               }
   "unless"                    {                          return CoffeeScriptTokenTypes.UNLESS;             }
-
+  "in"                        {                          return CoffeeScriptTokenTypes.RELATION;           }
   "for"                       { yybegin(YYFOR);          return CoffeeScriptTokenTypes.FOR;                }
-
   "while"                     {                          return CoffeeScriptTokenTypes.WHILE;              }
   "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
 
+  {BOOL}                      {                          return CoffeeScriptTokenTypes.BOOL;               }
   {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;              }
   {COMPARE}                   {                          return CoffeeScriptTokenTypes.COMPARE;            }
   {COMPOUND_ASSIGN}           { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMPOUND_ASSIGN;    }
@@ -104,7 +105,6 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
-
 }
 
 <YYIDENTIFIER> {

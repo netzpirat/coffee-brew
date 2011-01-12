@@ -32,7 +32,7 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
 
   @Test
   public void aliases() {
-    //assertLexerExample("aliases");
+    assertLexerExample("aliases");
   }
 
   @Test

@@ -35,6 +35,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType COMPOUND_ASSIGN   = new CoffeeScriptElementType("COMPOUND_ASSIGN");
   public static final IElementType COMPARE           = new CoffeeScriptElementType("COMPARE");
   public static final IElementType LOGIC             = new CoffeeScriptElementType("LOGIC");
+  public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION");
 
   public static final IElementType RANGE             = new CoffeeScriptElementType("RANGE");
 

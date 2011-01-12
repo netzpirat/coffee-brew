@@ -2,3 +2,4 @@
 target
 out
 src/org/coffeebrew/lang/lexer/CoffeeScriptLexer.java
+coffee-brew.iws

@@ -70,4 +70,7 @@ public interface CoffeeScriptTokenTypes {
 
   public static final IElementType PLUS              = new CoffeeScriptElementType("PLUS");
 
+  public static final IElementType TRY               = new CoffeeScriptElementType("TRY");
+  public static final IElementType CATCH             = new CoffeeScriptElementType("CATCH");
+  public static final IElementType FINALLY           = new CoffeeScriptElementType("FINALLY");
 }

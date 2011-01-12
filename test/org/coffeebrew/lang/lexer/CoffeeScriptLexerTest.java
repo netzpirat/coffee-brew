@@ -75,4 +75,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("ranges");
   }
 
+  @Test
+  public void trycatch() {
+    assertLexerExample("trycatch");
+  }
+
 }

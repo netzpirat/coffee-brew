@@ -40,4 +40,10 @@ public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
           INDEX_END
   );
 
+  public static TokenSet TRY_CATCH_TOKEN_SET = TokenSet.create(
+          TRY,
+          CATCH,
+          FINALLY
+  );
+
 }

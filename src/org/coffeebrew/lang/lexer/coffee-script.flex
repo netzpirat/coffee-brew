@@ -58,6 +58,9 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
 
   "class"                     {                          return CoffeeScriptTokenTypes.CLASS;              }
   "extends"                   {                          return CoffeeScriptTokenTypes.EXTENDS;            }
+  "try"                       {                          return CoffeeScriptTokenTypes.TRY;                }
+  "catch"                     {                          return CoffeeScriptTokenTypes.CATCH;              }
+  "finally"                   {                          return CoffeeScriptTokenTypes.FINALLY;            }
   {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
   "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;           }
 

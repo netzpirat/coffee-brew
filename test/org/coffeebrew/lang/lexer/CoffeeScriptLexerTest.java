@@ -49,4 +49,10 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void arrays() {
     assertLexerExample("arrays");
   }
+
+  @Test
+  public void classes() {
+    assertLexerExample("classes");
+  }
+
 }

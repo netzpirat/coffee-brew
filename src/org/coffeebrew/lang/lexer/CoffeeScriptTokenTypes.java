@@ -28,6 +28,9 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType BRACKET_START = new CoffeeScriptElementType("BRACKET_START");
   public static final IElementType BRACKET_END = new CoffeeScriptElementType("BRACKET_END");
 
+  public static final IElementType CLASS = new CoffeeScriptElementType("CLASS");
+  public static final IElementType EXTENDS = new CoffeeScriptElementType("EXTENDS");
+
   public static final IElementType LINE_COMMENT = new CoffeeScriptElementType("COMMENT");
   public static final IElementType BLOCK_COMMENT = new CoffeeScriptElementType("BLOCK_COMMENT");
 
@@ -38,10 +41,18 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType CALL_START = new CoffeeScriptElementType("CALL_START");
   public static final IElementType CALL_END = new CoffeeScriptElementType("CALL_END");
 
+  public static final IElementType PARAM_START = new CoffeeScriptElementType("PARAM_START");
+  public static final IElementType PARAM_END = new CoffeeScriptElementType("PARAM_END");
+
   public static final IElementType IF = new CoffeeScriptElementType("IF");
   public static final IElementType POST_IF = new CoffeeScriptElementType("POST_IF");
 
   public static final IElementType DOT = new CoffeeScriptElementType("DOT");
   public static final IElementType COMMA = new CoffeeScriptElementType("COMMA");
+  public static final IElementType COLON = new CoffeeScriptElementType("COLON");
+  public static final IElementType THIS = new CoffeeScriptElementType("THIS");
+  public static final IElementType FUNCTION = new CoffeeScriptElementType("FUNCTION");
+
+  public static final IElementType PLUS = new CoffeeScriptElementType("PLUS");
 
 }

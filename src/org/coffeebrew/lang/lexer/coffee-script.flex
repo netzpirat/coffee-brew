@@ -18,12 +18,14 @@ import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 
 %function advance
 
-TERMINATOR = [\n\r]
-WHITESPACE = [\ ]+
-IDENTIFIER = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-NUMBER     = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+TERMINATOR         = [\n\r]
+WHITESPACE         = [\ ]+
+IDENTIFIER         = [a-zA-Z\$_]([a-zA-Z_0-9$])*
+NUMBER             = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+DOUBLEQUOTE_STRING = (\\.|[^\"])*
+SINGLEQUOTE_STRING = (\\.|[^\'])*
 
-%state YYIDENTIFIER, YYNUMBER
+%state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
 
 %%
 
@@ -32,6 +34,9 @@ NUMBER     = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;     }
 
   {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;         }
+
+  \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
+  \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
@@ -46,6 +51,16 @@ NUMBER     = (0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 <YYNUMBER> {
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;     }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;     }
+}
+
+<YYDOUBLEQUOTE> {
+  \"                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL; }
+  {DOUBLEQUOTE_STRING}        {                          return CoffeeScriptTokenTypes.STRING;         }
+}
+
+<YYSINGLEQUOTE> {
+  \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL; }
+  {SINGLEQUOTE_STRING}        {                          return CoffeeScriptTokenTypes.STRING;         }
 }
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;  }

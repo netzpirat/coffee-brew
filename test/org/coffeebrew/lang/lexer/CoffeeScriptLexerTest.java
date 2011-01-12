@@ -21,8 +21,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   }
 
   @Test
-  public void identifier() {
+  public void assignments() {
     assertLexerExample("number_assignment");
+    assertLexerExample("string_assignment");
   }
 
 }

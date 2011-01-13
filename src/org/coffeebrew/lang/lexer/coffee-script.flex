@@ -104,6 +104,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "-"                         {                          return CoffeeScriptTokenTypes.MINUS;              }
   "*"                         {                          return CoffeeScriptTokenTypes.MATH;               }
   "%"                         {                          return CoffeeScriptTokenTypes.MATH;               }
+  "//"                        {                          return CoffeeScriptTokenTypes.MATH;               }
 
   {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;       }
   {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }

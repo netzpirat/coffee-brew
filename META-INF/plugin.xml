@@ -2,7 +2,7 @@
     <id>org.coffebrew</id>
     <name>CoffeeBrew</name>
     <description>Plugin for CoffeeScript language support</description>
-    <version>0.1.0</version>
+    <version>@version@</version>
     <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">
         Michael Kessler
     </vendor>

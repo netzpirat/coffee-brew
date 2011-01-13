@@ -3,8 +3,13 @@
 
     <!-- Define build properties -->
 
-    <property name="version" value="0.1.0"/>
-    <property name="idea.home" value="/Users/michi/Repositories/idea"/>
+    <loadfile property="version" srcfile="VERSION">
+        <filterchain>
+            <striplinebreaks/>
+        </filterchain>
+    </loadfile>
+
+    <property file="build.properties"/>
 
     <!-- Reference the IDEA classpath from the local IDE installation -->
 
@@ -39,7 +44,7 @@
     <!-- Create target directories -->
 
     <target name="init" depends="clean">
-        <mkdir dir="target/classes"/>
+        <mkdir dir="target/classes/META-INF"/>
         <mkdir dir="target/junit"/>
         <mkdir dir="target/test-classes"/>
         <mkdir dir="target/test-reports"/>
@@ -106,24 +111,28 @@
                 <fileset dir="${basedir}/target/test-classes" includes="**/*Test.class"/>
             </batchtest>
         </junit>
-        <fail if="unit-test.fail" message="unit tests failed see target/test-reports"/>
+        <fail if="unit-test.fail" message="Unit test failed. See target/test-reports for more information."/>
     </target>
 
     <!-- Build the jar -->
 
     <target name="jar" depends="test, compile" description="Build the plugin jar">
+        <copy file="META-INF/plugin.xml" todir="target/classes/META-INF">
+            <filterset>
+                <filter token="version" value="${version}"/>
+            </filterset>
+        </copy>
         <jar destfile="target/jar/coffee-brew-${version}.jar" compress="true">
-            <fileset dir="target/classes" />
-            <fileset dir="resources" />
+            <fileset dir="target/classes"/>
         </jar>
     </target>
 
     <!-- Install plugin to IntelliJ IDEA 10 CE -->
 
     <target name="install-idea" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
-        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10"/>
-        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>
         </copy>
     </target>

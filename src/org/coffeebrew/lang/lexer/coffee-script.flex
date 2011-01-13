@@ -53,6 +53,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "try"                       {                          return CoffeeScriptTokenTypes.TRY;                }
   "catch"                     {                          return CoffeeScriptTokenTypes.CATCH;              }
   "finally"                   {                          return CoffeeScriptTokenTypes.FINALLY;            }
+  "throw"                     {                          return CoffeeScriptTokenTypes.THROW;              }
   "if"                        {                          return CoffeeScriptTokenTypes.IF;                 }
   "then"                      {                          return CoffeeScriptTokenTypes.THEN;               }
   "else"                      {                          return CoffeeScriptTokenTypes.ELSE;               }

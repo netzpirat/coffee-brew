@@ -86,8 +86,8 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   }
 
   @Test
-  public void trycatch() {
-    assertLexerExample("trycatch");
+  public void exceptions() {
+    assertLexerExample("exceptions");
   }
 
   @Test

@@ -81,6 +81,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType WHEN               = new CoffeeScriptElementType("WHEN", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType TRY                = new CoffeeScriptElementType("TRY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType CATCH              = new CoffeeScriptElementType("CATCH", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType THROW              = new CoffeeScriptElementType("THROW", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType FINALLY            = new CoffeeScriptElementType("FINALLY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType BREAK              = new CoffeeScriptElementType("BREAK", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType CONTINUE           = new CoffeeScriptElementType("CONTINUE", SyntaxHighlighterColors.KEYWORD);

@@ -67,6 +67,8 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "when"                      {                          return CoffeeScriptTokenTypes.WHEN;               }
   "break"                     {                          return CoffeeScriptTokenTypes.BREAK;              }
   "continue"                  {                          return CoffeeScriptTokenTypes.CONTINUE;           }
+  "return"                    {                          return CoffeeScriptTokenTypes.RETURN;             }
+  "instanceof"                {                          return CoffeeScriptTokenTypes.INSTANCE_OF;        }
 
   {BOOL}                      {                          return CoffeeScriptTokenTypes.BOOL;               }
   {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;              }

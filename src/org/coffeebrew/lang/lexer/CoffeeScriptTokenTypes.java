@@ -84,5 +84,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType FINALLY            = new CoffeeScriptElementType("FINALLY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType BREAK              = new CoffeeScriptElementType("BREAK", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType CONTINUE           = new CoffeeScriptElementType("CONTINUE", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType RETURN             = new CoffeeScriptElementType("RETURN", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType INSTANCE_OF        = new CoffeeScriptElementType("INSTANCE_OF", SyntaxHighlighterColors.KEYWORD);
 
 }

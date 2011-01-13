@@ -7,3 +7,5 @@ else
   showIt()
 
 date = if friday then sue else jill
+
+return if o instanceof Object

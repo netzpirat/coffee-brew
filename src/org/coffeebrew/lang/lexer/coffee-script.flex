@@ -65,6 +65,8 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
   "switch"                    {                          return CoffeeScriptTokenTypes.SWITCH;             }
   "when"                      {                          return CoffeeScriptTokenTypes.WHEN;               }
+  "break"                     {                          return CoffeeScriptTokenTypes.BREAK;              }
+  "continue"                  {                          return CoffeeScriptTokenTypes.CONTINUE;           }
 
   {BOOL}                      {                          return CoffeeScriptTokenTypes.BOOL;               }
   {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;              }
@@ -104,7 +106,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "-"                         {                          return CoffeeScriptTokenTypes.MINUS;              }
   "*"                         {                          return CoffeeScriptTokenTypes.MATH;               }
   "%"                         {                          return CoffeeScriptTokenTypes.MATH;               }
-  "//"                        {                          return CoffeeScriptTokenTypes.MATH;               }
+  "/"                         {                          return CoffeeScriptTokenTypes.MATH;               }
 
   {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;       }
   {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }

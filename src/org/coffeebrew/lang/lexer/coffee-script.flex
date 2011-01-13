@@ -20,7 +20,7 @@ import java.util.Stack;
 %function advance
 
 TERMINATOR          = [\n\r]
-WHITESPACE          = [\ ]+
+WHITE_SPACE          = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 DOUBLE_QUOTE_STRING = (\\.|[^\"])*
@@ -43,7 +43,7 @@ UNARY           = do|new|typeof|delete|\~|\!
 %%
 
 <YYINITIAL> {
-  {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.RESERVED;           }
+  {RESERVED}                  { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.ERROR_ELEMENT;      }
 
   "class"                     {                          return CoffeeScriptTokenTypes.CLASS;              }
   "extends"                   {                          return CoffeeScriptTokenTypes.EXTENDS;            }
@@ -95,7 +95,7 @@ UNARY           = do|new|typeof|delete|\~|\!
   {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
+  {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
 <YYIDENTIFIER> {
@@ -109,7 +109,7 @@ UNARY           = do|new|typeof|delete|\~|\!
   "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
   "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
-  {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
+  {WHITE_SPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
 <YYNUMBER> {
@@ -119,7 +119,7 @@ UNARY           = do|new|typeof|delete|\~|\!
   "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
   "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
-  {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
+  {WHITE_SPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
 <YYDOUBLEQUOTE> {
@@ -136,7 +136,7 @@ UNARY           = do|new|typeof|delete|\~|\!
   "("                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
   "->"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;           }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
+  {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
 <YYFOR> {
@@ -144,7 +144,7 @@ UNARY           = do|new|typeof|delete|\~|\!
   "of"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FOROF;              }
   "in"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FORIN;              }
   {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
-  {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
+  {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;      }

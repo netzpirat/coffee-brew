@@ -15,8 +15,8 @@ import org.coffeebrew.lang.lexer.CoffeeScriptElementType;
 public interface CoffeeScriptTokenTypes {
 
   public static final IElementType BAD_CHARACTER     = TokenType.BAD_CHARACTER;
-  public static final IElementType RESERVED          = TokenType.ERROR_ELEMENT;
-  public static final IElementType WHITESPACE        = TokenType.WHITE_SPACE;
+  public static final IElementType ERROR_ELEMENT     = TokenType.ERROR_ELEMENT;
+  public static final IElementType WHITE_SPACE       = TokenType.WHITE_SPACE;
 
   public static final IElementType TERMINATOR        = new CoffeeScriptElementType("TERMINATOR", SyntaxHighlighterColors.JAVA_SEMICOLON);
 

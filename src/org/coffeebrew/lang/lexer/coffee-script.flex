@@ -35,7 +35,7 @@ RESERVED        = case|default|function|var|void|with|const|let|enum|export|impo
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
 COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
-BOOL            = true|yes|on|false|no|off
+BOOL            = true|yes|on|false|no|off|undefined|null
 UNARY           = do|new|typeof|delete|\~|\!|not
 
 %state YYIDENTIFIER, YYNUMBER
@@ -100,6 +100,9 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
 
   "+"                         {                          return CoffeeScriptTokenTypes.PLUS;               }
+  "-"                         {                          return CoffeeScriptTokenTypes.MINUS;              }
+  "*"                         {                          return CoffeeScriptTokenTypes.MATH;               }
+  "%"                         {                          return CoffeeScriptTokenTypes.MATH;               }
 
   {LINE_COMMENT}              {                          return CoffeeScriptTokenTypes.LINE_COMMENT;       }
   {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }
@@ -131,15 +134,17 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
 }
 
+<YYDOUBLEQUOTE, YYSINGLEQUOTE> {
+  [\n\r]                      {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
+}
+
 <YYDOUBLEQUOTE> {
   \"                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
-  [\n\r]                      {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {DOUBLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 
 <YYSINGLEQUOTE> {
   \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
-  [\n\r]                      {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 

@@ -134,4 +134,14 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void splats() {
     assertLexerExample("splats");
   }
+
+  @Test
+  public void bools() {
+    assertLexerExample("bools");
+  }
+
+  @Test
+  public void maths() {
+    assertLexerExample("maths");
+  }
 }

@@ -19,7 +19,7 @@ import java.util.Stack;
 
 %function advance
 
-TERMINATOR          = [\n\r]
+TERMINATOR          = [\n\r;]
 WHITE_SPACE          = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)

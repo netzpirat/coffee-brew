@@ -144,4 +144,20 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   public void maths() {
     assertLexerExample("maths");
   }
+
+  @Test
+  public void heredocs() {
+    assertLexerExample("heredocs");
+  }
+
+  @Test
+  public void interpolations() {
+    assertLexerExample("interpolations");
+  }
+
+  @Test
+  public void regularExpressions() {
+    //assertLexerExample("regular_expressions");
+  }
+
 }

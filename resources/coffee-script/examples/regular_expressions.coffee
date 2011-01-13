@@ -1,3 +1,11 @@
+'a'.match /a/g
+'a'.match /a/gi
+'a'.match /a/
+
+/0/['source']
+
+/^a\/[/]b$/.test 'a//b'
+
 OPERATOR = /// ^ (
   ?: [-=]>             # function
    | [-+*/%<>&|^!?=]=  # compound assign / compare

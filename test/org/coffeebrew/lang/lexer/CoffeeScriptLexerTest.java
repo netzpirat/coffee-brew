@@ -80,4 +80,29 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("trycatch");
   }
 
+  @Test
+  public void functions() {
+    assertLexerExample("functions");
+  }
+
+  @Test
+  public void compoundAssigns() {
+    assertLexerExample("compound_assigns");
+  }
+
+  @Test
+  public void unaries() {
+    assertLexerExample("unaries");
+  }
+
+  @Test
+  public void prototypes() {
+    assertLexerExample("prototypes");
+  }
+
+  @Test
+  public void switches() {
+    assertLexerExample("switches");
+  }
+
 }

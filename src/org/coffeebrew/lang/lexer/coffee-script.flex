@@ -19,19 +19,6 @@ import java.util.Stack;
 
 %function advance
 
-%{
-    private Stack<IElementType> bracketStack = new Stack<IElementType>();
-
-    private void pushBracket(IElementType bracket) {
-        bracketStack.push(bracket);
-    }
-
-    private IElementType popBracket() {
-        return bracketStack.pop();
-    }
-
-%}
-
 TERMINATOR          = [\n\r]
 WHITESPACE          = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
@@ -40,17 +27,18 @@ DOUBLE_QUOTE_STRING = (\\.|[^\"])*
 SINGLE_QUOTE_STRING = (\\.|[^\'])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
+REGEX               = \/.*\/[imgy]{0,4}
 
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^
 COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
-COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=
+COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off
+UNARY           = do|new|typeof|delete|\~|\!
 
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
 %state YYCOLON, YYFOR
-%state YYCALLSTART, YYPARAMSTART
 
 %%
 
@@ -64,6 +52,7 @@ BOOL            = true|yes|on|false|no|off
   "finally"                   {                          return CoffeeScriptTokenTypes.FINALLY;            }
   {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
   "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;           }
+  "=>"                        {                          return CoffeeScriptTokenTypes.FUNCTION_BIND;      }
 
   "if"                        {                          return CoffeeScriptTokenTypes.IF;                 }
   "then"                      {                          return CoffeeScriptTokenTypes.THEN;               }
@@ -73,14 +62,17 @@ BOOL            = true|yes|on|false|no|off
   "for"                       { yybegin(YYFOR);          return CoffeeScriptTokenTypes.FOR;                }
   "while"                     {                          return CoffeeScriptTokenTypes.WHILE;              }
   "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
+  "switch"                    {                          return CoffeeScriptTokenTypes.SWITCH;             }
+  "when"                      {                          return CoffeeScriptTokenTypes.WHEN;               }
 
   {BOOL}                      {                          return CoffeeScriptTokenTypes.BOOL;               }
   {LOGIC}                     {                          return CoffeeScriptTokenTypes.LOGIC;              }
   {COMPARE}                   {                          return CoffeeScriptTokenTypes.COMPARE;            }
-  {COMPOUND_ASSIGN}           { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMPOUND_ASSIGN;    }
+  {COMPOUND_ASSIGN}           {                          return CoffeeScriptTokenTypes.COMPOUND_ASSIGN;    }
+  {UNARY}                     {                          return CoffeeScriptTokenTypes.UNARY;              }
 
+  {REGEX}                     {                          return CoffeeScriptTokenTypes.REGEX;              }
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;         }
-
   {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;             }
 
   \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL;     }
@@ -88,9 +80,8 @@ BOOL            = true|yes|on|false|no|off
 
   "="                         {                          return CoffeeScriptTokenTypes.EQUAL;              }
 
-  "["                         {                          pushBracket(CoffeeScriptTokenTypes.BRACKET_END);
-                                                         return CoffeeScriptTokenTypes.BRACKET_START;      }
-  "]"                         {                          return popBracket();                              }
+  "["                         {                          return CoffeeScriptTokenTypes.BRACKET_START;      }
+  "]"                         {                          return CoffeeScriptTokenTypes.BRACKET_END;        }
 
   "("                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
   ")"                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
@@ -109,13 +100,14 @@ BOOL            = true|yes|on|false|no|off
 
 <YYIDENTIFIER> {
   "="                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EQUAL;              }
+  "::"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PROTOTYPE;          }
   ":"                         { yybegin(YYCOLON);        return CoffeeScriptTokenTypes.COLON;              }
   "."                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.DOT  ;              }
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
-  "("                         { yybegin(YYCALLSTART);    return CoffeeScriptTokenTypes.CALL_START;         }
-  "]"                         { yybegin(YYINITIAL);      return popBracket();                              }
-  "["                         { yybegin(YYINITIAL);      pushBracket(CoffeeScriptTokenTypes.INDEX_END);
-                                                         return CoffeeScriptTokenTypes.INDEX_START;        }
+  "("                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
+  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
@@ -124,9 +116,8 @@ BOOL            = true|yes|on|false|no|off
   ".."                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
   "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
-  "]"                         { yybegin(YYINITIAL);      return popBracket();                              }
-  "["                         { yybegin(YYINITIAL);      pushBracket(CoffeeScriptTokenTypes.INDEX_END);
-                                                         return CoffeeScriptTokenTypes.INDEX_START;        }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITESPACE;         }
 }
@@ -141,25 +132,11 @@ BOOL            = true|yes|on|false|no|off
   {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 
-<YYCALLSTART> {
-  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
-  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.CALL_END;           }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
-}
-
 <YYCOLON> {
-  "("                         { yybegin(YYPARAMSTART);   return CoffeeScriptTokenTypes.PARAM_START;        }
+  "("                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
   "->"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FUNCTION;           }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITESPACE}                {                          return CoffeeScriptTokenTypes.WHITESPACE;         }
-}
-
-<YYPARAMSTART> {
-  {THIS}                      {                          return CoffeeScriptTokenTypes.THIS;               }
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
-  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARAM_END;          }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
 }
 
 <YYFOR> {

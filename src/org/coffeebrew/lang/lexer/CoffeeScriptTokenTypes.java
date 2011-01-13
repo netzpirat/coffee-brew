@@ -36,20 +36,15 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType COMPARE           = new CoffeeScriptElementType("COMPARE");
   public static final IElementType LOGIC             = new CoffeeScriptElementType("LOGIC");
   public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION");
+  public static final IElementType UNARY             = new CoffeeScriptElementType("UNARY");
 
   public static final IElementType RANGE             = new CoffeeScriptElementType("RANGE");
 
-  public static final IElementType CALL_START        = new CoffeeScriptElementType("CALL_START");
-  public static final IElementType CALL_END          = new CoffeeScriptElementType("CALL_END");
-  public static final IElementType PARAM_START       = new CoffeeScriptElementType("PARAM_START");
-  public static final IElementType PARAM_END         = new CoffeeScriptElementType("PARAM_END");
   public static final IElementType PARENTHESIS_START = new CoffeeScriptElementType("PARENTHESIS_START");
   public static final IElementType PARENTHESIS_END   = new CoffeeScriptElementType("PARENTHESIS_END");
 
   public static final IElementType BRACKET_START     = new CoffeeScriptElementType("BRACKET_START");
   public static final IElementType BRACKET_END       = new CoffeeScriptElementType("BRACKET_END");
-  public static final IElementType INDEX_START       = new CoffeeScriptElementType("INDEX_START");
-  public static final IElementType INDEX_END         = new CoffeeScriptElementType("INDEX_END");
 
   public static final IElementType IF                = new CoffeeScriptElementType("IF");
   public static final IElementType ELSE              = new CoffeeScriptElementType("ELSE");
@@ -63,15 +58,25 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType WHILE             = new CoffeeScriptElementType("WHILE");
   public static final IElementType UNTIL             = new CoffeeScriptElementType("UNTIL");
 
+  public static final IElementType SWITCH            = new CoffeeScriptElementType("SWITCH");
+  public static final IElementType WHEN              = new CoffeeScriptElementType("WHEN");
+
   public static final IElementType DOT               = new CoffeeScriptElementType("DOT");
   public static final IElementType COMMA             = new CoffeeScriptElementType("COMMA");
-  public static final IElementType COLON             = new CoffeeScriptElementType("COLON");
+
   public static final IElementType THIS              = new CoffeeScriptElementType("THIS");
+
+  public static final IElementType COLON             = new CoffeeScriptElementType("COLON");
+  public static final IElementType PROTOTYPE         = new CoffeeScriptElementType("PROTOTYPE");
+
   public static final IElementType FUNCTION          = new CoffeeScriptElementType("FUNCTION");
+  public static final IElementType FUNCTION_BIND     = new CoffeeScriptElementType("FUNCTION_BIND");
 
   public static final IElementType PLUS              = new CoffeeScriptElementType("PLUS");
 
   public static final IElementType TRY               = new CoffeeScriptElementType("TRY");
   public static final IElementType CATCH             = new CoffeeScriptElementType("CATCH");
   public static final IElementType FINALLY           = new CoffeeScriptElementType("FINALLY");
+
+  public static final IElementType REGEX             = new CoffeeScriptElementType("REGEX");
 }

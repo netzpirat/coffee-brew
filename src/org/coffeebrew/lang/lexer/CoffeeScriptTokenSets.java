@@ -24,26 +24,4 @@ public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
           STRING_LITERAL
   );
 
-  public static TokenSet PARENTHESIS_TOKEN_SET = TokenSet.create(
-          CALL_START,
-          CALL_END,
-          PARAM_START,
-          PARAM_END,
-          PARENTHESIS_START,
-          PARENTHESIS_END
-  );
-
-  public static TokenSet BRACKET_TOKEN_SET = TokenSet.create(
-          BRACKET_START,
-          BRACKET_END,
-          INDEX_START,
-          INDEX_END
-  );
-
-  public static TokenSet TRY_CATCH_TOKEN_SET = TokenSet.create(
-          TRY,
-          CATCH,
-          FINALLY
-  );
-
 }

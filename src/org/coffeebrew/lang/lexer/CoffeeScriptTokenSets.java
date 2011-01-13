@@ -47,7 +47,6 @@ public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
           FUNCTION_BIND,
           PLUS,
 
-          RELATION,
           UNARY,
           CLASS,
           EXTENDS,
@@ -56,8 +55,8 @@ public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
           THEN,
           UNLESS,
           FOR,
-          FORIN,
-          FOROF,
+          IN,
+          OF,
           WHILE,
           UNTIL,
           SWITCH,

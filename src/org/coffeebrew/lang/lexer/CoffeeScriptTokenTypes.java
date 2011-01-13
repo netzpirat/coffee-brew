@@ -54,7 +54,6 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType FUNCTION_BIND     = new CoffeeScriptElementType("FUNCTION_BIND", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType PLUS              = new CoffeeScriptElementType("PLUS", SyntaxHighlighterColors.OPERATION_SIGN);
 
-  public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType UNARY             = new CoffeeScriptElementType("UNARY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType CLASS             = new CoffeeScriptElementType("CLASS", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType EXTENDS           = new CoffeeScriptElementType("EXTENDS", SyntaxHighlighterColors.KEYWORD);
@@ -63,8 +62,8 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType THEN              = new CoffeeScriptElementType("THEN", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType UNLESS            = new CoffeeScriptElementType("UNLESS", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType FOR               = new CoffeeScriptElementType("FOR", SyntaxHighlighterColors.KEYWORD);
-  public static final IElementType FORIN             = new CoffeeScriptElementType("FORIN", SyntaxHighlighterColors.KEYWORD);
-  public static final IElementType FOROF             = new CoffeeScriptElementType("FOROF", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType IN                = new CoffeeScriptElementType("IN", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType OF                = new CoffeeScriptElementType("OF", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType WHILE             = new CoffeeScriptElementType("WHILE", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType UNTIL             = new CoffeeScriptElementType("UNTIL", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType SWITCH            = new CoffeeScriptElementType("SWITCH", SyntaxHighlighterColors.KEYWORD);

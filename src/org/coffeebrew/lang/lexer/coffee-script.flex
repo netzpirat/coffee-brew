@@ -38,7 +38,7 @@ BOOL            = true|yes|on|false|no|off
 UNARY           = do|new|typeof|delete|\~|\!
 
 %state YYIDENTIFIER, YYNUMBER, YYDOUBLEQUOTE, YYSINGLEQUOTE
-%state YYCOLON, YYFOR
+%state YYCOLON
 
 %%
 
@@ -58,8 +58,9 @@ UNARY           = do|new|typeof|delete|\~|\!
   "then"                      {                          return CoffeeScriptTokenTypes.THEN;               }
   "else"                      {                          return CoffeeScriptTokenTypes.ELSE;               }
   "unless"                    {                          return CoffeeScriptTokenTypes.UNLESS;             }
-  "in"                        {                          return CoffeeScriptTokenTypes.RELATION;           }
-  "for"                       { yybegin(YYFOR);          return CoffeeScriptTokenTypes.FOR;                }
+  "for"                       {                          return CoffeeScriptTokenTypes.FOR;                }
+  "in"                        {                          return CoffeeScriptTokenTypes.IN;                 }
+  "of"                        {                          return CoffeeScriptTokenTypes.OF;                 }
   "while"                     {                          return CoffeeScriptTokenTypes.WHILE;              }
   "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
   "switch"                    {                          return CoffeeScriptTokenTypes.SWITCH;             }
@@ -139,12 +140,5 @@ UNARY           = do|new|typeof|delete|\~|\!
   {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
 }
 
-<YYFOR> {
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
-  "of"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FOROF;              }
-  "in"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.FORIN;              }
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
-  {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
-}
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;      }

@@ -60,6 +60,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "for"                       {                          return CoffeeScriptTokenTypes.FOR;                }
   "in"                        {                          return CoffeeScriptTokenTypes.IN;                 }
   "of"                        {                          return CoffeeScriptTokenTypes.OF;                 }
+  "by"                        {                          return CoffeeScriptTokenTypes.BY;                 }
   "while"                     {                          return CoffeeScriptTokenTypes.WHILE;              }
   "until"                     {                          return CoffeeScriptTokenTypes.UNTIL;              }
   "switch"                    {                          return CoffeeScriptTokenTypes.SWITCH;             }
@@ -118,6 +119,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
   "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
   "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
   {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITE_SPACE}               { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITE_SPACE;        }
 }
@@ -126,7 +128,6 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "?"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EXIST;              }
   "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
   "("                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
-  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
 }
 
 <YYNUMBER> {

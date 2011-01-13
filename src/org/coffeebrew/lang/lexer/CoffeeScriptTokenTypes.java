@@ -74,6 +74,7 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType FOR                = new CoffeeScriptElementType("FOR", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType IN                 = new CoffeeScriptElementType("IN", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType OF                 = new CoffeeScriptElementType("OF", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType BY                 = new CoffeeScriptElementType("BY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType WHILE              = new CoffeeScriptElementType("WHILE", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType UNTIL              = new CoffeeScriptElementType("UNTIL", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType SWITCH             = new CoffeeScriptElementType("SWITCH", SyntaxHighlighterColors.KEYWORD);

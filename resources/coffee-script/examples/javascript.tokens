@@ -1,0 +1,1 @@
+[IDENTIFIER hi] [WHITE_SPACE  ] [EQUAL =] [WHITE_SPACE  ] [JAVASCRIPT_LITERAL `] [JAVASCRIPT function() {\n  return [document.title, "Hello JavaScript"].join(": ");\n}] [JAVASCRIPT_LITERAL `] [TERMINATOR \n]

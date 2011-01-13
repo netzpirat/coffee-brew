@@ -28,6 +28,7 @@ SINGLE_QUOTE_STRING = (\\.|[^\'])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
 REGEX               = \/.*\/[imgy]{0,4}
+JAVASCRIPT          = [^`]+
 
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
@@ -37,7 +38,7 @@ COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off
 UNARY           = do|new|typeof|delete|\~|\!
 
-%state YYDOUBLEQUOTE, YYSINGLEQUOTE
+%state YYDOUBLEQUOTE, YYSINGLEQUOTE, YYJAVASCRIPT
 
 %%
 
@@ -71,7 +72,9 @@ UNARY           = do|new|typeof|delete|\~|\!
 
   \"                          { yybegin(YYDOUBLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL;     }
   \'                          { yybegin(YYSINGLEQUOTE);  return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+
   {REGEX}                     {                          return CoffeeScriptTokenTypes.REGEX;              }
+  "`"                         { yybegin(YYJAVASCRIPT);   return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
   {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
   {NUMBER}                    {                          return CoffeeScriptTokenTypes.NUMBER;             }
@@ -112,6 +115,11 @@ UNARY           = do|new|typeof|delete|\~|\!
 <YYSINGLEQUOTE> {
   \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
   {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
+}
+
+<YYJAVASCRIPT> {
+  "`"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
+  {JAVASCRIPT}                {                          return CoffeeScriptTokenTypes.JAVASCRIPT;         }
 }
 
 .                             { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BAD_CHARACTER;      }

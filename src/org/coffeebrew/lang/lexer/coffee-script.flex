@@ -91,6 +91,9 @@ UNARY           = do|new|typeof|delete|\~|\!
   "("                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
   ")"                         {                          return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
 
+  "{"                         {                          return CoffeeScriptTokenTypes.BRACE_START;        }
+  "}"                         {                          return CoffeeScriptTokenTypes.BRACE_END;          }
+
   "."                         {                          return CoffeeScriptTokenTypes.DOT  ;              }
   ".."                        {                          return CoffeeScriptTokenTypes.RANGE;              }
   "..."                       {                          return CoffeeScriptTokenTypes.RANGE;              }

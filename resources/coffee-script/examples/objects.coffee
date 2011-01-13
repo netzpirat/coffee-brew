@@ -1,3 +1,5 @@
+singers = {Jagger: "Rock", Elvis: "Roll"}
+
 kids =
   brother:
     name: "Max"

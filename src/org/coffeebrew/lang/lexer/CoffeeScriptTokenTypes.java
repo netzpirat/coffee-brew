@@ -45,6 +45,9 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType BRACKET_START      = new CoffeeScriptElementType("BRACKET_START", SyntaxHighlighterColors.BRACKETS);
   public static final IElementType BRACKET_END        = new CoffeeScriptElementType("BRACKET_END", SyntaxHighlighterColors.BRACKETS);
 
+  public static final IElementType BRACE_START        = new CoffeeScriptElementType("BRACE_START", SyntaxHighlighterColors.BRACES);
+  public static final IElementType BRACE_END          = new CoffeeScriptElementType("BRACE_END", SyntaxHighlighterColors.BRACES);
+
   public static final IElementType EQUAL              = new CoffeeScriptElementType("EQUAL", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType COMPOUND_ASSIGN    = new CoffeeScriptElementType("COMPOUND_ASSIGN", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType COMPARE            = new CoffeeScriptElementType("COMPARE", SyntaxHighlighterColors.OPERATION_SIGN);

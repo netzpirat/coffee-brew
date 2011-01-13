@@ -1,3 +1,11 @@
+
+    _________         _____  _____            __________
+    \_   ___ \  _____/ ____\/ ____\____   ____\______   \_______   ______  _  __
+    /    \  \/ /  _ \   __\\   __\/ __ \_/ __ \|    |  _/\_  __ \_/ __ \ \/ \/ /
+    \     \___(  <_> )  |   |  | \  ___/\  ___/|    |   \ |  | \/\  ___/\     /
+     \______  /\____/|__|   |__|  \___  >\___  >______  / |__|    \___  >\/\_/
+            \/                        \/     \/       \/              \/
+
 # CoffeeBrew is CoffeeScript plugin for IntelliJ IDEA
 
 CoffeeBrew is a plugin for [JetBrains](http://www.jetbrains.com) development tools. It has been successfully tested on

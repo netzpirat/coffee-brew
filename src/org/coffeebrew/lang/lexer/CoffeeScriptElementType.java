@@ -14,16 +14,24 @@ import org.coffeebrew.CoffeeScriptFileType;
 public class CoffeeScriptElementType extends IElementType {
 
   private String name = null;
+  private TextAttributesKey defaultAttributes;
 
-  public CoffeeScriptElementType(String name) {
+  public CoffeeScriptElementType(String name, TextAttributesKey defaultAttributes) {
     super(name, CoffeeScriptFileType.COFFEE_SCRIPT_FILE_TYPE.getLanguage());
+
     this.name = name;
+    this.defaultAttributes = defaultAttributes;
   }
 
+  /**
+   * Returns the style of the CoffeeScript element
+   *
+   * @return
+   */
   public TextAttributesKey getStyle() {
     return TextAttributesKey.createTextAttributesKey(
             "COFFEESCRIPT." + name.toUpperCase(),
-            SyntaxHighlighterColors.NUMBER.getDefaultAttributes()
+            defaultAttributes.getDefaultAttributes()
     );
   }
 

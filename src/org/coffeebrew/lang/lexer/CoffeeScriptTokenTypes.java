@@ -1,5 +1,7 @@
 package org.coffeebrew.lang.lexer;
 
+import com.intellij.openapi.editor.HighlighterColors;
+import com.intellij.openapi.editor.SyntaxHighlighterColors;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 import org.coffeebrew.lang.lexer.CoffeeScriptElementType;
@@ -13,70 +15,62 @@ import org.coffeebrew.lang.lexer.CoffeeScriptElementType;
 public interface CoffeeScriptTokenTypes {
 
   public static final IElementType BAD_CHARACTER     = TokenType.BAD_CHARACTER;
-  public static final IElementType RESERVED          = new CoffeeScriptElementType("RESERVED");
+  public static final IElementType RESERVED          = TokenType.ERROR_ELEMENT;
+  public static final IElementType WHITESPACE        = TokenType.WHITE_SPACE;
 
-  public static final IElementType WHITESPACE        = new CoffeeScriptElementType("WHITESPACE");
-  public static final IElementType TERMINATOR        = new CoffeeScriptElementType("TERMINATOR");
+  public static final IElementType TERMINATOR        = new CoffeeScriptElementType("TERMINATOR", SyntaxHighlighterColors.JAVA_SEMICOLON);
 
-  public static final IElementType IDENTIFIER        = new CoffeeScriptElementType("IDENTIFIER");
+  public static final IElementType DOT               = new CoffeeScriptElementType("DOT", SyntaxHighlighterColors.DOT);
+  public static final IElementType COMMA             = new CoffeeScriptElementType("COMMA", SyntaxHighlighterColors.COMMA);
 
-  public static final IElementType STRING_LITERAL    = new CoffeeScriptElementType("STRING_LITERAL");
-  public static final IElementType STRING            = new CoffeeScriptElementType("STRING");
-  public static final IElementType NUMBER            = new CoffeeScriptElementType("NUMBER");
-  public static final IElementType BOOL              = new CoffeeScriptElementType("BOOL");
+  public static final IElementType IDENTIFIER        = new CoffeeScriptElementType("IDENTIFIER", HighlighterColors.TEXT);
 
-  public static final IElementType CLASS             = new CoffeeScriptElementType("CLASS");
-  public static final IElementType EXTENDS           = new CoffeeScriptElementType("EXTENDS");
+  public static final IElementType STRING_LITERAL    = new CoffeeScriptElementType("STRING_LITERAL", SyntaxHighlighterColors.STRING);
+  public static final IElementType STRING            = new CoffeeScriptElementType("STRING", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX             = new CoffeeScriptElementType("REGEX", SyntaxHighlighterColors.STRING);
 
-  public static final IElementType LINE_COMMENT      = new CoffeeScriptElementType("COMMENT");
-  public static final IElementType BLOCK_COMMENT     = new CoffeeScriptElementType("BLOCK_COMMENT");
+  public static final IElementType NUMBER            = new CoffeeScriptElementType("NUMBER", SyntaxHighlighterColors.NUMBER);
+  public static final IElementType BOOL              = new CoffeeScriptElementType("BOOL", SyntaxHighlighterColors.NUMBER);
 
-  public static final IElementType EQUAL             = new CoffeeScriptElementType("EQUAL");
-  public static final IElementType COMPOUND_ASSIGN   = new CoffeeScriptElementType("COMPOUND_ASSIGN");
-  public static final IElementType COMPARE           = new CoffeeScriptElementType("COMPARE");
-  public static final IElementType LOGIC             = new CoffeeScriptElementType("LOGIC");
-  public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION");
-  public static final IElementType UNARY             = new CoffeeScriptElementType("UNARY");
+  public static final IElementType LINE_COMMENT      = new CoffeeScriptElementType("COMMENT", SyntaxHighlighterColors.LINE_COMMENT);
+  public static final IElementType BLOCK_COMMENT     = new CoffeeScriptElementType("BLOCK_COMMENT", SyntaxHighlighterColors.JAVA_BLOCK_COMMENT);
 
-  public static final IElementType RANGE             = new CoffeeScriptElementType("RANGE");
 
-  public static final IElementType PARENTHESIS_START = new CoffeeScriptElementType("PARENTHESIS_START");
-  public static final IElementType PARENTHESIS_END   = new CoffeeScriptElementType("PARENTHESIS_END");
+  public static final IElementType PARENTHESIS_START = new CoffeeScriptElementType("PARENTHESIS_START", SyntaxHighlighterColors.PARENTHS);
+  public static final IElementType PARENTHESIS_END   = new CoffeeScriptElementType("PARENTHESIS_END", SyntaxHighlighterColors.PARENTHS);
 
-  public static final IElementType BRACKET_START     = new CoffeeScriptElementType("BRACKET_START");
-  public static final IElementType BRACKET_END       = new CoffeeScriptElementType("BRACKET_END");
+  public static final IElementType BRACKET_START     = new CoffeeScriptElementType("BRACKET_START", SyntaxHighlighterColors.BRACKETS);
+  public static final IElementType BRACKET_END       = new CoffeeScriptElementType("BRACKET_END", SyntaxHighlighterColors.BRACKETS);
 
-  public static final IElementType IF                = new CoffeeScriptElementType("IF");
-  public static final IElementType ELSE              = new CoffeeScriptElementType("ELSE");
-  public static final IElementType THEN              = new CoffeeScriptElementType("THEN");
-  public static final IElementType UNLESS            = new CoffeeScriptElementType("UNLESS");
+  public static final IElementType EQUAL             = new CoffeeScriptElementType("EQUAL", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType COMPOUND_ASSIGN   = new CoffeeScriptElementType("COMPOUND_ASSIGN", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType COMPARE           = new CoffeeScriptElementType("COMPARE", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType LOGIC             = new CoffeeScriptElementType("LOGIC", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType RANGE             = new CoffeeScriptElementType("RANGE", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType THIS              = new CoffeeScriptElementType("THIS", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType COLON             = new CoffeeScriptElementType("COLON", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType PROTOTYPE         = new CoffeeScriptElementType("PROTOTYPE", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType FUNCTION          = new CoffeeScriptElementType("FUNCTION", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType FUNCTION_BIND     = new CoffeeScriptElementType("FUNCTION_BIND", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType PLUS              = new CoffeeScriptElementType("PLUS", SyntaxHighlighterColors.OPERATION_SIGN);
 
-  public static final IElementType FOR               = new CoffeeScriptElementType("FOR");
-  public static final IElementType FORIN             = new CoffeeScriptElementType("FORIN");
-  public static final IElementType FOROF             = new CoffeeScriptElementType("FOROF");
+  public static final IElementType RELATION          = new CoffeeScriptElementType("RELATION", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType UNARY             = new CoffeeScriptElementType("UNARY", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType CLASS             = new CoffeeScriptElementType("CLASS", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType EXTENDS           = new CoffeeScriptElementType("EXTENDS", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType IF                = new CoffeeScriptElementType("IF", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType ELSE              = new CoffeeScriptElementType("ELSE", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType THEN              = new CoffeeScriptElementType("THEN", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType UNLESS            = new CoffeeScriptElementType("UNLESS", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType FOR               = new CoffeeScriptElementType("FOR", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType FORIN             = new CoffeeScriptElementType("FORIN", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType FOROF             = new CoffeeScriptElementType("FOROF", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType WHILE             = new CoffeeScriptElementType("WHILE", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType UNTIL             = new CoffeeScriptElementType("UNTIL", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType SWITCH            = new CoffeeScriptElementType("SWITCH", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType WHEN              = new CoffeeScriptElementType("WHEN", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType TRY               = new CoffeeScriptElementType("TRY", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType CATCH             = new CoffeeScriptElementType("CATCH", SyntaxHighlighterColors.KEYWORD);
+  public static final IElementType FINALLY           = new CoffeeScriptElementType("FINALLY", SyntaxHighlighterColors.KEYWORD);
 
-  public static final IElementType WHILE             = new CoffeeScriptElementType("WHILE");
-  public static final IElementType UNTIL             = new CoffeeScriptElementType("UNTIL");
-
-  public static final IElementType SWITCH            = new CoffeeScriptElementType("SWITCH");
-  public static final IElementType WHEN              = new CoffeeScriptElementType("WHEN");
-
-  public static final IElementType DOT               = new CoffeeScriptElementType("DOT");
-  public static final IElementType COMMA             = new CoffeeScriptElementType("COMMA");
-
-  public static final IElementType THIS              = new CoffeeScriptElementType("THIS");
-
-  public static final IElementType COLON             = new CoffeeScriptElementType("COLON");
-  public static final IElementType PROTOTYPE         = new CoffeeScriptElementType("PROTOTYPE");
-
-  public static final IElementType FUNCTION          = new CoffeeScriptElementType("FUNCTION");
-  public static final IElementType FUNCTION_BIND     = new CoffeeScriptElementType("FUNCTION_BIND");
-
-  public static final IElementType PLUS              = new CoffeeScriptElementType("PLUS");
-
-  public static final IElementType TRY               = new CoffeeScriptElementType("TRY");
-  public static final IElementType CATCH             = new CoffeeScriptElementType("CATCH");
-  public static final IElementType FINALLY           = new CoffeeScriptElementType("FINALLY");
-
-  public static final IElementType REGEX             = new CoffeeScriptElementType("REGEX");
 }

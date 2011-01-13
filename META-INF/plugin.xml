@@ -7,6 +7,7 @@
         Michael Kessler
     </vendor>
     <idea-version since-build="8000"/>
+    <resource-bundle>org.coffeebrew.CoffeeBrewBundle</resource-bundle>
 
     <application-components>
         <component>

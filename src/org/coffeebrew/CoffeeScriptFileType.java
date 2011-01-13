@@ -43,7 +43,8 @@ public class CoffeeScriptFileType extends LanguageFileType {
     return DEFAULT_EXTENSION;
   }
 
-  public Icon getIcon() {
+  @NotNull
+   public Icon getIcon() {
     return CoffeeScriptIcons.FILE_TYPE;
   }
 

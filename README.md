@@ -18,6 +18,7 @@ CoffeeBrew is developed with [IntelliJ IDEA](http://www.jetbrains.com/idea/).
 
 * [Writing Plugins](http://www.jetbrains.org/display/IJOS/Writing+Plug-ins)
 * [IntelliJ IDEA Plugin Development](http://confluence.jetbrains.net/display/IDEADEV/PluginDevelopment)
+* [IntelliJ IDEA Plugin Development FAQ](http://confluence.jetbrains.net/display/IDEADEV/Plugin+Development+FAQ)
 * [JFlex Documentation](http://jflex.de/docu.html)
 
 ## License

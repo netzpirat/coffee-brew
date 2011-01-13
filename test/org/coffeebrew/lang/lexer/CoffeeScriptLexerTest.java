@@ -115,4 +115,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("javascript");
   }
 
+  @Test
+  public void comparisons() {
+    assertLexerExample("comparisons");
+  }
+
 }

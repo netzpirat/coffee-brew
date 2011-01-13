@@ -40,6 +40,7 @@
 
     <target name="init" depends="clean">
         <mkdir dir="target/classes"/>
+        <mkdir dir="target/junit"/>
         <mkdir dir="target/test-classes"/>
         <mkdir dir="target/test-reports"/>
         <mkdir dir="target/coffee-script"/>
@@ -50,14 +51,17 @@
 
     <target name="resources" depends="init">
         <copy todir="target/classes">
-            <fileset dir="resources" excludes="coffee-script"/>
-            <filterchain ><expandproperties/></filterchain>
+            <fileset dir="resources" excludes="coffee-script/**"/>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
         </copy>
     </target>
 
     <!-- Generate the tokens from the CoffeeScript resources for testing the plugion -->
 
-    <target name="generate-original-tokens" depends="init" description="Generate the CoffeeScript tokens within resources/coffee-script">
+    <target name="generate-original-tokens" depends="init"
+            description="Generate the CoffeeScript tokens within resources/coffee-script">
         <apply executable="/usr/local/bin/node">
             <arg value="/usr/local/share/npm/bin/coffee"/>
             <arg value="-t"/>
@@ -108,25 +112,29 @@
     <!-- Build the jar -->
 
     <target name="jar" depends="test, compile" description="Build the plugin jar">
-        <jar file="target/jar/coffee-brew-${version}.jar" compress="true">
-            <metainf includes="LICENSE"/>
-            <zipfileset dir="target/classes"/>
+        <jar destfile="target/jar/coffee-brew-${version}.jar" compress="true">
+            <fileset dir="target/classes" />
+            <fileset dir="resources" />
         </jar>
     </target>
 
     <!-- Install plugin to IntelliJ IDEA 10 CE -->
 
-    <target  name="install-idea" description="Install the plugin to IntelliJ IDEA 10 CE">
+    <target name="install-idea" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
         <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10"/>
         <delete dir="${user.home}/Library/Application Support/IntelliJIdea10" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10"><fileset dir="${basedir}/target/jar" includes="*.jar"/></copy>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
     </target>
 
     <!-- Install plugin to RubyMine 3 -->
 
-    <target  name="install-rubymine" description="Install the plugin to RubyMine 3">
+    <target name="install-rubymine" depends="jar" description="Install the plugin to RubyMine 3">
         <delete dir="${user.home}/Library/Application Support/RubyMine30" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/RubyMine30"><fileset dir="${basedir}/target/jar" includes="*.jar"/></copy>
+        <copy todir="${user.home}/Library/Application Support/RubyMine30">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
     </target>
 
 </project>

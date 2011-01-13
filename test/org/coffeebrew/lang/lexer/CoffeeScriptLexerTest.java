@@ -31,6 +31,11 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
   }
 
   @Test
+  public void multipleLines() {
+    assertLexerExample("multiple_lines");
+  }
+
+  @Test
   public void aliases() {
     assertLexerExample("aliases");
   }

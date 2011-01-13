@@ -4,4 +4,4 @@
 [TERMINATOR \n]
 [IDENTIFIER num] [WHITE_SPACE  ] [EQUAL =] [WHITE_SPACE  ] [NUMBER 6] [TERMINATOR \n]
 [IDENTIFIER lyrics] [WHITE_SPACE  ] [EQUAL =] [WHITE_SPACE  ] [WHILE while] [WHITE_SPACE  ] [IDENTIFIER num] [WHITE_SPACE  ] [COMPOUND_ASSIGN -=] [WHITE_SPACE  ] [NUMBER 1] [TERMINATOR \n]
-[WHITE_SPACE   ] [IDENTIFIER num] [WHITE_SPACE  ] [PLUS +] [WHITE_SPACE  ] [STRING_LITERAL "] [STRING  little monkeys, jumping on the bed.\n    One fell out and bumped his head.] [STRING_LITERAL "] [TERMINATOR \n]
+[WHITE_SPACE   ] [IDENTIFIER num] [WHITE_SPACE  ] [PLUS +] [WHITE_SPACE  ] [STRING_LITERAL "] [STRING  little monkeys, jumping on the bed.] [TERMINATOR \n] [STRING     One fell out and bumped his head.] [STRING_LITERAL "] [TERMINATOR \n]

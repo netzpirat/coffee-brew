@@ -19,12 +19,12 @@ import java.util.Stack;
 
 %function advance
 
-TERMINATOR          = [\n\r;]
+TERMINATOR          = [\n\r;]|\\\n
 WHITE_SPACE          = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
-DOUBLE_QUOTE_STRING = (\\.|[^\"])*
-SINGLE_QUOTE_STRING = (\\.|[^\'])*
+DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
+SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
 REGEX               = \/.*\/[imgy]{0,4}
@@ -104,16 +104,18 @@ UNARY           = do|new|typeof|delete|\~|\!
   {BLOCK_COMMENT}             {                          return CoffeeScriptTokenTypes.BLOCK_COMMENT;      }
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
-  {WHITE_SPACE}                {                          return CoffeeScriptTokenTypes.WHITE_SPACE;       }
+  {WHITE_SPACE}               {                          return CoffeeScriptTokenTypes.WHITE_SPACE;        }
 }
 
 <YYDOUBLEQUOTE> {
   \"                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+  [\n\r]                      {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {DOUBLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 
 <YYSINGLEQUOTE> {
   \'                          { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.STRING_LITERAL;     }
+  [\n\r]                      {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {SINGLE_QUOTE_STRING}       {                          return CoffeeScriptTokenTypes.STRING;             }
 }
 

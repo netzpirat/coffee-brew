@@ -114,4 +114,19 @@
         </jar>
     </target>
 
+    <!-- Install plugin to IntelliJ IDEA 10 CE -->
+
+    <target  name="install-idea" description="Install the plugin to IntelliJ IDEA 10 CE">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10"><fileset dir="${basedir}/target/jar" includes="*.jar"/></copy>
+    </target>
+
+    <!-- Install plugin to RubyMine 3 -->
+
+    <target  name="install-rubymine" description="Install the plugin to RubyMine 3">
+        <delete dir="${user.home}/Library/Application Support/RubyMine30" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/RubyMine30"><fileset dir="${basedir}/target/jar" includes="*.jar"/></copy>
+    </target>
+
 </project>

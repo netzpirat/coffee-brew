@@ -3,8 +3,8 @@
     <name>CoffeeBrew</name>
     <description>Plugin for CoffeeScript language support</description>
     <version>0.1.0</version>
-    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffeebrew">Michael
-        Kessler
+    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">
+        Michael Kessler
     </vendor>
     <idea-version since-build="8000"/>
 
@@ -15,15 +15,17 @@
     </application-components>
 
     <project-components>
-        <!-- Add your project components here -->
     </project-components>
 
     <actions>
-        <!-- Add your actions here -->
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighterFactory key="CoffeeScript"
+                                       implementationClass="org.coffeebrew.lang.highlighter.CoffeeScriptHighlighterFactory"/>
         <lang.parserDefinition language="CoffeeScript"
                                implementationClass="org.coffeebrew.lang.parser.CoffeeScriptParserDefinition"/>
+        <lang.commenter language="CoffeeScript"
+                        implementationClass="org.coffeebrew.lang.highlighter.CoffeeScriptCommenter"/>
     </extensions>
 </idea-plugin>

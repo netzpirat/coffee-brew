@@ -10,6 +10,10 @@ import com.intellij.psi.tree.TokenSet;
  */
 public abstract class CoffeeScriptTokenSets implements CoffeeScriptTokenTypes {
 
+  public static TokenSet SYNTAX_HIGHLIGHTER_TOKEN_SET = TokenSet.create(
+          WHITESPACE
+  );
+
   public static TokenSet WHITESPACE_TOKEN_SET = TokenSet.create(
           WHITESPACE
   );

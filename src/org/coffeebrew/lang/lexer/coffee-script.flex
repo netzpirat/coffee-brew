@@ -32,12 +32,13 @@ JAVASCRIPT          = [^`]+
 
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
-LOGIC           = and|&&|or|\|\||&|\||\^
+LOGIC           = and|&&|or|\|\||&|\||\^|\?
 COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off
-UNARY           = do|new|typeof|delete|\~|\!
+UNARY           = do|new|typeof|delete|\~|\!|not
 
+%state YYIDENTIFIER, YYNUMBER
 %state YYDOUBLEQUOTE, YYSINGLEQUOTE, YYJAVASCRIPT
 
 %%
@@ -76,8 +77,8 @@ UNARY           = do|new|typeof|delete|\~|\!
   {REGEX}                     {                          return CoffeeScriptTokenTypes.REGEX;              }
   "`"                         { yybegin(YYJAVASCRIPT);   return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
-  {IDENTIFIER}                {                          return CoffeeScriptTokenTypes.IDENTIFIER;         }
-  {NUMBER}                    {                          return CoffeeScriptTokenTypes.NUMBER;             }
+  {IDENTIFIER}                { yybegin(YYIDENTIFIER);   return CoffeeScriptTokenTypes.IDENTIFIER;         }
+  {NUMBER}                    { yybegin(YYNUMBER);       return CoffeeScriptTokenTypes.NUMBER;             }
 
 
   "->"                        {                          return CoffeeScriptTokenTypes.FUNCTION;           }
@@ -94,12 +95,9 @@ UNARY           = do|new|typeof|delete|\~|\!
   "{"                         {                          return CoffeeScriptTokenTypes.BRACE_START;        }
   "}"                         {                          return CoffeeScriptTokenTypes.BRACE_END;          }
 
-  "."                         {                          return CoffeeScriptTokenTypes.DOT  ;              }
-  ".."                        {                          return CoffeeScriptTokenTypes.RANGE;              }
-  "..."                       {                          return CoffeeScriptTokenTypes.RANGE;              }
-  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
+  "."                         {                          return CoffeeScriptTokenTypes.DOT;                }
   ":"                         {                          return CoffeeScriptTokenTypes.COLON;              }
-  "::"                        {                          return CoffeeScriptTokenTypes.PROTOTYPE;          }
+  ","                         {                          return CoffeeScriptTokenTypes.COMMA;              }
 
   "+"                         {                          return CoffeeScriptTokenTypes.PLUS;               }
 
@@ -108,6 +106,29 @@ UNARY           = do|new|typeof|delete|\~|\!
 
   {TERMINATOR}                {                          return CoffeeScriptTokenTypes.TERMINATOR;         }
   {WHITE_SPACE}               {                          return CoffeeScriptTokenTypes.WHITE_SPACE;        }
+}
+
+<YYIDENTIFIER, YYNUMBER> {
+  "."                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.DOT;                }
+  ":"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COLON;              }
+  "::"                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PROTOTYPE;          }
+  ","                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.COMMA;              }
+  "["                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_START;      }
+  "]"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.BRACKET_END;        }
+  {TERMINATOR}                { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.TERMINATOR;         }
+  {WHITE_SPACE}               { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.WHITE_SPACE;        }
+}
+
+<YYIDENTIFIER> {
+  "?"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.EXIST;              }
+  "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.SPLAT;              }
+  "("                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_START;  }
+  ")"                         { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.PARENTHESIS_END;    }
+}
+
+<YYNUMBER> {
+  ".."                        { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
+  "..."                       { yybegin(YYINITIAL);      return CoffeeScriptTokenTypes.RANGE;              }
 }
 
 <YYDOUBLEQUOTE> {

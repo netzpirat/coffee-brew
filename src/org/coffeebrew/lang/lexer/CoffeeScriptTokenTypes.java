@@ -53,12 +53,14 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType COMPARE            = new CoffeeScriptElementType("COMPARE", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType LOGIC              = new CoffeeScriptElementType("LOGIC", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType RANGE              = new CoffeeScriptElementType("RANGE", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType SPLAT              = new CoffeeScriptElementType("SPLAT", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType THIS               = new CoffeeScriptElementType("THIS", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType COLON              = new CoffeeScriptElementType("COLON", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType PROTOTYPE          = new CoffeeScriptElementType("PROTOTYPE", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType FUNCTION           = new CoffeeScriptElementType("FUNCTION", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType FUNCTION_BIND      = new CoffeeScriptElementType("FUNCTION_BIND", SyntaxHighlighterColors.OPERATION_SIGN);
   public static final IElementType PLUS               = new CoffeeScriptElementType("PLUS", SyntaxHighlighterColors.OPERATION_SIGN);
+  public static final IElementType EXIST              = new CoffeeScriptElementType("EXIST", SyntaxHighlighterColors.OPERATION_SIGN);
 
   public static final IElementType UNARY              = new CoffeeScriptElementType("UNARY", SyntaxHighlighterColors.KEYWORD);
   public static final IElementType CLASS              = new CoffeeScriptElementType("CLASS", SyntaxHighlighterColors.KEYWORD);

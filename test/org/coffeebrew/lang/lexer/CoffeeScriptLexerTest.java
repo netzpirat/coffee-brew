@@ -125,4 +125,13 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("comparisons");
   }
 
+  @Test
+  public void existentials() {
+    assertLexerExample("existentials");
+  }
+
+  @Test
+  public void splats() {
+    assertLexerExample("splats");
+  }
 }

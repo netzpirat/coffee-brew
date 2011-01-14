@@ -112,7 +112,7 @@ COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off|undefined|null
 UNARY           = do|new|typeof|delete|\~|\!|not
-QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless|for|in|of|by|while|until|switch|when|break|continue|return|instanceof|treu|yes|on|false|no|off|undefined|null|do|new|typeof|delete|not|and|or
+QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless|for|in|of|by|while|until|switch|when|break|continue|return|instanceof|true|yes|on|false|no|off|undefined|null|do|new|typeof|delete|not|and|or
 
 %state YYIDENTIFIER, YYNUMBER, YYJAVASCRIPT
 %state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING

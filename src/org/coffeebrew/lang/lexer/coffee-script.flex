@@ -35,7 +35,7 @@ import java.util.Stack;
    *
    * @param state The new state
    */
-  private void pushStateAndChangeInto(int state) {
+  private void pushStateAndBegin(int state) {
     stack.push(yystate());
     yybegin(state);
   }
@@ -80,11 +80,11 @@ import java.util.Stack;
    * @param state The new state
    * @return true when matched
    */
-  private boolean pushBackAndPushState(String text, int state) {
-    final boolean success = pushBackTo(text); 
+  private boolean pushBackAndState(String text, int state) {
+    final boolean success = pushBackTo(text);
 
     if (success) {
-      pushStateAndChangeInto(state);
+      pushStateAndBegin(state);
     }
 
     return success;
@@ -273,7 +273,7 @@ HEREGEX         = [^\r\n]+
   \"                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  {DOUBLE_QUOTE_STRING}       { pushBackAndPushState("#{", YYINTERPOLATION);
+  {DOUBLE_QUOTE_STRING}       { pushBackAndState("#{", YYINTERPOLATION);
                                 if (yytext().length() != 0) {
                                   return CoffeeScriptTokenTypes.STRING;
                                 }
@@ -298,7 +298,8 @@ HEREGEX         = [^\r\n]+
 }
 
 <YYSINGLEQUOTEHEREDOC> {
-  "'''"                       { yybegin(YYINITIAL);
+  "'''"                       |
+  "'''" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
   [^\n\r]+                    {  pushBackTo("'''");
@@ -308,10 +309,12 @@ HEREGEX         = [^\r\n]+
 }
 
 <YYDOUBLEQUOTEHEREDOC> {
-  "\"\"\""                    { yybegin(YYINITIAL);
+  "\"\"\""                    |
+  "\"\"\"" / [^\n\r]+         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    {  if (!pushBackAndPushState("#{", YYINTERPOLATION)) {
+  [^\n\r]+                    {  String text = yytext().toString();
+                                 if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                    pushBackTo("\"\"\"");
                                  }
                                  if (yytext().length() != 0) {
@@ -331,7 +334,7 @@ HEREGEX         = [^\r\n]+
 }
 
 <YYINTERPOLATION> {
-  "#{"                        { pushStateAndChangeInto(YYINITIAL);
+  "#{"                        { pushStateAndBegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.INTERPOLATION_START; }
 
   "}"                         { popState();

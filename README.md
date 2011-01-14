@@ -1,11 +1,15 @@
-                  _________         _____  _____            __________
-                  \_   ___ \  _____/ ____\/ ____\____   ____\______   \_______   ______  _  __
-                  /    \  \/ /  _ \   __\\   __\/ __ \_/ __ \|    |  _/\_  __ \_/ __ \ \/ \/ /
-                  \     \___(  <_> )  |   |  | \  ___/\  ___/|    |   \ |  | \/\  ___/\     /
-                   \______  /\____/|__|   |__|  \___  >\___  >______  / |__|    \___  >\/\_/
-                          \/                        \/     \/       \/              \/
+
+
+                       _________         _____  _____            __________
+                       \_   ___ \  _____/ ____\/ ____\____   ____\______   \_______   ______  _  __
+                       /    \  \/ /  _ \   __\\   __\/ __ \_/ __ \|    |  _/\_  __ \_/ __ \ \/ \/ /
+                       \     \___(  <_> )  |   |  | \  ___/\  ___/|    |   \ |  | \/\  ___/\     /
+                        \______  /\____/|__|   |__|  \___  >\___  >______  / |__|    \___  >\/\_/
+                               \/                        \/     \/       \/              \/
 
                        ------=== Brew your CoffeeScript in your JetBrains IDE ===------
+
+
 
 ## Features
 
@@ -26,7 +30,7 @@ The plugin is under active development and a will be released soon.
 * Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew)
 * Report issues on [GitHub issues](https://github.com/netzpirat/coffee-brew/issues). Please provide the failing code
 snippet for the test.
-* More [development information](https://github.com/netzpirat/coffee-brew/blob/raw/DEVELOPMENT.md)
+* More [development information](https://github.com/netzpirat/coffee-brew/blob/master/DEVELOPMENT.md)
 
 ## Acknowledgement
 

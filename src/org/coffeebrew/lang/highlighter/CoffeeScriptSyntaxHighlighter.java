@@ -7,11 +7,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.coffeebrew.lang.lexer.CoffeeScriptElementType;
 import org.coffeebrew.lang.lexer.CoffeeScriptFlexLexer;
-import org.coffeebrew.lang.lexer.CoffeeScriptLexer;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.Reader;
-import java.util.HashMap;
 
 /**
  * CoffeeScript syntax highlighter

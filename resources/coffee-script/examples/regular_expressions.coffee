@@ -4,14 +4,12 @@
 
 /0/['source']
 
-/^a\/[/]b$/.test 'a//b'
+/^a\/\\[/]b$/.test 'a//b'
 
-OPERATOR = /// ^ (
-  ?: [-=]>             # function
-   | [-+*/%<>&|^!?=]=  # compound assign / compare
-   | >>>=?             # zero-fill right shift
-   | ([-+:])\1         # doubles
-   | ([&|<>])\2=?      # logic / shift
-   | \?\.              # soak access
-   | \.{2,3}           # range or splat
-) ///
+/^a\/\\[a-Z/\n]b$/.test 'a//b'
+
+/\50/
+
+/\x0f/
+
+/\u00A3/

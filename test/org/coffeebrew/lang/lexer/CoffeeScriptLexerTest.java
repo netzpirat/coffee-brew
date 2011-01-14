@@ -157,7 +157,12 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
 
   @Test
   public void regularExpressions() {
-    //assertLexerExample("regular_expressions");
+    assertLexerExample("regular_expressions");
+  }
+
+  @Test
+  public void heregex() {
+    assertLexerExample("heregex");
   }
 
 }

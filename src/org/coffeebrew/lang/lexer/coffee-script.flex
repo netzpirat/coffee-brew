@@ -20,6 +20,7 @@ import java.util.Stack;
 %function advance
 
 %{
+
   final Stack<Integer> stack = new Stack<Integer>();
 
   /**
@@ -100,8 +101,8 @@ DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
 SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
-REGEX               = \/.*\/[imgy]{0,4}
 JAVASCRIPT          = [^`]+
+REGEX               = [^/\\\r\n\[\]]+
 
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
@@ -110,12 +111,11 @@ COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off|undefined|null
 UNARY           = do|new|typeof|delete|\~|\!|not
-HEREDOC         = .*?:'''
-HEREGEX         = [^\r\n]+
 
 %state YYIDENTIFIER, YYNUMBER, YYJAVASCRIPT
 %state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING
-%state YYDOUBLEQUOTEHEREDOC, YYSINGLEQUOTEHEREDOC, YYHEREGEX
+%state YYDOUBLEQUOTEHEREDOC, YYSINGLEQUOTEHEREDOC
+%state YYREGEX, YYHEREGEX, YYREGEXFLAG, YYREGEXCHARACTERCLASS
 %state YYINTERPOLATION
 
 %%
@@ -166,11 +166,6 @@ HEREGEX         = [^\r\n]+
   "'''"                       { yybegin(YYSINGLEQUOTEHEREDOC);
                                 return CoffeeScriptTokenTypes.HEREDOC_START; }
 
-  "///"                       { yybegin(YYHEREGEX);
-                                return CoffeeScriptTokenTypes.HEREGEX_START; }
-
-  {REGEX}                     { return CoffeeScriptTokenTypes.REGEX; }
-
   "`"                         { yybegin(YYJAVASCRIPT);
                                 return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
@@ -212,7 +207,13 @@ HEREGEX         = [^\r\n]+
   "-"                         { return CoffeeScriptTokenTypes.MINUS; }
   "*"                         { return CoffeeScriptTokenTypes.MATH; }
   "%"                         { return CoffeeScriptTokenTypes.MATH; }
-  "/"                         { return CoffeeScriptTokenTypes.MATH; }
+  "/" / [ ]+                  { return CoffeeScriptTokenTypes.MATH; }
+
+  "///"                       { yybegin(YYHEREGEX);
+                                return CoffeeScriptTokenTypes.HEREGEX_START; }
+
+  "/" / [^ ]+                 { yybegin(YYREGEX);
+                                return CoffeeScriptTokenTypes.REGEX_START; }
 
   {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
   {BLOCK_COMMENT}             { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
@@ -313,7 +314,7 @@ HEREGEX         = [^\r\n]+
   "\"\"\"" / [^\n\r]+         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    {  String text = yytext().toString();
+  [^\n\r]+                    {
                                  if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                    pushBackTo("\"\"\"");
                                  }
@@ -325,12 +326,65 @@ HEREGEX         = [^\r\n]+
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
+<YYREGEX> {
+  "["                         { yybegin(YYREGEXCHARACTERCLASS);
+                                return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
+
+  "/"                         |
+  "/" / [imgy]{1,4}           { yybegin(YYREGEXFLAG);
+                                  return CoffeeScriptTokenTypes.REGEX_END;
+                              }
+
+  [\\][^\n\r]                 |
+  [\\][0-8]{1,3}              |
+  [\\]x[0-9a-fA-F]{1,2}       |
+  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+
+  {REGEX}                     { return CoffeeScriptTokenTypes.REGEX; }
+}
+
 <YYHEREGEX> {
-  "///"                       { yybegin(YYINITIAL);
+  "["                         { yybegin(YYREGEXCHARACTERCLASS);
+                                return CoffeeScriptTokenTypes.BRACKET_START; }
+
+  "///"                       |
+  "///" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREGEX_END; }
 
+  [^#\n\r]+                   {
+                                 if (!pushBackAndState("#{", YYINTERPOLATION)) {
+                                   pushBackTo("///");
+                                 }
+                                 if (yytext().length() != 0) {
+                                   return CoffeeScriptTokenTypes.HEREGEX;
+                                 }
+                              }
+
+  [\\][^\n\r]                 |
+  [\\][0-8]{1,3}              |
+  [\\]x[0-9a-fA-F]{1,2}       |
+  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+
   {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
-  {HEREGEX}                   { return CoffeeScriptTokenTypes.HEREGEX; }
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+}
+
+<YYREGEXFLAG> {
+  [imgy]{1,4}                 { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.REGEX_FLAG; }
+
+  [ .\[\n\r]                  { yybegin(YYINITIAL);
+                                yypushback(1);
+                              }
+}
+
+<YYREGEXCHARACTERCLASS> {
+  "]"                         { yybegin(YYREGEX);
+                                return CoffeeScriptTokenTypes.REGEX_BRACKET_END; }
+
+  [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+
+  [^\\\]\n\r]+                { return CoffeeScriptTokenTypes.REGEX; }
 }
 
 <YYINTERPOLATION> {

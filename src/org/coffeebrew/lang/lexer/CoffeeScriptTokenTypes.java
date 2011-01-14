@@ -35,7 +35,13 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType HEREDOC = new CoffeeScriptElementType("HEREDOC", SyntaxHighlighterColors.STRING);
   public static final IElementType HEREDOC_END = new CoffeeScriptElementType("HEREDOC_END", SyntaxHighlighterColors.STRING);
 
+  public static final IElementType REGEX_START = new CoffeeScriptElementType("REGEX_START", SyntaxHighlighterColors.STRING);
   public static final IElementType REGEX = new CoffeeScriptElementType("REGEX", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_ESCAPE = new CoffeeScriptElementType("REGEX_ESCAPE", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_BRACKET_START = new CoffeeScriptElementType("REGEX_BRACKET_START", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_BRACKET_END = new CoffeeScriptElementType("REGEX_BRACKET_END", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_END = new CoffeeScriptElementType("REGEX_END", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_FLAG = new CoffeeScriptElementType("REGEX_FLAG", SyntaxHighlighterColors.STRING);
 
   public static final IElementType HEREGEX_START = new CoffeeScriptElementType("HEREGEX_START", SyntaxHighlighterColors.STRING);
   public static final IElementType HEREGEX = new CoffeeScriptElementType("HEREGEX", SyntaxHighlighterColors.STRING);

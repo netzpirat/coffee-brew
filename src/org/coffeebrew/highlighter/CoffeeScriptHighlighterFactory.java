@@ -1,4 +1,4 @@
-package org.coffeebrew.lang.highlighter;
+package org.coffeebrew.highlighter;
 
 import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
 import org.jetbrains.annotations.NotNull;

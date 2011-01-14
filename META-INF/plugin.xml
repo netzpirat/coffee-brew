@@ -7,7 +7,6 @@
         Michael Kessler
     </vendor>
     <idea-version since-build="8000"/>
-    <resource-bundle>org.coffeebrew.CoffeeScriptBundle</resource-bundle>
 
     <application-components>
         <component>
@@ -23,10 +22,11 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <lang.syntaxHighlighterFactory key="CoffeeScript"
-                                       implementationClass="org.coffeebrew.lang.highlighter.CoffeeScriptHighlighterFactory"/>
+                                       implementationClass="org.coffeebrew.highlighter.CoffeeScriptHighlighterFactory"/>
         <lang.parserDefinition language="CoffeeScript"
                                implementationClass="org.coffeebrew.lang.parser.CoffeeScriptParserDefinition"/>
         <lang.commenter language="CoffeeScript"
-                        implementationClass="org.coffeebrew.lang.highlighter.CoffeeScriptCommenter"/>
+                        implementationClass="org.coffeebrew.highlighter.CoffeeScriptCommenter"/>
+        <colorSettingsPage implementation="org.coffeebrew.highlighter.CoffeeScriptColorSettingsPage"/>
     </extensions>
 </idea-plugin>

@@ -1,4 +1,4 @@
-package org.coffeebrew.lang.highlighter;
+package org.coffeebrew.highlighter;
 
 import com.intellij.lang.CodeDocumentationAwareCommenter;
 import com.intellij.psi.PsiComment;

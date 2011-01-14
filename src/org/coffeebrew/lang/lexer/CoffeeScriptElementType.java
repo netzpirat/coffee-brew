@@ -1,7 +1,5 @@
 package org.coffeebrew.lang.lexer;
 
-import com.intellij.openapi.editor.SyntaxHighlighterColors;
-import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.psi.tree.IElementType;
 import org.coffeebrew.CoffeeScriptFileType;
 
@@ -14,25 +12,11 @@ import org.coffeebrew.CoffeeScriptFileType;
 public class CoffeeScriptElementType extends IElementType {
 
   private String name = null;
-  private TextAttributesKey defaultAttributes;
 
-  public CoffeeScriptElementType(String name, TextAttributesKey defaultAttributes) {
+  public CoffeeScriptElementType(String name) {
     super(name, CoffeeScriptFileType.COFFEE_SCRIPT_FILE_TYPE.getLanguage());
 
     this.name = name;
-    this.defaultAttributes = defaultAttributes;
-  }
-
-  /**
-   * Returns the style of the CoffeeScript element
-   *
-   * @return
-   */
-  public TextAttributesKey getStyle() {
-    return TextAttributesKey.createTextAttributesKey(
-            "COFFEESCRIPT." + name.toUpperCase(),
-            defaultAttributes.getDefaultAttributes()
-    );
   }
 
   public String toString() {

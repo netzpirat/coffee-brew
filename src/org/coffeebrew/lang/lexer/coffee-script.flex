@@ -8,7 +8,7 @@ import java.util.Stack;
 
 %%
 
-%debug
+/* %debug */
 
 %unicode
 
@@ -44,18 +44,15 @@ import java.util.Stack;
   }
 
   /**
-   * Pop the last state from the stack and change to it
-   *
-   * @return the stack it has changed into
+   * Pop the last state from the stack and change to it.
+   * If the stack is empty, go to YYINITIAL
    */
-  private int popState() {
+  private void popState() {
     if (!stack.empty()) {
-      final int state = stack.pop();
-      yybegin(state);
-      return state;
+      yybegin(stack.pop());
+    } else {
+      yybegin(YYINITIAL);
     }
-
-    return -1;
   }
 
   /**
@@ -68,7 +65,7 @@ import java.util.Stack;
     final int position = yytext().toString().indexOf(text);
 
     if (position != -1) {
-      yypushback(yytext().length() - position);
+      yypushback(yylength() - position);
       return true;
     }
 
@@ -220,8 +217,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 }
 
 <YYINITIAL, YYIDENTIFIER, YYNUMBER> {
-  "}"                         { final int state = popState();
-                                if (state == YYINITIAL) {
+  "}"                         { popState();
+                                if (yystate() == YYINITIAL) {
                                   return CoffeeScriptTokenTypes.BRACE_END;
                                 } else {
                                   yypushback(1);
@@ -260,7 +257,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
 <YYIDENTIFIER> {
   \.{QUOTE}                    { yybegin(YYQUOTEPROPERTY);
-                                yypushback(yytext().length()); }
+                                yypushback(yylength()); }
 
   "?"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.EXIST; }
@@ -292,7 +289,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
   {DOUBLE_QUOTE_STRING}       { pushBackAndState("#{", YYINTERPOLATION);
-                                if (yytext().length() != 0) {
+                                if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.STRING;
                                 }
                               }
@@ -334,7 +331,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   [^\n\r]+                    { if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                   pushBackTo("\"\"\"");
                                 }
-                                if (yytext().length() != 0) {
+                                if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.HEREDOC;
                                 }
                               }
@@ -374,7 +371,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.HEREGEX_END; }
 
   [^\[\]\{\}\(\)#\n\r]+       { pushBackTo("///");
-                                if (yytext().length() != 0) {
+                                if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.HEREGEX;
                                 }
                               }
@@ -417,5 +414,6 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.INTERPOLATION_END; }
 }
 
-.                             { yybegin(YYINITIAL);
+.                             { stack.clear();
+                                yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.BAD_CHARACTER; }

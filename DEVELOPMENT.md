@@ -18,7 +18,7 @@ is under preparation.
 
 * Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the newest version
 (master Branch), or IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to develop for the actual RubyMine 3
-(rubymine branch).
+(maia branch).
 * Copy `build.properties.sample` to `build.properties` and modify the settings to match the development environment
 * Use Ant to run the tests, compile, test and install the plugin.
 

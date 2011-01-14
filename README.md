@@ -7,7 +7,7 @@
                         \______  /\____/|__|   |__|  \___  >\___  >______  / |__|    \___  >\/\_/
                                \/                        \/     \/       \/              \/
 
-                       ------=== Brew your CoffeeScript in your JetBrains IDE ===------
+                           ------=== Brew your CoffeeScript in the JetBrains IDE ===------
 
 
 

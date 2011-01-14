@@ -26,11 +26,7 @@ The plugin is under active development and a will be released soon.
 * Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew)
 * Report issues on [GitHub issues](https://github.com/netzpirat/coffee-brew/issues). Please provide the failing code
 snippet for the test.
-* More [development information](https://github.com/jnicklas/capybara/blob/raw/DEVELOPMENT.md)
-
-## Known bugs
-
-* Leak syntax highlighter RegExp support
+* More [development information](https://github.com/netzpirat/coffee-brew/blob/raw/DEVELOPMENT.md)
 
 ## Acknowledgement
 

@@ -21,7 +21,9 @@ import java.util.Stack;
 
 %{
 
-  final Stack<Integer> stack = new Stack<Integer>();
+  private IElementType characterClassType;
+
+  private final Stack<Integer> stack = new Stack<Integer>();
 
   /**
    * Push the actual state on top of the stack
@@ -102,7 +104,7 @@ SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
 LINE_COMMENT        = #{1,2}[^#][^\n]*
 BLOCK_COMMENT       = ###~###
 JAVASCRIPT          = [^`]+
-REGEX               = [^/\\\r\n\[\]]+
+REGEX               = [^/\\\r\n\[\]\(\)\{\}]+
 
 THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
@@ -326,32 +328,38 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
-<YYREGEX> {
-  "["                         { yybegin(YYREGEXCHARACTERCLASS);
-                                return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
-
-  "/"                         |
-  "/" / [imgy]{1,4}           { yybegin(YYREGEXFLAG);
-                                  return CoffeeScriptTokenTypes.REGEX_END;
-                              }
+<YYREGEX, YYHEREGEX> {
+  "("                         { return CoffeeScriptTokenTypes.REGEX_PARENTHESIS_START; }
+  ")"                         { return CoffeeScriptTokenTypes.REGEX_PARENTHESIS_END; }
+  "{"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_START; }
+  "}"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_END; }
 
   [\\][^\n\r]                 |
   [\\][0-8]{1,3}              |
   [\\]x[0-9a-fA-F]{1,2}       |
   [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+}
+
+<YYREGEX> {
+  "/"                         |
+  "/" / [imgy]{1,4}           { yybegin(YYREGEXFLAG);
+                                  return CoffeeScriptTokenTypes.REGEX_END;
+                              }
+
+  "["                         { characterClassType = CoffeeScriptTokenTypes.REGEX;
+                                pushStateAndBegin(YYREGEXCHARACTERCLASS);
+                                return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
+
 
   {REGEX}                     { return CoffeeScriptTokenTypes.REGEX; }
 }
 
 <YYHEREGEX> {
-  "["                         { yybegin(YYREGEXCHARACTERCLASS);
-                                return CoffeeScriptTokenTypes.BRACKET_START; }
-
   "///"                       |
   "///" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREGEX_END; }
 
-  [^#\n\r]+                   {
+  [^\[\]\{\}\(\)#\n\r]+       {
                                  if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                    pushBackTo("///");
                                  }
@@ -360,10 +368,10 @@ UNARY           = do|new|typeof|delete|\~|\!|not
                                  }
                               }
 
-  [\\][^\n\r]                 |
-  [\\][0-8]{1,3}              |
-  [\\]x[0-9a-fA-F]{1,2}       |
-  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+  "["                         { characterClassType = CoffeeScriptTokenTypes.HEREGEX;
+                                pushStateAndBegin(YYREGEXCHARACTERCLASS);
+                                return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
+
 
   {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
@@ -379,12 +387,12 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 }
 
 <YYREGEXCHARACTERCLASS> {
-  "]"                         { yybegin(YYREGEX);
+  "]"                         { popState();
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_END; }
 
   [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
 
-  [^\\\]\n\r]+                { return CoffeeScriptTokenTypes.REGEX; }
+  [^\\\]\n\r]+                { return characterClassType; }
 }
 
 <YYINTERPOLATION> {

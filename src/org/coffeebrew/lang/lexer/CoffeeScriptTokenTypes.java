@@ -40,6 +40,10 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType REGEX_ESCAPE = new CoffeeScriptElementType("REGEX_ESCAPE", SyntaxHighlighterColors.STRING);
   public static final IElementType REGEX_BRACKET_START = new CoffeeScriptElementType("REGEX_BRACKET_START", SyntaxHighlighterColors.STRING);
   public static final IElementType REGEX_BRACKET_END = new CoffeeScriptElementType("REGEX_BRACKET_END", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_PARENTHESIS_START = new CoffeeScriptElementType("REGEX_PARENTHESIS_START", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_PARENTHESIS_END = new CoffeeScriptElementType("REGEX_PARENTHESIS_END", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_BRACE_START = new CoffeeScriptElementType("REGEX_BRACE_START", SyntaxHighlighterColors.STRING);
+  public static final IElementType REGEX_BRACE_END = new CoffeeScriptElementType("REGEX_BRACE_END", SyntaxHighlighterColors.STRING);
   public static final IElementType REGEX_END = new CoffeeScriptElementType("REGEX_END", SyntaxHighlighterColors.STRING);
   public static final IElementType REGEX_FLAG = new CoffeeScriptElementType("REGEX_FLAG", SyntaxHighlighterColors.STRING);
 

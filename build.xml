@@ -119,7 +119,7 @@
                 <filter token="version" value="${version}"/>
             </filterset>
         </copy>
-        <jar destfile="target/jar/coffee-brew-${version}.jar" compress="true">
+        <jar destfile="target/jar/coffee-brew-${idea.version}-${version}.jar" compress="true">
             <fileset dir="target/classes"/>
         </jar>
     </target>
@@ -137,6 +137,7 @@
     <!-- Install plugin to RubyMine 3 -->
 
     <target name="install-rubymine" depends="jar" description="Install the plugin to RubyMine 3">
+        <mkdir dir="${user.home}/Library/Application Support/RubyMine30"/>
         <delete dir="${user.home}/Library/Application Support/RubyMine30" includes="coffee-brew*.jar"/>
         <copy todir="${user.home}/Library/Application Support/RubyMine30">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>

@@ -101,7 +101,7 @@ IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
 SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
-LINE_COMMENT        = #{1,2}[^#][^\n]*
+LINE_COMMENT        = #[^\n\r{]+
 BLOCK_COMMENT       = ###~###
 JAVASCRIPT          = [^`]+
 REGEX               = [^/\\\r\n\[\]\(\)\{\}]+
@@ -214,11 +214,11 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "///"                       { yybegin(YYHEREGEX);
                                 return CoffeeScriptTokenTypes.HEREGEX_START; }
 
-  "/" / [^ ]+                 { yybegin(YYREGEX);
+  "/" / [^ \n\r]+             { yybegin(YYREGEX);
                                 return CoffeeScriptTokenTypes.REGEX_START; }
 
-  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
   {BLOCK_COMMENT}             { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
+  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return CoffeeScriptTokenTypes.WHITE_SPACE; }
@@ -305,8 +305,8 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "'''" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    {  pushBackTo("'''");
-                                 return CoffeeScriptTokenTypes.HEREDOC; }
+  [^\n\r]+                    { pushBackTo("'''");
+                                return CoffeeScriptTokenTypes.HEREDOC; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
@@ -316,13 +316,12 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "\"\"\"" / [^\n\r]+         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    {
-                                 if (!pushBackAndState("#{", YYINTERPOLATION)) {
-                                   pushBackTo("\"\"\"");
-                                 }
-                                 if (yytext().length() != 0) {
-                                   return CoffeeScriptTokenTypes.HEREDOC;
-                                 }
+  [^\n\r]+                    { if (!pushBackAndState("#{", YYINTERPOLATION)) {
+                                  pushBackTo("\"\"\"");
+                                }
+                                if (yytext().length() != 0) {
+                                  return CoffeeScriptTokenTypes.HEREDOC;
+                                }
                               }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
@@ -343,7 +342,7 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 <YYREGEX> {
   "/"                         |
   "/" / [imgy]{1,4}           { yybegin(YYREGEXFLAG);
-                                  return CoffeeScriptTokenTypes.REGEX_END;
+                                return CoffeeScriptTokenTypes.REGEX_END;
                               }
 
   "["                         { characterClassType = CoffeeScriptTokenTypes.REGEX;
@@ -356,17 +355,17 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 
 <YYHEREGEX> {
   "///"                       |
-  "///" / [^\n\r]+            { yybegin(YYINITIAL);
+  "///" / [^\n\r]+            { yybegin(YYREGEXFLAG);
                                 return CoffeeScriptTokenTypes.HEREGEX_END; }
 
-  [^\[\]\{\}\(\)#\n\r]+       {
-                                 if (!pushBackAndState("#{", YYINTERPOLATION)) {
-                                   pushBackTo("///");
-                                 }
-                                 if (yytext().length() != 0) {
-                                   return CoffeeScriptTokenTypes.HEREGEX;
-                                 }
+  [^\[\]\{\}\(\)#\n\r]+       { pushBackTo("///");
+                                if (yytext().length() != 0) {
+                                  return CoffeeScriptTokenTypes.HEREGEX;
+                                }
                               }
+
+  "#{"                        { yypushback(2);
+                                pushStateAndBegin(YYINTERPOLATION); }
 
   "["                         { characterClassType = CoffeeScriptTokenTypes.HEREGEX;
                                 pushStateAndBegin(YYREGEXCHARACTERCLASS);

@@ -106,26 +106,29 @@ BLOCK_COMMENT       = ###~###
 JAVASCRIPT          = [^`]+
 REGEX               = [^/\\\r\n\[\]\(\)\{\}]+
 
-THIS            = @|this
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
 COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=|\|\|=|&&=|\?=|<<=|>>=|>>>=|&=|\^=|\|=|or=
 BOOL            = true|yes|on|false|no|off|undefined|null
 UNARY           = do|new|typeof|delete|\~|\!|not
+QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless|for|in|of|by|while|until|switch|when|break|continue|return|instanceof|treu|yes|on|false|no|off|undefined|null|do|new|typeof|delete|not|and|or
 
 %state YYIDENTIFIER, YYNUMBER, YYJAVASCRIPT
 %state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING
 %state YYDOUBLEQUOTEHEREDOC, YYSINGLEQUOTEHEREDOC
 %state YYREGEX, YYHEREGEX, YYREGEXFLAG, YYREGEXCHARACTERCLASS
-%state YYINTERPOLATION
+%state YYINTERPOLATION, YYQUOTEPROPERTY
 
 %%
 
 <YYINITIAL> {
   {RESERVED}                  { return CoffeeScriptTokenTypes.ERROR_ELEMENT; }
+  {QUOTE}:                    { yypushback(1);
+                                return CoffeeScriptTokenTypes.IDENTIFIER; }
 
-  {THIS}                      { return CoffeeScriptTokenTypes.THIS; }
+  "@"                         { return CoffeeScriptTokenTypes.THIS; }
+  "this"                      { return CoffeeScriptTokenTypes.THIS; }
 
   "class"                     { return CoffeeScriptTokenTypes.CLASS; }
   "extends"                   { return CoffeeScriptTokenTypes.EXTENDS; }
@@ -256,6 +259,9 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 }
 
 <YYIDENTIFIER> {
+  \.{QUOTE}                    { yybegin(YYQUOTEPROPERTY);
+                                yypushback(yytext().length()); }
+
   "?"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.EXIST; }
 
@@ -264,6 +270,13 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 
   "("                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PARENTHESIS_START; }
+}
+
+<YYQUOTEPROPERTY> {
+  "."                         { return CoffeeScriptTokenTypes.DOT; }
+
+  {QUOTE}                     { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.IDENTIFIER; }
 }
 
 <YYNUMBER> {

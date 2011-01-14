@@ -165,4 +165,9 @@ public class CoffeeScriptLexerTest extends CoffeeScriptLexerExampleTestCase {
     assertLexerExample("heregex");
   }
 
+  @Test
+  public void quoteReservedKeywords() {
+    assertLexerExample("quote_reserved_words");
+  }
+
 }

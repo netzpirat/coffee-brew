@@ -193,14 +193,6 @@ UNARY           = do|new|typeof|delete|\~|\!|not
   "{"                         { pushState();
                                 return CoffeeScriptTokenTypes.BRACE_START; }
 
-  "}"                         { final int state = popState();
-                                if (state == YYINITIAL) {
-                                  return CoffeeScriptTokenTypes.BRACE_END;
-                                } else {
-                                  yypushback(1);
-                                }
-                              }
-
   "."                         { return CoffeeScriptTokenTypes.DOT; }
   ":"                         { return CoffeeScriptTokenTypes.COLON; }
   ","                         { return CoffeeScriptTokenTypes.COMMA; }
@@ -222,6 +214,16 @@ UNARY           = do|new|typeof|delete|\~|\!|not
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return CoffeeScriptTokenTypes.WHITE_SPACE; }
+}
+
+<YYINITIAL, YYIDENTIFIER, YYNUMBER> {
+  "}"                         { final int state = popState();
+                                if (state == YYINITIAL) {
+                                  return CoffeeScriptTokenTypes.BRACE_END;
+                                } else {
+                                  yypushback(1);
+                                }
+                              }
 }
 
 <YYIDENTIFIER, YYNUMBER> {

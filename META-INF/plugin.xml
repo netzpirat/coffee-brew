@@ -28,5 +28,7 @@
         <lang.commenter language="CoffeeScript"
                         implementationClass="org.coffeebrew.highlighter.CoffeeScriptCommenter"/>
         <colorSettingsPage implementation="org.coffeebrew.highlighter.CoffeeScriptColorSettingsPage"/>
+        <lang.braceMatcher language="CoffeeScript"
+                           implementationClass="org.coffeebrew.highlighter.CoffeeScriptBraceMatcher"/>
     </extensions>
 </idea-plugin>

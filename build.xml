@@ -10,7 +10,8 @@
     </loadfile>
 
     <property file="build.properties"/>
-
+    <property name="idea.codename" value="ideax"/>
+              
     <!-- Reference the IDEA classpath from the local IDE installation -->
 
     <path id="idea.classpath">
@@ -119,7 +120,7 @@
                 <filter token="version" value="${version}"/>
             </filterset>
         </copy>
-        <jar destfile="target/jar/coffee-brew-${idea.version}-${version}.jar" compress="true">
+        <jar destfile="target/jar/coffee-brew-${version}-${idea.codename}.jar" compress="true">
             <fileset dir="target/classes"/>
         </jar>
     </target>

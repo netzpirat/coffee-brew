@@ -83,7 +83,7 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
   @NotNull
   public String getDemoText() {
     return "###\n" +
-            "Some examples\n" +
+            "Some tests\n" +
             "###\n" +
             "class Animal\n" +
             "  constructor: (@name) -> \n" +

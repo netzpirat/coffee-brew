@@ -6,6 +6,12 @@ import com.intellij.psi.tree.IElementType;
 import org.coffeebrew.lang.lexer.CoffeeScriptTokenTypes;
 import java.util.Stack;
 
+/**
+ * The CoffeeScript lexer is responsible for generating a token stream of any CoffeeScript source file.
+ *
+ * @author Michael kessler
+ * @since 0.1.0
+ */
 %%
 
 /* %debug */
@@ -92,16 +98,13 @@ import java.util.Stack;
 
 %}
 
-TERMINATOR          = [\n\r;]|\\\n
-WHITE_SPACE          = [\ ]+
-IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
-DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
-SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
-LINE_COMMENT        = #[^\n\r{]+
-BLOCK_COMMENT       = ###~###
-JAVASCRIPT          = [^`]+
-REGEX               = [^/\\\r\n\[\]\(\)\{\}]+
+TERMINATOR      = [\n\r]|\\\n
+WHITE_SPACE     = [\ ]+
+
+IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
+NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+
+BLOCK_COMMENT   = ###~###
 
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
@@ -118,6 +121,10 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 %state YYINTERPOLATION, YYQUOTEPROPERTY
 
 %%
+
+/*************************************************************************************************/
+/* The initial state recognizes keywords, most operators and characters that start another state */
+/*************************************************************************************************/
 
 <YYINITIAL> {
   {RESERVED}                  { return CoffeeScriptTokenTypes.ERROR_ELEMENT; }
@@ -195,6 +202,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "."                         { return CoffeeScriptTokenTypes.DOT; }
   ":"                         { return CoffeeScriptTokenTypes.COLON; }
+  ";"                         { return CoffeeScriptTokenTypes.SEMICOLON; }
   ","                         { return CoffeeScriptTokenTypes.COMMA; }
 
   "+"                         { return CoffeeScriptTokenTypes.PLUS; }
@@ -210,11 +218,16 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_START; }
 
   {BLOCK_COMMENT}             { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
-  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+  #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return CoffeeScriptTokenTypes.WHITE_SPACE; }
 }
+
+/*********************************************************************************************************************/
+/* A closing brace pops a state from the stack. If this state is YYINITIAL, then it is a normal BRACE_END, otherwise */
+/* push it back to the steram an let the specific state recognize the special brace type. */
+/*********************************************************************************************************************/
 
 <YYINITIAL, YYIDENTIFIER, YYNUMBER> {
   "}"                         { popState();
@@ -226,12 +239,18 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                               }
 }
 
+/*****************************************************************/
+/* Characters than can follow an identifier or a number directly */
+/*****************************************************************/
+
 <YYIDENTIFIER, YYNUMBER> {
   "."                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.DOT; }
 
   ":"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.COLON; }
+
+  ";"                         { return CoffeeScriptTokenTypes.SEMICOLON; }
 
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }
@@ -255,6 +274,10 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.WHITE_SPACE; }
 }
 
+/**********************************************************************/
+/* An identifier has some more characters that can follow it directly */
+/**********************************************************************/
+
 <YYIDENTIFIER> {
   \.{QUOTE}                    { yybegin(YYQUOTEPROPERTY);
                                 yypushback(yylength()); }
@@ -269,12 +292,21 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.PARENTHESIS_START; }
 }
 
+/*******************************************************************************/
+/* Certain reserved words an keywords are allowed as property of an identifier */
+/*******************************************************************************/
+
 <YYQUOTEPROPERTY> {
   "."                         { return CoffeeScriptTokenTypes.DOT; }
 
   {QUOTE}                     { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.IDENTIFIER; }
 }
+
+
+/*****************************************************************/
+/* A number has some more characters that can follow it directly */
+/*****************************************************************/
 
 <YYNUMBER> {
   ".."                        { yybegin(YYINITIAL);
@@ -284,51 +316,73 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.RANGE; }
 }
 
-<YYDOUBLEQUOTESTRING> {
-  \"                          { yybegin(YYINITIAL);
-                                return CoffeeScriptTokenTypes.STRING_LITERAL; }
+/********************/
+/* Escape sequences */
+/********************/
 
-  {DOUBLE_QUOTE_STRING}       { pushBackAndState("#{", YYINTERPOLATION);
-                                if (yylength() != 0) {
-                                  return CoffeeScriptTokenTypes.STRING;
-                                }
-                              }
-
-  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING, YYSINGLEQUOTEHEREDOC, YYDOUBLEQUOTEHEREDOC, YYREGEX, YYHEREGEX, YYREGEXCHARACTERCLASS> {
+  [\\][^\n\r]                 |
+  [\\][0-8]{1,3}              |
+  [\\]x[0-9a-fA-F]{1,2}       |
+  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
 }
+
+/*************************************/
+/* Content of a single quoted string */
+/*************************************/
 
 <YYSINGLEQUOTESTRING> {
   \'                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  {SINGLE_QUOTE_STRING}       { return CoffeeScriptTokenTypes.STRING; }
+  [^\'\n\r\\]+                { return CoffeeScriptTokenTypes.STRING; }
+
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
-<YYJAVASCRIPT> {
-  "`"                         { yybegin(YYINITIAL);
-                                return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
+/*************************************/
+/* Content of a double quoted string */
+/*************************************/
 
-  {JAVASCRIPT}                { return CoffeeScriptTokenTypes.JAVASCRIPT; }
+<YYDOUBLEQUOTESTRING> {
+  \"                          { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.STRING_LITERAL; }
+
+  [^\"\n\r\\]+                { pushBackAndState("#{", YYINTERPOLATION);
+                                if (yylength() != 0) {
+                                  return CoffeeScriptTokenTypes.STRING;
+                                }
+                              }
+
+
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
+
+/***************************************/
+/* Content of a double quoted heredocs */
+/***************************************/
 
 <YYSINGLEQUOTEHEREDOC> {
   "'''"                       |
   "'''" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    { pushBackTo("'''");
+  [^\n\r\\]+                  { pushBackTo("'''");
                                 return CoffeeScriptTokenTypes.HEREDOC; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
+
+/***************************************/
+/* Content of a double quoted heredocs */
+/***************************************/
 
 <YYDOUBLEQUOTEHEREDOC> {
   "\"\"\""                    |
   "\"\"\"" / [^\n\r]+         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    { if (!pushBackAndState("#{", YYINTERPOLATION)) {
+  [^\n\r\\]+                  { if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                   pushBackTo("\"\"\"");
                                 }
                                 if (yylength() != 0) {
@@ -339,17 +393,20 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
+/*****************************************************************************/
+/* Content of both regular expressions and here doc like regular expressions */
+/*****************************************************************************/
+
 <YYREGEX, YYHEREGEX> {
   "("                         { return CoffeeScriptTokenTypes.REGEX_PARENTHESIS_START; }
   ")"                         { return CoffeeScriptTokenTypes.REGEX_PARENTHESIS_END; }
   "{"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_START; }
   "}"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_END; }
-
-  [\\][^\n\r]                 |
-  [\\][0-8]{1,3}              |
-  [\\]x[0-9a-fA-F]{1,2}       |
-  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
 }
+
+/***********************************/
+/* Content of a regular expression */
+/***********************************/
 
 <YYREGEX> {
   "/"                         |
@@ -362,8 +419,12 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
 
 
-  {REGEX}                     { return CoffeeScriptTokenTypes.REGEX; }
+  [^/\\\r\n\[\]\(\)\{\}]+     { return CoffeeScriptTokenTypes.REGEX; }
 }
+
+/*************************************************/
+/* Content of a here doc like regular expression */
+/*************************************************/
 
 <YYHEREGEX> {
   "///"                       |
@@ -384,9 +445,14 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
 
 
-  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+  #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
+
+/*******************************************/
+/* Content of the regular expression flags */
+/*******************************************/
 
 <YYREGEXFLAG> {
   [imgy]{1,4}                 { yybegin(YYINITIAL);
@@ -397,14 +463,22 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                               }
 }
 
+/*****************************************************/
+/* Content of the regular expression character class */
+/*****************************************************/
+
 <YYREGEXCHARACTERCLASS> {
   "]"                         { popState();
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_END; }
 
-  [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
-
   [^\\\]\n\r]+                { return characterClassType; }
+
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
+
+/*******************************************************************************************/
+/* An intermediate interpolation state that pops itself to the stack and starts over again */
+/*******************************************************************************************/
 
 <YYINTERPOLATION> {
   "#{"                        { pushStateAndBegin(YYINITIAL);
@@ -413,6 +487,21 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "}"                         { popState();
                                 return CoffeeScriptTokenTypes.INTERPOLATION_END; }
 }
+
+/***********************/
+/* Embedded JavaScript */
+/***********************/
+
+<YYJAVASCRIPT> {
+  "`"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
+
+  [^`]+                       { return CoffeeScriptTokenTypes.JAVASCRIPT; }
+}
+
+/*******************/
+/* Nothing matched */
+/*******************/
 
 .                             { stack.clear();
                                 yybegin(YYINITIAL);

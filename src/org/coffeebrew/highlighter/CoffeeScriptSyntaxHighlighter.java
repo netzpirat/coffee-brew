@@ -34,8 +34,8 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
           HighlighterColors.BAD_CHARACTER.getDefaultAttributes()
   );
 
-  static final TextAttributesKey TERMINATOR = TextAttributesKey.createTextAttributesKey(
-          "COFFEESCRIPT.TERMINATOR",
+  static final TextAttributesKey SEMICOLON = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.SEMICOLON",
           SyntaxHighlighterColors.JAVA_SEMICOLON.getDefaultAttributes()
   );
 
@@ -211,15 +211,19 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.WHITE_SPACE, HighlighterColors.TEXT);
 
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.TERMINATOR, TERMINATOR);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.TERMINATOR, HighlighterColors.TEXT);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.DOT, DOT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COMMA, COMMA);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COLON, COLON);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.SEMICOLON, SEMICOLON);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.IDENTIFIER, IDENTIFIER);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.NUMBER, NUMBER);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.BOOL, BOOLEAN);
+
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.ESCAPE_SEQUENCE, ESCAPE_SEQUENCE);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.STRING_LITERAL, STRING_LITERAL);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.STRING, STRING);
@@ -230,7 +234,6 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_START, REGULAR_EXPRESSION_ID);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX, REGULAR_EXPRESSION_CONTENT);
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_ESCAPE, ESCAPE_SEQUENCE);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_BRACKET_START, REGULAR_EXPRESSION_CONTENT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_BRACKET_END, REGULAR_EXPRESSION_CONTENT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_PARENTHESIS_START, REGULAR_EXPRESSION_CONTENT);
@@ -275,7 +278,6 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.RANGE, RANGE);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.SPLAT, SPLAT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.THIS, THIS);
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COLON, COLON);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.PROTOTYPE, PROTOTYPE);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.FUNCTION, FUNCTION);

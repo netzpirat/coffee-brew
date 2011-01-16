@@ -189,6 +189,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/coffee-script" vcs="Git" />
   </component>
 </project>
 

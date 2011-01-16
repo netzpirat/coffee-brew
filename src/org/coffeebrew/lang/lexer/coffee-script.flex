@@ -316,6 +316,17 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.RANGE; }
 }
 
+/********************/
+/* Escape sequences */
+/********************/
+
+<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING, YYSINGLEQUOTEHEREDOC, YYDOUBLEQUOTEHEREDOC, YYREGEX, YYHEREGEX> {
+  [\\][^\n\r]                 |
+  [\\][0-8]{1,3}              |
+  [\\]x[0-9a-fA-F]{1,2}       |
+  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
+}
+
 /*************************************/
 /* Content of a single quoted string */
 /*************************************/
@@ -324,7 +335,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   \'                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  (\\.|[^\'\n\r])*            { return CoffeeScriptTokenTypes.STRING; }
+  [^\'\n\r\\]+                { return CoffeeScriptTokenTypes.STRING; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
@@ -337,7 +348,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   \"                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  (\\.|[^\"\n\r])*            { pushBackAndState("#{", YYINTERPOLATION);
+  [^\"\n\r\\]+                { pushBackAndState("#{", YYINTERPOLATION);
                                 if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.STRING;
                                 }
@@ -356,7 +367,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "'''" / [^\n\r]+            { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    { pushBackTo("'''");
+  [^\n\r\\]+                  { pushBackTo("'''");
                                 return CoffeeScriptTokenTypes.HEREDOC; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
@@ -371,7 +382,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "\"\"\"" / [^\n\r]+         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.HEREDOC_END; }
 
-  [^\n\r]+                    { if (!pushBackAndState("#{", YYINTERPOLATION)) {
+  [^\n\r\\]+                  { if (!pushBackAndState("#{", YYINTERPOLATION)) {
                                   pushBackTo("\"\"\"");
                                 }
                                 if (yylength() != 0) {
@@ -391,11 +402,6 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   ")"                         { return CoffeeScriptTokenTypes.REGEX_PARENTHESIS_END; }
   "{"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_START; }
   "}"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_END; }
-
-  [\\][^\n\r]                 |
-  [\\][0-8]{1,3}              |
-  [\\]x[0-9a-fA-F]{1,2}       |
-  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
 }
 
 /***********************************/

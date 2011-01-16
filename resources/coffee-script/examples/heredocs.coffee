@@ -1,12 +1,12 @@
 html = '''
        <strong>
-         "cup" of 'coffeescript'
+         "cup" of\t'coffeescript'
        </strong>
        '''
 
 html = """
        <strong>
-         "cup" of 'tea'
+         "cup" of\t'tea'
        </strong>
        """
 

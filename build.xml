@@ -125,12 +125,12 @@
         </jar>
     </target>
 
-    <!-- Install plugin to IntelliJ IDEA 10 CE -->
+    <!-- Install plugin to IntelliJ IDEA 9.0.3 CE -->
 
-    <target name="install-idea" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
-        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
-        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
+    <target name="install-idea" depends="jar" description="Install the plugin to IntelliJ IDEA 9.0.3 CE">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea90CE"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea90CE" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea90CE">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>
         </copy>
     </target>

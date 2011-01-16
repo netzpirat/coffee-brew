@@ -3,9 +3,7 @@
     <name>CoffeeBrew</name>
     <description>Plugin for CoffeeScript language support</description>
     <version>@version@</version>
-    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">
-        Michael Kessler
-    </vendor>
+    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">Michael Kessler</vendor>
     <idea-version since-build="8000"/>
 
     <application-components>

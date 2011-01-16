@@ -473,6 +473,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   [^\\\]\n\r]+                { return characterClassType; }
 
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
 /*******************************************************************************************/

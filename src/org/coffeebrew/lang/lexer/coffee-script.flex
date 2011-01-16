@@ -320,7 +320,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 /* Escape sequences */
 /********************/
 
-<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING, YYSINGLEQUOTEHEREDOC, YYDOUBLEQUOTEHEREDOC, YYREGEX, YYHEREGEX> {
+<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING, YYSINGLEQUOTEHEREDOC, YYDOUBLEQUOTEHEREDOC, YYREGEX, YYHEREGEX, YYREGEXCHARACTERCLASS> {
   [\\][^\n\r]                 |
   [\\][0-8]{1,3}              |
   [\\]x[0-9a-fA-F]{1,2}       |
@@ -470,8 +470,6 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 <YYREGEXCHARACTERCLASS> {
   "]"                         { popState();
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_END; }
-
-  [\\][^\n\r]                 { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
 
   [^\\\]\n\r]+                { return characterClassType; }
 

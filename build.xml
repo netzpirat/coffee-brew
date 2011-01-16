@@ -84,15 +84,9 @@
                charat="true"/>
     </target>
 
-    <!-- Ensure the right idea branch is checked out -->
-
-    <target name="ensure-idea">
-      <exec dir="${idea.home}" executable="git checkout -f maia"/>   
-    </target>
-
     <!-- Compile the plugin -->
 
-    <target name="compile" depends="ensure-idea, resources, generate-lexer">
+    <target name="compile" depends="resources, generate-lexer">
         <javac2 srcdir="src" destdir="target/classes" source="1.5" target="1.5" includeantruntime="yes">
             <classpath refid="idea.classpath"/>
         </javac2>

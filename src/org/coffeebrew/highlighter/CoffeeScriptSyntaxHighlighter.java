@@ -34,8 +34,8 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
           HighlighterColors.BAD_CHARACTER.getDefaultAttributes()
   );
 
-  static final TextAttributesKey TERMINATOR = TextAttributesKey.createTextAttributesKey(
-          "COFFEESCRIPT.TERMINATOR",
+  static final TextAttributesKey SEMICOLON = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.SEMICOLON",
           SyntaxHighlighterColors.JAVA_SEMICOLON.getDefaultAttributes()
   );
 
@@ -211,10 +211,12 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.WHITE_SPACE, HighlighterColors.TEXT);
 
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.TERMINATOR, TERMINATOR);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.TERMINATOR, HighlighterColors.TEXT);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.DOT, DOT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COMMA, COMMA);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COLON, COLON);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.SEMICOLON, SEMICOLON);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.IDENTIFIER, IDENTIFIER);
 
@@ -275,7 +277,6 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.RANGE, RANGE);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.SPLAT, SPLAT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.THIS, THIS);
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.COLON, COLON);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.PROTOTYPE, PROTOTYPE);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.FUNCTION, FUNCTION);

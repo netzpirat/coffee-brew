@@ -20,6 +20,8 @@ public interface CoffeeScriptTokenTypes {
 
   public static final IElementType DOT = new CoffeeScriptElementType("DOT");
   public static final IElementType COMMA = new CoffeeScriptElementType("COMMA");
+  public static final IElementType COLON = new CoffeeScriptElementType("COLON");
+  public static final IElementType SEMICOLON = new CoffeeScriptElementType("SEMICOLON");
 
   public static final IElementType IDENTIFIER = new CoffeeScriptElementType("IDENTIFIER");
 
@@ -74,7 +76,6 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType RANGE = new CoffeeScriptElementType("RANGE");
   public static final IElementType SPLAT = new CoffeeScriptElementType("SPLAT");
   public static final IElementType THIS = new CoffeeScriptElementType("THIS");
-  public static final IElementType COLON = new CoffeeScriptElementType("COLON");
   public static final IElementType PROTOTYPE = new CoffeeScriptElementType("PROTOTYPE");
   public static final IElementType FUNCTION = new CoffeeScriptElementType("FUNCTION");
   public static final IElementType FUNCTION_BIND = new CoffeeScriptElementType("FUNCTION_BIND");

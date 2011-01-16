@@ -98,8 +98,8 @@ import java.util.Stack;
 
 %}
 
-TERMINATOR          = [\n\r;]|\\\n
-WHITE_SPACE          = [\ ]+
+TERMINATOR          = [\n\r]|\\\n
+WHITE_SPACE         = [\ ]+
 IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
@@ -205,6 +205,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "."                         { return CoffeeScriptTokenTypes.DOT; }
   ":"                         { return CoffeeScriptTokenTypes.COLON; }
+  ";"                         { return CoffeeScriptTokenTypes.SEMICOLON; }
   ","                         { return CoffeeScriptTokenTypes.COMMA; }
 
   "+"                         { return CoffeeScriptTokenTypes.PLUS; }
@@ -251,6 +252,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   ":"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.COLON; }
+
+  ";"                         { return CoffeeScriptTokenTypes.SEMICOLON; }
 
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }
@@ -474,7 +477,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
 
-  [^\\]\n\r]+                { return characterClassType; }
+  [^\\\]\n\r]+                { return characterClassType; }
 }
 
 /* *************************************************************************************** */

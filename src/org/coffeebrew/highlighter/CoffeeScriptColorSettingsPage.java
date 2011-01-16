@@ -23,7 +23,7 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
           new AttributesDescriptor("Dot", CoffeeScriptSyntaxHighlighter.DOT),
           new AttributesDescriptor("Colon", CoffeeScriptSyntaxHighlighter.COLON),
           new AttributesDescriptor("Comma", CoffeeScriptSyntaxHighlighter.COMMA),
-          new AttributesDescriptor("Semicolon", CoffeeScriptSyntaxHighlighter.TERMINATOR),
+          new AttributesDescriptor("Semicolon", CoffeeScriptSyntaxHighlighter.SEMICOLON),
           new AttributesDescriptor("Parenthesis", CoffeeScriptSyntaxHighlighter.PARENTHESIS),
           new AttributesDescriptor("Brackets", CoffeeScriptSyntaxHighlighter.BRACKETS),
           new AttributesDescriptor("Braces", CoffeeScriptSyntaxHighlighter.BRACES),

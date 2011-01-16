@@ -317,6 +317,19 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 }
 
 /*************************************/
+/* Content of a single quoted string */
+/*************************************/
+
+<YYSINGLEQUOTESTRING> {
+  \'                          { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.STRING_LITERAL; }
+
+  (\\.|[^\'\n\r])*            { return CoffeeScriptTokenTypes.STRING; }
+
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+}
+
+/*************************************/
 /* Content of a double quoted string */
 /*************************************/
 
@@ -332,30 +345,6 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
-}
-
-/*************************************/
-/* Content of a single quoted string */
-/*************************************/
-
-<YYSINGLEQUOTESTRING> {
-  \'                          { yybegin(YYINITIAL);
-                                return CoffeeScriptTokenTypes.STRING_LITERAL; }
-
-  (\\.|[^\'\n\r])*            { return CoffeeScriptTokenTypes.STRING; }
-
-  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
-}
-
-/***********************/
-/* Embedded JavaScript */
-/***********************/
-
-<YYJAVASCRIPT> {
-  "`"                         { yybegin(YYINITIAL);
-                                return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
-
-  [^`]+                       { return CoffeeScriptTokenTypes.JAVASCRIPT; }
 }
 
 /***************************************/
@@ -492,6 +481,17 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "}"                         { popState();
                                 return CoffeeScriptTokenTypes.INTERPOLATION_END; }
+}
+
+/***********************/
+/* Embedded JavaScript */
+/***********************/
+
+<YYJAVASCRIPT> {
+  "`"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
+
+  [^`]+                       { return CoffeeScriptTokenTypes.JAVASCRIPT; }
 }
 
 /*******************/

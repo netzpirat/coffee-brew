@@ -223,6 +223,8 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.NUMBER, NUMBER);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.BOOL, BOOLEAN);
 
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.ESCAPE_SEQUENCE, ESCAPE_SEQUENCE);
+
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.STRING_LITERAL, STRING_LITERAL);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.STRING, STRING);
 
@@ -232,7 +234,6 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_START, REGULAR_EXPRESSION_ID);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX, REGULAR_EXPRESSION_CONTENT);
-    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_ESCAPE, ESCAPE_SEQUENCE);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_BRACKET_START, REGULAR_EXPRESSION_CONTENT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_BRACKET_END, REGULAR_EXPRESSION_CONTENT);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.REGEX_PARENTHESIS_START, REGULAR_EXPRESSION_CONTENT);

@@ -28,6 +28,8 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
   public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");
 
+  public static final IElementType ESCAPE_SEQUENCE = new CoffeeScriptElementType("ESCAPE_SEQUENCE");
+
   public static final IElementType STRING_LITERAL = new CoffeeScriptElementType("STRING_LITERAL");
   public static final IElementType STRING = new CoffeeScriptElementType("STRING");
 
@@ -37,7 +39,6 @@ public interface CoffeeScriptTokenTypes {
 
   public static final IElementType REGEX_START = new CoffeeScriptElementType("REGEX_START");
   public static final IElementType REGEX = new CoffeeScriptElementType("REGEX");
-  public static final IElementType REGEX_ESCAPE = new CoffeeScriptElementType("REGEX_ESCAPE");
   public static final IElementType REGEX_BRACKET_START = new CoffeeScriptElementType("REGEX_BRACKET_START");
   public static final IElementType REGEX_BRACKET_END = new CoffeeScriptElementType("REGEX_BRACKET_END");
   public static final IElementType REGEX_PARENTHESIS_START = new CoffeeScriptElementType("REGEX_PARENTHESIS_START");

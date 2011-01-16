@@ -98,16 +98,13 @@ import java.util.Stack;
 
 %}
 
-TERMINATOR          = [\n\r]|\\\n
-WHITE_SPACE         = [\ ]+
-IDENTIFIER          = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-NUMBER              = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
-DOUBLE_QUOTE_STRING = (\\.|[^\"\n\r])*
-SINGLE_QUOTE_STRING = (\\.|[^\'\n\r])*
-LINE_COMMENT        = #[^\n\r{]+
-BLOCK_COMMENT       = ###~###
-JAVASCRIPT          = [^`]+
-REGEX               = [^/\\\r\n\[\]\(\)\{\}]+
+TERMINATOR      = [\n\r]|\\\n
+WHITE_SPACE     = [\ ]+
+
+IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
+NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+
+BLOCK_COMMENT   = ###~###
 
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
@@ -221,7 +218,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_START; }
 
   {BLOCK_COMMENT}             { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
-  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+  #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return CoffeeScriptTokenTypes.WHITE_SPACE; }
@@ -325,11 +322,12 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   \"                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  {DOUBLE_QUOTE_STRING}       { pushBackAndState("#{", YYINTERPOLATION);
+  (\\.|[^\"\n\r])*            { pushBackAndState("#{", YYINTERPOLATION);
                                 if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.STRING;
                                 }
                               }
+
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
@@ -342,7 +340,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   \'                          { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.STRING_LITERAL; }
 
-  {SINGLE_QUOTE_STRING}       { return CoffeeScriptTokenTypes.STRING; }
+  (\\.|[^\'\n\r])*            { return CoffeeScriptTokenTypes.STRING; }
+
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
@@ -354,7 +353,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "`"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
-  {JAVASCRIPT}                { return CoffeeScriptTokenTypes.JAVASCRIPT; }
+  [^`]+                       { return CoffeeScriptTokenTypes.JAVASCRIPT; }
 }
 
 /* *********************************** */
@@ -402,11 +401,10 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "{"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_START; }
   "}"                         { return CoffeeScriptTokenTypes.REGEX_BRACE_END; }
 
-  /* escaping */
   [\\][^\n\r]                 |
   [\\][0-8]{1,3}              |
   [\\]x[0-9a-fA-F]{1,2}       |
-  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+  [\\]u[0-9a-fA-F]{1,4}       { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
 }
 
 /* ******************************* */
@@ -424,7 +422,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
 
 
-  {REGEX}                     { return CoffeeScriptTokenTypes.REGEX; }
+  [^/\\\r\n\[\]\(\)\{\}]+     { return CoffeeScriptTokenTypes.REGEX; }
 }
 
 /* ********************************************* */
@@ -450,7 +448,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_START; }
 
 
-  {LINE_COMMENT}              { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+  #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
@@ -467,17 +466,18 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                               }
 }
 
-/*****************************************************/
+/* ************************************************* */
 /* Content of the regular expression character class */
-/*****************************************************/
+/* ************************************************* */
 
 <YYREGEXCHARACTERCLASS> {
   "]"                         { popState();
                                 return CoffeeScriptTokenTypes.REGEX_BRACKET_END; }
 
-  [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
+  [\\][^\n\r]                 { return CoffeeScriptTokenTypes.ESCAPE_SEQUENCE; }
 
   [^\\\]\n\r]+                { return characterClassType; }
+
 }
 
 /* *************************************************************************************** */

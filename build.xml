@@ -11,7 +11,7 @@
 
     <property file="build.properties"/>
     <property name="idea.codename" value="ideax"/>
-              
+
     <!-- Reference the IDEA classpath from the local IDE installation -->
 
     <path id="idea.classpath">
@@ -131,16 +131,6 @@
         <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
         <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="coffee-brew*.jar"/>
         <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
-            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
-        </copy>
-    </target>
-
-    <!-- Install plugin to RubyMine 3 -->
-
-    <target name="install-rubymine" depends="jar" description="Install the plugin to RubyMine 3">
-        <mkdir dir="${user.home}/Library/Application Support/RubyMine30"/>
-        <delete dir="${user.home}/Library/Application Support/RubyMine30" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/RubyMine30">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>
         </copy>
     </target>

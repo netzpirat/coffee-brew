@@ -474,7 +474,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   [\\][^\n\r]                 { return CoffeeScriptTokenTypes.REGEX_ESCAPE; }
 
-  [^\\\]\n\r]+                { return characterClassType; }
+  [^\\]\n\r]+                { return characterClassType; }
 }
 
 /* *************************************************************************************** */

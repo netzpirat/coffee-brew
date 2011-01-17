@@ -24,7 +24,7 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE to dev
 ## Installation
 
 The plugin can be installed via the JetBrains plugin manager from within your IDE. Alternatively you can download the
-plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/downloads)
+plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/downloads).
 
 ## CoffeeBrew RubyMine theme
 
@@ -33,14 +33,14 @@ plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/download
 The [CoffeeBrew RubyMine theme](
 https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.xml) provides a dark color scheme that
 extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) with fine
-grained CoffeeScript colors. The used font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font)
+grained CoffeeScript colors. The font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font).
 
 ## Development
 
-* Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew)
+* Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew).
 * Report issues on [GitHub issues](https://github.com/netzpirat/coffee-brew/issues). Please provide the failing code
 snippet for the test.
-* More [development information](https://github.com/netzpirat/coffee-brew/blob/master/DEVELOPMENT.md)
+* More [development information](https://github.com/netzpirat/coffee-brew/blob/master/DEVELOPMENT.md).
 
 ## Acknowledgement
 

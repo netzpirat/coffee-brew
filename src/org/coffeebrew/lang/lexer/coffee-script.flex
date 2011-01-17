@@ -104,8 +104,6 @@ WHITE_SPACE     = [\ ]+
 IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 
-BLOCK_COMMENT   = ###~###
-
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
 COMPARE         = ==|\!=|<|>|<=|>=|is|isnt
@@ -217,8 +215,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "/" / [^ \n\r]+             { yybegin(YYREGEX);
                                 return CoffeeScriptTokenTypes.REGEX_START; }
 
-  {BLOCK_COMMENT}             { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
-  #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
+  ###~###                     { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
+  (##?)(.*)*[^\n\r]?          { return CoffeeScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return CoffeeScriptTokenTypes.WHITE_SPACE; }

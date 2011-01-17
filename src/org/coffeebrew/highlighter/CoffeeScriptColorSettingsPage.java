@@ -129,7 +129,11 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "\n" +
             "t = ///\n" +
             "#{ something }[a-z]\n" +
-            "///igm";
+            "///igm" +
+            "\n" +
+            "hi = `function() {\n" +
+            "  return [document.title, \"Hello JavaScript\"].join(\": \");\n" +
+            "}`";
   }
 
   public Map<String, TextAttributesKey> getAdditionalHighlightingTagToDescriptorMap() {

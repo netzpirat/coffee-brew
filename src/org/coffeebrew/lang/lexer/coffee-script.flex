@@ -102,6 +102,10 @@ TERMINATOR      = [\n\r]|\\\n
 WHITE_SPACE     = [\ ]+
 
 IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
+FUNCTION        = [a-zA-Z_]([a-zA-Z_0-9$])*?[:]([^\n\r])*?(->|=>)
+OBJECT_KEY      = [a-zA-Z_]([a-zA-Z_0-9$])*[:][^:]
+CLASS_NAME      = [A-Z]([a-zA-Z_0-9$])*
+CONSTANT        = [A-Z]([A-Z_0-9$])*
 NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
@@ -116,7 +120,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 %state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING
 %state YYDOUBLEQUOTEHEREDOC, YYSINGLEQUOTEHEREDOC
 %state YYREGEX, YYHEREGEX, YYREGEXFLAG, YYREGEXCHARACTERCLASS
-%state YYINTERPOLATION, YYQUOTEPROPERTY
+%state YYINTERPOLATION, YYQUOTEPROPERTY, YYCLASSNAME
 
 %%
 
@@ -175,6 +179,23 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "`"                         { yybegin(YYJAVASCRIPT);
                                 return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
+
+  {CONSTANT}                  { yybegin(YYIDENTIFIER);
+                                return CoffeeScriptTokenTypes.CONSTANT; }
+
+  {CLASS_NAME}                { yybegin(YYCLASSNAME);
+                                return CoffeeScriptTokenTypes.CLASS_NAME; }
+
+  {OBJECT_KEY}                { pushBackTo(":");
+                                return CoffeeScriptTokenTypes.OBJECT_KEY; }
+
+  {FUNCTION}                  { if (pushBackTo("::")) {
+                                  yybegin(YYCLASSNAME);
+                                  return CoffeeScriptTokenTypes.CLASS_NAME;
+                                }
+                                pushBackTo(":");
+                                return CoffeeScriptTokenTypes.FUNCTION_NAME;
+                              }
 
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);
                                 return CoffeeScriptTokenTypes.IDENTIFIER; }
@@ -277,7 +298,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 /**********************************************************************/
 
 <YYIDENTIFIER> {
-  \.{QUOTE}                    { yybegin(YYQUOTEPROPERTY);
+  \.{QUOTE}                   { yybegin(YYQUOTEPROPERTY);
                                 yypushback(yylength()); }
 
   "?"                         { yybegin(YYINITIAL);
@@ -288,6 +309,30 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "("                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PARENTHESIS_START; }
+}
+
+/*****************/
+/* A class name  */
+/*****************/
+
+<YYCLASSNAME> {
+  \.{QUOTE}                   { yybegin(YYQUOTEPROPERTY);
+                                yypushback(yylength()); }
+
+  "."                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.DOT; }
+
+  "::"                        { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.PROTOTYPE; }
+
+  "("                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.PARENTHESIS_START; }
+
+  {TERMINATOR}                { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  {WHITE_SPACE}               { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.WHITE_SPACE; }
 }
 
 /*******************************************************************************/

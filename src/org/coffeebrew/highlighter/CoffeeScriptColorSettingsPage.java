@@ -30,6 +30,12 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
           new AttributesDescriptor("Line comment", CoffeeScriptSyntaxHighlighter.LINE_COMMENT),
           new AttributesDescriptor("Block comment", CoffeeScriptSyntaxHighlighter.BLOCK_COMMENT),
           new AttributesDescriptor("Identifier", CoffeeScriptSyntaxHighlighter.IDENTIFIER),
+          new AttributesDescriptor("Class", CoffeeScriptSyntaxHighlighter.CLASS_NAME),
+          new AttributesDescriptor("Function name", CoffeeScriptSyntaxHighlighter.FUNCTION_NAME),
+          new AttributesDescriptor("Function", CoffeeScriptSyntaxHighlighter.FUNCTION),
+          new AttributesDescriptor("Function binding", CoffeeScriptSyntaxHighlighter.FUNCTION_BINDING),
+          new AttributesDescriptor("Object key", CoffeeScriptSyntaxHighlighter.OBJECT_KEY),
+          new AttributesDescriptor("Constant", CoffeeScriptSyntaxHighlighter.CONSTANT),
           new AttributesDescriptor("Number", CoffeeScriptSyntaxHighlighter.NUMBER),
           new AttributesDescriptor("Boolean", CoffeeScriptSyntaxHighlighter.BOOLEAN),
           new AttributesDescriptor("String literal", CoffeeScriptSyntaxHighlighter.STRING_LITERAL),
@@ -38,8 +44,6 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
           new AttributesDescriptor("Escape sequence", CoffeeScriptSyntaxHighlighter.ESCAPE_SEQUENCE),
           new AttributesDescriptor("This references", CoffeeScriptSyntaxHighlighter.THIS),
           new AttributesDescriptor("Prototype", CoffeeScriptSyntaxHighlighter.PROTOTYPE),
-          new AttributesDescriptor("Function", CoffeeScriptSyntaxHighlighter.FUNCTION),
-          new AttributesDescriptor("Function binding", CoffeeScriptSyntaxHighlighter.FUNCTION_BINDING),
           new AttributesDescriptor("Operations", CoffeeScriptSyntaxHighlighter.OPERATIONS),
           new AttributesDescriptor("Existential operator", CoffeeScriptSyntaxHighlighter.EXISTENTIAL),
           new AttributesDescriptor("Keyword", CoffeeScriptSyntaxHighlighter.KEYWORD),
@@ -87,7 +91,7 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "###\n" +
             "class Animal\n" +
             "  constructor: (@name) -> \n" +
-            "  move: (meters) => alert @name + \" moved \" + meters + \"m.\"\n" +
+            "  move: (meters) -> alert @name + \" moved \" + meters + \"m.\"\n" +
             "\n" +
             "class Snake extends Animal\n" +
             "  move: -> \n" +
@@ -125,11 +129,14 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "String::dasherize = ->\n" +
             "  this.replace /_/g, \"-\"" +
             "\n" +
-            "singers = {Jagger: \"Rock\", Elvis: \"Roll\"}\n" +
+            "SINGERS = {Jagger: \"Rock\", Elvis: \"Roll\"}\n" +
             "\n" +
             "t = ///\n" +
             "#{ something }[a-z]\n" +
             "///igm\n" +
+            "\n" +
+            "$('.shopping_cart').bind 'click', (event) =>\n" +
+            "    @customer.purchase @cart\n" +
             "\n" +
             "hi = `function() {\n" +
             "  return [document.title, \"Hello JavaScript\"].join(\": \");\n" +

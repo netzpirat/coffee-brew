@@ -24,6 +24,10 @@ public interface CoffeeScriptTokenTypes {
   public static final IElementType SEMICOLON = new CoffeeScriptElementType("SEMICOLON");
 
   public static final IElementType IDENTIFIER = new CoffeeScriptElementType("IDENTIFIER");
+  public static final IElementType CLASS_NAME = new CoffeeScriptElementType("CLASS_NAME");
+  public static final IElementType CONSTANT = new CoffeeScriptElementType("CONSTANT");
+  public static final IElementType FUNCTION_NAME = new CoffeeScriptElementType("FUNCTION_NAME");
+  public static final IElementType OBJECT_KEY = new CoffeeScriptElementType("OBJECT_KEY");
 
   public static final IElementType NUMBER = new CoffeeScriptElementType("NUMBER");
   public static final IElementType BOOL = new CoffeeScriptElementType("BOOL");

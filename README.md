@@ -23,7 +23,17 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE to dev
 
 ## Installation
 
-The plugin is under active development and a will be released soon.
+The plugin can be installed via the JetBrains plugin manager from within your IDE. Alternatively you can download the
+plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/downloads)
+
+## CoffeeBrew RubyMine theme
+
+![CoffeeBrew RubyMine theme](https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.png)
+
+The [CoffeeBrew RubyMine theme](
+https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.xml) provides a dark color scheme that
+extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) with fine
+grained CoffeeScript colors. The used font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font)
 
 ## Development
 
@@ -39,6 +49,8 @@ that makes JavaScript programming friendly and fun!
 
 David Yeung for his JetBrains plugin [coffeescript-idea](https://github.com/yeungda/coffeescript-idea), that served as a
 starting point for CoffeeBrew.
+
+Ryan Bates for the Railscasts Textmate theme and Kamal Fariz Mahyuddin for porting it to RubyMine.
 
 JetBrains Team for creating the best Ruby (on Rails) and Java IDE.
 

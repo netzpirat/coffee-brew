@@ -7,3 +7,7 @@ class Animal
 class Snake extends Animal
   move: ->
     alert "Slithering..."
+
+i = Math.sqrt 2
+
+a = new Array(10)

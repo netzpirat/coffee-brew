@@ -1,6 +1,6 @@
 launch() if ignition is on
 
-volume = 10 if band isnt SpinalTap
+volume = 10 if band isnt spinalTap
 
 if car.speed < limit then accelerate()
 

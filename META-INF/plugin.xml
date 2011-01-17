@@ -5,6 +5,7 @@
     <version>@version@</version>
     <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">Michael Kessler</vendor>
     <idea-version since-build="10000"/>
+    <depends>com.intellij.modules.xml</depends>
 
     <application-components>
         <component>

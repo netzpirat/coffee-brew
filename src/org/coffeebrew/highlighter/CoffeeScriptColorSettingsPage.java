@@ -91,7 +91,7 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "###\n" +
             "class Animal\n" +
             "  constructor: (@name) -> \n" +
-            "  move: (meters) => alert @name + \" moved \" + meters + \"m.\"\n" +
+            "  move: (meters) -> alert @name + \" moved \" + meters + \"m.\"\n" +
             "\n" +
             "class Snake extends Animal\n" +
             "  move: -> \n" +
@@ -134,6 +134,9 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "t = ///\n" +
             "#{ something }[a-z]\n" +
             "///igm\n" +
+            "\n" +
+            "$('.shopping_cart').bind 'click', (event) =>\n" +
+            "    @customer.purchase @cart\n" +
             "\n" +
             "hi = `function() {\n" +
             "  return [document.title, \"Hello JavaScript\"].join(\": \");\n" +

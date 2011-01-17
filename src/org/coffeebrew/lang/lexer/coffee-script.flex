@@ -320,6 +320,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 yypushback(yylength()); }
 
   "."                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.DOT; }
 
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }

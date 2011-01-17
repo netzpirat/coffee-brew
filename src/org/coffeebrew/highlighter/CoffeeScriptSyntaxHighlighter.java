@@ -49,8 +49,28 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
           SyntaxHighlighterColors.DOT.getDefaultAttributes()
   );
 
+  static final TextAttributesKey CLASS_NAME = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.CLASS_NAME",
+          HighlighterColors.TEXT.getDefaultAttributes()
+  );
+
   static final TextAttributesKey IDENTIFIER = TextAttributesKey.createTextAttributesKey(
           "COFFEESCRIPT.IDENTIFIER",
+          HighlighterColors.TEXT.getDefaultAttributes()
+  );
+
+  static final TextAttributesKey CONSTANT = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.CONSTANT",
+          HighlighterColors.TEXT.getDefaultAttributes()
+  );
+
+  static final TextAttributesKey FUNCTION_NAME = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.FUNCTION_NAME",
+          HighlighterColors.TEXT.getDefaultAttributes()
+  );
+
+  static final TextAttributesKey OBJECT_KEY = TextAttributesKey.createTextAttributesKey(
+          "COFFEESCRIPT.OBJECT_KEY",
           HighlighterColors.TEXT.getDefaultAttributes()
   );
 
@@ -219,6 +239,10 @@ public class CoffeeScriptSyntaxHighlighter extends SyntaxHighlighterBase {
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.SEMICOLON, SEMICOLON);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.IDENTIFIER, IDENTIFIER);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.CLASS_NAME, CLASS_NAME);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.CONSTANT, CONSTANT);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.FUNCTION_NAME, FUNCTION_NAME);
+    TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.OBJECT_KEY, OBJECT_KEY);
 
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.NUMBER, NUMBER);
     TOKENS_TO_STYLES.put(CoffeeScriptTokenTypes.BOOL, BOOLEAN);

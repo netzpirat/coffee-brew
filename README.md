@@ -23,7 +23,8 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE to dev
 
 ## Installation
 
-The plugin is under active development and a will be released soon.
+The plugin can be installed via the JetBrains plugin manager from within your IDE. Alternatively you can download the
+plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/downloads)
 
 ## CoffeeBrew RubyMine theme
 

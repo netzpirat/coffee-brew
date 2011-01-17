@@ -129,7 +129,7 @@ public class CoffeeScriptColorSettingsPage implements ColorSettingsPage {
             "\n" +
             "t = ///\n" +
             "#{ something }[a-z]\n" +
-            "///igm" +
+            "///igm\n" +
             "\n" +
             "hi = `function() {\n" +
             "  return [document.title, \"Hello JavaScript\"].join(\": \");\n" +

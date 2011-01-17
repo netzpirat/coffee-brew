@@ -25,6 +25,15 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE to dev
 
 The plugin is under active development and a will be released soon.
 
+## CoffeeBrew RubyMine theme
+
+![CoffeeBrew RubyMine theme](https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.png)
+
+The [CoffeeBrew RubyMine theme](
+https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.xml) provides a dark color scheme that
+extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) with fine
+grained CoffeeScript colors. The used font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font)
+
 ## Development
 
 * Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew)

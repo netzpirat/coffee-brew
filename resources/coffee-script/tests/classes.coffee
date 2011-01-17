@@ -9,3 +9,5 @@ class Snake extends Animal
     alert "Slithering..."
 
 i = Math.sqrt 2
+
+a = new Array(10)

@@ -325,6 +325,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }
 
+  "("                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.PARENTHESIS_START; }
+
   {TERMINATOR}                { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.TERMINATOR; }
 

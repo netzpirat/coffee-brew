@@ -50,6 +50,8 @@ that makes JavaScript programming friendly and fun!
 David Yeung for his JetBrains plugin [coffeescript-idea](https://github.com/yeungda/coffeescript-idea), that served as a
 starting point for CoffeeBrew.
 
+Ryan Bates for the Railscasts Textmate theme and Kamal Fariz Mahyuddin for porting it to RubyMine.
+
 JetBrains Team for creating the best Ruby (on Rails) and Java IDE.
 
 ## License

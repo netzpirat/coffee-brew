@@ -102,7 +102,7 @@ TERMINATOR      = [\n\r]|\\\n
 WHITE_SPACE     = [\ ]+
 
 IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-FUNCTION        = [a-zA-Z_]([a-zA-Z_0-9$])*?[:]([^\n\r])*?(->)
+FUNCTION        = [a-zA-Z_]([a-zA-Z_0-9$])*?[:]([^\n\r])*?(->|=>)
 OBJECT_KEY      = [a-zA-Z_]([a-zA-Z_0-9$])*[:][^:]
 CLASS_NAME      = [A-Z]([a-zA-Z_0-9$])*
 CONSTANT        = [A-Z]([A-Z_0-9$])*
@@ -318,6 +318,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 <YYCLASSNAME> {
   \.{QUOTE}                   { yybegin(YYQUOTEPROPERTY);
                                 yypushback(yylength()); }
+
+  "."                         { yybegin(YYINITIAL);
 
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }

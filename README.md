@@ -32,7 +32,7 @@ plugin from [GitHub downloads](https://github.com/netzpirat/coffee-brew/download
 
 The [CoffeeBrew RubyMine theme](
 https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.xml) provides a dark color scheme that
-extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) with fine
+extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) theme with fine
 grained CoffeeScript colors. The font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font).
 
 ## Development

@@ -463,6 +463,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
 
   [^/\\\r\n\[\]\(\)\{\}]+     { return CoffeeScriptTokenTypes.REGEX; }
+
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
 /*************************************************/
@@ -504,6 +506,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   [ .\[\n\r]                  { yybegin(YYINITIAL);
                                 yypushback(1);
                               }
+  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
 }
 
 /*****************************************************/

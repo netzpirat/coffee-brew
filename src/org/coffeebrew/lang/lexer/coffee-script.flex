@@ -99,7 +99,7 @@ import java.util.Stack;
 %}
 
 TERMINATOR      = [\n\r]|\\\n
-WHITE_SPACE     = [\ ]+
+WHITE_SPACE     = [ \t]+
 
 IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
 FUNCTION        = [a-zA-Z_]([a-zA-Z_0-9$])*?[:]([^\n\r])*?(->|=>)

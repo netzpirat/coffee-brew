@@ -20,7 +20,7 @@ class CoffeeScriptLexerTestToken {
    * @param content
    */
   public CoffeeScriptLexerTestToken(IElementType element, CharSequence content) {
-    this.token = "[" + element.toString() + " " + content.toString().replace("\n", "\\n") + "]";
+    this.token = "[" + element.toString() + " " + content.toString().replace("\n", "\\n").replace("\t", "\\t") + "]";
   }
 
   /**

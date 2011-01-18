@@ -3,7 +3,8 @@ package org.coffeebrew.lang.parser;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
-import com.intellij.psi.impl.source.tree.PlainTextFileElement;
+import com.intellij.psi.PlainTextTokenTypes;
+import com.intellij.psi.impl.source.tree.PlainTextASTFactory;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,7 +18,7 @@ public class CoffeeScriptParser implements PsiParser {
 
   @NotNull
   public ASTNode parse(IElementType root, PsiBuilder builder) {
-    return new PlainTextFileElement(builder.getOriginalText());
+    return new PlainTextASTFactory().createLeaf(PlainTextTokenTypes.PLAIN_TEXT, builder.getOriginalText());
   }
 
 }

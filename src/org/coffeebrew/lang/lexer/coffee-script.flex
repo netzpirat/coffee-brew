@@ -233,7 +233,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "///"                       { yybegin(YYHEREGEX);
                                 return CoffeeScriptTokenTypes.HEREGEX_START; }
 
-  "/" / [^ \n\r]+             { yybegin(YYREGEX);
+  "/" / [^/= ]                { yybegin(YYREGEX);
                                 return CoffeeScriptTokenTypes.REGEX_START; }
 
   ###~###                     { return CoffeeScriptTokenTypes.BLOCK_COMMENT; }
@@ -476,7 +476,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "///" / [^\n\r]+            { yybegin(YYREGEXFLAG);
                                 return CoffeeScriptTokenTypes.HEREGEX_END; }
 
-  [^\[\]\{\}\(\)#\n\r]+       { pushBackTo("///");
+  [^\\\[\]\{\}\(\)#\n\r]+     { pushBackTo("///");
                                 if (yylength() != 0) {
                                   return CoffeeScriptTokenTypes.HEREGEX;
                                 }

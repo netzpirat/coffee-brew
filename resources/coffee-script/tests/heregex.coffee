@@ -11,3 +11,5 @@ OPERATOR = /// ^ (
 t = ///
 #{ something }
 ///igm
+
+regex = ///#{startChar}((\S+?),(\S+?))#{endChar}///g

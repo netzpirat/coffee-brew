@@ -15,8 +15,6 @@
 
 CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE to develop your CoffeeScript.
 
-## Features
-
 * Syntax highlighting with a color settings preference pane
 * Commenting and uncommenting of line and block comments
 * Highlighting of matching braces

@@ -381,6 +381,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   [^\'\n\r\\]+                { return CoffeeScriptTokenTypes.STRING; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*************************************/
@@ -399,6 +402,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /***************************************/
@@ -414,6 +420,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.HEREDOC; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /***************************************/
@@ -434,6 +443,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                               }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*****************************************************************************/
@@ -464,7 +476,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   [^/\\\r\n\[\]\(\)\{\}]+     { return CoffeeScriptTokenTypes.REGEX; }
 
-  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*************************************************/
@@ -493,6 +506,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   #[^\n\r{]+                  { return CoffeeScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*******************************************/
@@ -506,7 +522,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   [ .\[\n\r]                  { yybegin(YYINITIAL);
                                 yypushback(1);
                               }
-  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*****************************************************/
@@ -519,7 +536,8 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   [^\\\]\n\r]+                { return characterClassType; }
 
-  {TERMINATOR}                { return CoffeeScriptTokenTypes.TERMINATOR; }
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*******************************************************************************************/
@@ -532,6 +550,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 
   "}"                         { popState();
                                 return CoffeeScriptTokenTypes.INTERPOLATION_END; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /***********************/
@@ -543,6 +564,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
   [^`]+                       { return CoffeeScriptTokenTypes.JAVASCRIPT; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
 }
 
 /*******************/

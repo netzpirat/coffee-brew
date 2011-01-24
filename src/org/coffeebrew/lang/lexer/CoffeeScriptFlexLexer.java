@@ -17,11 +17,17 @@ public class CoffeeScriptFlexLexer extends FlexAdapter {
   }
 
   public void start(final CharSequence buffer, int startOffset, int endOffset, final int initialState) {
-    super.start(buffer, 0, endOffset, initialState);
-  }
 
-  public int getState() {
-    return 0;
+    super.start(buffer, 0, endOffset, initialState);
+
+    int startState = 0;
+
+    while (super.getTokenStart() < startOffset) {
+      startState = super.getState();
+      super.advance();
+    }
+   
+    super.start(buffer, startOffset, endOffset, startState);
   }
 
 }

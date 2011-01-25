@@ -20,14 +20,11 @@ public class CoffeeScriptFlexLexer extends FlexAdapter {
 
     super.start(buffer, 0, endOffset, initialState);
 
-    int startState = 0;
-
     while (super.getTokenStart() < startOffset) {
-      startState = super.getState();
       super.advance();
     }
    
-    super.start(buffer, startOffset, endOffset, startState);
+    super.start(buffer, startOffset, endOffset, super.getState());
   }
 
 }

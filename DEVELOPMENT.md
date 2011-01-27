@@ -11,16 +11,27 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE.
 
 ## Development
 
-CoffeeBrew is actually developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/). A version for RubyMine 3
-is under preparation.
+CoffeeBrew is actually developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/) for the latest product
 
 ### Development setup
 
-* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the newest version
-(master Branch), or IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to develop for the actual RubyMine 3
-(maia branch).
-* Copy `build.properties.sample` to `build.properties` and modify the settings to match the development environment
+* You must have a JDK 1.6 and Ant installed.
+* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the IntelliJ IDEA 10
+and RubyMine 3.1 EAP (master Branch), or [IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to develop for the
+actual RubyMine 3 (maia branch).
+* Fork CoffeeBrew and check your personal repository out.
+* Check out IntelliJ IDEA Community from `git://git.jetbrains.org/idea/community.git`.
+* Go into that directory and build IDEA by just calling `ant` on the command line.
+* Go to the CoffeeBrew directory, copy `build.properties.sample` to `build.properties` and modify the path to the
+IntelliJ IDEA Community source code.
+* Open the CoffeeBrew project in your downloaded IDEA and go to `File > Project Settings`
+* Under SDK add a new IntelliJ IDEA Plugin SDK by pointing it to the downloaded IDEA version.
+* Add the freshly compiled `<idea>/out/dist.all.ce/lib/idea.jar` to the classpath.
+* Add the sources from IDEA repository for easy API discovering.
 * Use Ant to run the tests, compile, test and install the plugin.
+* You can also debug the plugin by creating a Plugin launch configuration. I added
+`-Xmn100M -Xms500M -Xmx500M -XX:MaxPermSize=128m` to the VM parameters and selected make and the compile Ant target
+under the 'Before launch' hooks
 
 ### Useful links
 

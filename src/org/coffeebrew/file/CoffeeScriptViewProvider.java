@@ -2,10 +2,8 @@ package org.coffeebrew.file;
 
 import com.intellij.lang.Language;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.ex.dummy.DummyFileSystem;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.SingleRootFileViewProvider;
-import com.intellij.testFramework.LightVirtualFile;
 import org.jetbrains.annotations.NotNull;
 
 /**

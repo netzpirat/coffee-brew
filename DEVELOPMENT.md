@@ -11,7 +11,7 @@ CoffeeBrew is a plugin for your [JetBrains](http://www.jetbrains.com) IDE.
 
 ## Development
 
-CoffeeBrew is actually developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/) for the latest product
+CoffeeBrew is developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/).
 
 ### Development setup
 

@@ -3,6 +3,7 @@ package org.coffeebrew.lang.psi;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
+import com.intellij.psi.text.BlockSupport;
 import org.jetbrains.annotations.NotNull;
 
 import static org.coffeebrew.file.CoffeeScriptFileType.*;
@@ -15,16 +16,17 @@ import static org.coffeebrew.file.CoffeeScriptFileType.*;
  */
 public class CoffeeScriptFileBase extends PsiFileBase {
 
-    public CoffeeScriptFileBase(FileViewProvider viewProvider) {
-        super(viewProvider, COFFEE_SCRIPT_FILE_TYPE.getLanguage());
-    }
+  public CoffeeScriptFileBase(FileViewProvider viewProvider) {
+    super(viewProvider, COFFEE_SCRIPT_FILE_TYPE.getLanguage());
+  }
 
-    @NotNull
-    public FileType getFileType() {
-        return COFFEE_SCRIPT_FILE_TYPE;
-    }
+  @NotNull
+  public FileType getFileType() {
+    return COFFEE_SCRIPT_FILE_TYPE;
+  }
 
-    public String toString() {
-        return "CoffeeScript File: " + getName();
-    }
+  public String toString() {
+    return "CoffeeScript File: " + getName();
+  }
+
 }

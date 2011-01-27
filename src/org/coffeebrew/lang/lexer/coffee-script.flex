@@ -322,6 +322,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "."                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.DOT; }
 
+  ","                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.COMMA; }
+
   "::"                        { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PROTOTYPE; }
 

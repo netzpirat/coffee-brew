@@ -3,7 +3,8 @@
     <name>CoffeeBrew</name>
     <description>Plugin for CoffeeScript language support</description>
     <version>@version@</version>
-    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">Michael Kessler</vendor>
+    <vendor logo="/org/coffeebrew/images/coffee-script.png" url="https://github.com/netzpirat/coffee-brew">Michael Kessler
+    </vendor>
     <idea-version since-build="10000"/>
     <depends>com.intellij.modules.xml</depends>
 
@@ -29,5 +30,7 @@
         <colorSettingsPage implementation="org.coffeebrew.highlighter.CoffeeScriptColorSettingsPage"/>
         <lang.braceMatcher language="CoffeeScript"
                            implementationClass="org.coffeebrew.highlighter.CoffeeScriptBraceMatcher"/>
+        <lang.fileViewProviderFactory language="CoffeeScript"
+                                      implementationClass="org.coffeebrew.file.CoffeeScriptFileViewProviderFactory"/>
     </extensions>
 </idea-plugin>

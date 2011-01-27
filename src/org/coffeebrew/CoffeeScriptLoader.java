@@ -3,6 +3,7 @@ package org.coffeebrew;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.fileTypes.FileTypeManager;
+import org.coffeebrew.file.CoffeeScriptFileType;
 import org.jetbrains.annotations.NotNull;
 
 /**

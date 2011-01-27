@@ -1,7 +1,7 @@
 package org.coffeebrew.lang.lexer;
 
 import com.intellij.psi.tree.IElementType;
-import org.coffeebrew.CoffeeScriptFileType;
+import org.coffeebrew.file.CoffeeScriptFileType;
 
 /**
  * Custom CoffeeScript element types.

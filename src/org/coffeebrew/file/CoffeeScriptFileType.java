@@ -1,7 +1,9 @@
-package org.coffeebrew;
+package org.coffeebrew.file;
 
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
+import org.coffeebrew.CoffeeScriptIcons;
+import org.coffeebrew.CoffeeScriptLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

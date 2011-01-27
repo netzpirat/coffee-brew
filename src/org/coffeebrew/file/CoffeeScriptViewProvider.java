@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * CoffeeScript view provider that disables incremental reparsing
  *
  * @author Michael Kessler
- * @since 0.1.0
+ * @since 0.1.5
  */
 public class CoffeeScriptViewProvider extends SingleRootFileViewProvider {
 

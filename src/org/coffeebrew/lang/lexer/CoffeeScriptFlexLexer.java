@@ -16,4 +16,8 @@ public class CoffeeScriptFlexLexer extends FlexAdapter {
     super(new CoffeeScriptLexer((Reader) null));
   }
 
+  public void start(final CharSequence buffer, int startOffset, int endOffset, final int initialState) {
+    super.start(buffer, 0, endOffset, initialState);
+  }
+
 }

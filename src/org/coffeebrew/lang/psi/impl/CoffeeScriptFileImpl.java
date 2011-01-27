@@ -3,10 +3,9 @@ package org.coffeebrew.lang.psi.impl;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
-import org.coffeebrew.CoffeeScriptFileType;
 import org.jetbrains.annotations.NotNull;
 
-import static org.coffeebrew.CoffeeScriptFileType.*;
+import static org.coffeebrew.file.CoffeeScriptFileType.*;
 
 /**
  * A CoffeeScript file

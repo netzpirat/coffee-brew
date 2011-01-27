@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import org.coffeebrew.CoffeeScriptFileType;
+import org.coffeebrew.file.CoffeeScriptFileType;
 import org.coffeebrew.lang.lexer.CoffeeScriptFlexLexer;
 import org.coffeebrew.lang.lexer.CoffeeScriptTokenSets;
 import org.coffeebrew.lang.psi.impl.CoffeeScriptFileImpl;

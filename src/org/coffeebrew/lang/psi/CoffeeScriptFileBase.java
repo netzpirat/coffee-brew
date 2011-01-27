@@ -1,4 +1,4 @@
-package org.coffeebrew.lang.psi.impl;
+package org.coffeebrew.lang.psi;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
@@ -13,9 +13,9 @@ import static org.coffeebrew.file.CoffeeScriptFileType.*;
  * @author Michael Kessler
  * @since 0.1.0
  */
-public class CoffeeScriptFileImpl extends PsiFileBase {
+public class CoffeeScriptFileBase extends PsiFileBase {
 
-    public CoffeeScriptFileImpl(FileViewProvider viewProvider) {
+    public CoffeeScriptFileBase(FileViewProvider viewProvider) {
         super(viewProvider, COFFEE_SCRIPT_FILE_TYPE.getLanguage());
     }
 
@@ -25,6 +25,6 @@ public class CoffeeScriptFileImpl extends PsiFileBase {
     }
 
     public String toString() {
-        return "CoffeeScript";
+        return "CoffeeScript File: " + getName();
     }
 }

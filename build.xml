@@ -135,4 +135,13 @@
         </copy>
     </target>
 
+    <!-- Install plugin to RubyMine 3.1 EAP -->
+
+    <target name="install-rubymine" depends="jar" description="Install the plugin to RubyMine 3.1 EAP">
+        <mkdir dir="${user.home}/Library/Application Support/RubyMine31"/>
+        <delete dir="${user.home}/Library/Application Support/RubyMine31" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/RubyMine31">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
+    </target>
 </project>

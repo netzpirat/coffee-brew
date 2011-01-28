@@ -145,4 +145,50 @@
         </copy>
     </target>
 
+    <!-- Release new version -->
+
+    <target name="release" depends="nothing-to-commit" description="Release a new version">
+        <echo>The current version is: ${version}</echo>
+        <input message="Enter the new version: " addproperty="release" />
+        <property name="version" value="${release}"/>
+
+        <antcall target="jar" />
+
+        <input message="Going to release version ${release}. Are you sure? " addproperty="do.release" validargs="y,n" />
+        <condition property="do.abort">
+          <equals arg1="n" arg2="${do.release}"/>
+        </condition>
+        <fail if="do.abort">Release aborted by user.</fail>
+
+        <echo file="VERSION">${release}</echo>
+
+        <exec executable="git">
+            <arg value="commit VERSION -m 'New release v${version}-${idea.codename}.'" />
+        </exec>
+        <exec executable="git">
+            <arg value="tag v${version}-${idea.codename}" />
+        </exec>
+        <exec executable="git">
+            <arg value="push --tags origin master" />
+        </exec>
+
+        <echo>Release is done. Please upload target/jar/coffee-brew-${version}-${idea.codename}.jar to GitHub and JetBrains Plugin Repository now.</echo>
+        <exec executable="open">
+            <arg value="https://github.com/netzpirat/coffee-brew/downloads" />
+            <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920" />
+        </exec>
+    </target>
+
+    <target name="nothing-to-commit">
+        <exec executable="git" outputproperty="result">
+            <arg value="status" />
+        </exec>
+        <condition property="do.abort">
+            <not>
+                <contains substring="nothing to commit" string="${result}" />
+            </not>
+        </condition>
+        <fail if="do.abort">Uncommited changes. Please commit all changes before release a new version.</fail>
+    </target>
+
 </project>

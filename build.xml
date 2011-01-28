@@ -150,6 +150,7 @@
     <target name="release" depends="nothing-to-commit" description="Release a new version">
         <echo>The current version is: ${version}</echo>
         <input message="Enter the new version: " addproperty="release" />
+        <property name="previous" value="${version}"/>
         <property name="version" value="${release}"/>
 
         <antcall target="jar" />
@@ -163,13 +164,13 @@
         <echo file="VERSION">${release}</echo>
 
         <exec executable="git">
-            <arg value="commit VERSION -m 'New release v${version}-${idea.codename}.'" />
+            <arg line="commit VERSION -m 'New release v${version}-${idea.codename}.'" />
         </exec>
         <exec executable="git">
-            <arg value="tag v${version}-${idea.codename}" />
+            <arg line="tag v${version}-${idea.codename}" />
         </exec>
         <exec executable="git">
-            <arg value="push --tags origin master" />
+            <arg line="push --tags origin master" />
         </exec>
 
         <echo>Release is done. Please upload target/jar/coffee-brew-${version}-${idea.codename}.jar to GitHub and JetBrains Plugin Repository now.</echo>
@@ -177,6 +178,11 @@
             <arg value="https://github.com/netzpirat/coffee-brew/downloads" />
             <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920" />
         </exec>
+        <echo>---------------------- CHANGELOG ------------------------</echo>
+        <exec executable="git">
+            <arg line="shortlog v${previous}-${idea.codename}..v${version}-${idea.codename}" />
+        </exec>
+        <echo>---------------------------------------------------------</echo>
     </target>
 
     <target name="nothing-to-commit">

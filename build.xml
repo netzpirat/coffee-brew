@@ -150,10 +150,10 @@
     <target name="release" depends="nothing-to-commit" description="Release a new version">
         <echo>The current version is: ${version}</echo>
         <input message="Enter the new version: " addproperty="release" />
-        <property name="previous" value="${version}"/>
-        <property name="version" value="${release}"/>
 
-        <antcall target="jar" />
+        <antcall target="jar">
+            <param name="version" value="${release}"/>
+        </antcall>
 
         <input message="Going to release version ${release}. Are you sure? " addproperty="do.release" validargs="y,n" />
         <condition property="do.abort">
@@ -164,23 +164,23 @@
         <echo file="VERSION">${release}</echo>
 
         <exec executable="git">
-            <arg line="commit VERSION -m 'New release v${version}-${idea.codename}.'" />
+            <arg line="commit VERSION -m 'New release v${release}-${idea.codename}.'" />
         </exec>
         <exec executable="git">
-            <arg line="tag v${version}-${idea.codename}" />
+            <arg line="tag v${release}-${idea.codename}" />
         </exec>
         <exec executable="git">
             <arg line="push --tags origin master" />
         </exec>
 
-        <echo>Release is done. Please upload target/jar/coffee-brew-${version}-${idea.codename}.jar to GitHub and JetBrains Plugin Repository now.</echo>
+        <echo>Release is done. Please upload target/jar/coffee-brew-${release}-${idea.codename}.jar to GitHub and JetBrains Plugin Repository now.</echo>
         <exec executable="open">
             <arg value="https://github.com/netzpirat/coffee-brew/downloads" />
             <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920" />
         </exec>
         <echo>---------------------- CHANGELOG ------------------------</echo>
         <exec executable="git">
-            <arg line="shortlog v${previous}-${idea.codename}..v${version}-${idea.codename}" />
+            <arg line="shortlog v${version}-${idea.codename}..v${release}-${idea.codename}" />
         </exec>
         <echo>---------------------------------------------------------</echo>
     </target>

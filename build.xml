@@ -11,7 +11,7 @@
 
     <property file="build.properties"/>
     <property name="idea.codename" value="maia"/>
-              
+
     <!-- Reference the IDEA classpath from the local IDE installation -->
 
     <path id="idea.classpath">

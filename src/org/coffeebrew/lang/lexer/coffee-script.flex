@@ -286,6 +286,21 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   ")"                         { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.PARENTHESIS_END; }
 
+  "+"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.PLUS; }
+
+  "-"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.MINUS; }
+
+  "*"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.MATH; }
+
+  "%"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.MATH; }
+
+  "/"                         { yybegin(YYINITIAL);
+                                return CoffeeScriptTokenTypes.MATH; }
+
   {TERMINATOR}                { yybegin(YYINITIAL);
                                 return CoffeeScriptTokenTypes.TERMINATOR; }
 

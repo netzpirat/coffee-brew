@@ -7,3 +7,10 @@ html = """
          cup of #{ beverage }
        </strong>
        """
+
+quizHtml += """
+               <div class="quizItem">
+                  <span class="quizNumber">#{index+1}</span>
+                  <div class="quizSentence" id="qs#{index+1}">#{item.question}</div>
+               </div>
+            """

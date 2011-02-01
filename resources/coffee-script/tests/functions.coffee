@@ -7,3 +7,5 @@ fill = (container, liquid = "coffee") ->
   "Filling the #{container} with #{liquid}..."
 
 f Foo, 1
+
+item.answerIndex = $.inArray correctAnswer, answers

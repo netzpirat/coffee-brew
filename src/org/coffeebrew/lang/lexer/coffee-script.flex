@@ -9,7 +9,7 @@ import java.util.Stack;
 /**
  * The CoffeeScript lexer is responsible for generating a token stream of any CoffeeScript source file.
  *
- * @author Michael kessler
+ * @author Michael Kessler
  * @since 0.1.0
  */
 %%
@@ -101,12 +101,12 @@ import java.util.Stack;
 TERMINATOR      = [\n\r]|\\\n
 WHITE_SPACE     = [ \t]+
 
-IDENTIFIER      = [a-zA-Z\$_]([a-zA-Z_0-9$])*
-FUNCTION        = [a-zA-Z_]([a-zA-Z_0-9$])*?[:]([^\n\r])*?(->|=>)
-OBJECT_KEY      = [a-zA-Z_]([a-zA-Z_0-9$])*[:][^:]
-CLASS_NAME      = [A-Z]([a-zA-Z_0-9$])*
-CONSTANT        = [A-Z]([A-Z_0-9$])*
+IDENTIFIER      = [$_a-z][$_a-zA-Z0-9]*
+CLASS_NAME      = [A-Z][$_a-zA-Z0-9]*
+CONSTANT        = [A-Z][$_A-Z0-9]*
 NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
+FUNCTION        = [_a-zA-Z]([$_a-zA-Z0-9])*?[:]([^\n\r])*?(->|=>)
+OBJECT_KEY      = [_a-zA-Z]([$_a-zA-Z0-9])*[:][^:]
 
 RESERVED        = case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf
 LOGIC           = and|&&|or|\|\||&|\||\^|\?
@@ -180,6 +180,9 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
   "`"                         { yybegin(YYJAVASCRIPT);
                                 return CoffeeScriptTokenTypes.JAVASCRIPT_LITERAL; }
 
+  {IDENTIFIER}                { yybegin(YYIDENTIFIER);
+                                return CoffeeScriptTokenTypes.IDENTIFIER; }
+
   {CONSTANT}                  { yybegin(YYIDENTIFIER);
                                 return CoffeeScriptTokenTypes.CONSTANT; }
 
@@ -196,9 +199,6 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
                                 pushBackTo(":");
                                 return CoffeeScriptTokenTypes.FUNCTION_NAME;
                               }
-
-  {IDENTIFIER}                { yybegin(YYIDENTIFIER);
-                                return CoffeeScriptTokenTypes.IDENTIFIER; }
 
   {NUMBER}                    { yybegin(YYNUMBER);
                                 return CoffeeScriptTokenTypes.NUMBER; }
@@ -313,7 +313,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 /**********************************************************************/
 
 <YYIDENTIFIER> {
-  \.{QUOTE}                   { yybegin(YYQUOTEPROPERTY);
+  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
                                 yypushback(yylength()); }
 
   "?"                         { yybegin(YYINITIAL);
@@ -331,7 +331,7 @@ QUOTE           = this|class|extends|try|catch|finally|throw|if|then|else|unless
 /*****************/
 
 <YYCLASSNAME> {
-  \.{QUOTE}                   { yybegin(YYQUOTEPROPERTY);
+  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
                                 yypushback(yylength()); }
 
   "."                         { yybegin(YYINITIAL);

@@ -21,8 +21,11 @@ and [IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to verify the b
 * Fork CoffeeBrew and check your personal repository out.
 * Check out IntelliJ IDEA Community from `git://git.jetbrains.org/idea/community.git`.
 * Go into that directory and build IDEA by just calling `ant` on the command line.
+* Make a copy of that freshly cloned git repository for the maia branch.
+* Go into that directory and checkout the maia branch.
+* Build IDEA for maia by just calling `ant` on the command line.
 * Go to the CoffeeBrew directory, copy `build.properties.sample` to `build.properties` and modify the path to the
-IntelliJ IDEA Community source code.
+source code and installed application for both ideax and maia.
 * Open the CoffeeBrew project in your downloaded IDEA and go to `File > Project Settings`
 * Under SDK add a new IntelliJ IDEA Plugin SDK by pointing it to the downloaded IDEA version.
 * Add the freshly compiled `<idea>/out/dist.all.ce/lib/idea.jar` to the classpath.

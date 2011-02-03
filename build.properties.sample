@@ -1,3 +1,16 @@
+#
 # Add your environment settings and copy this file to build.properties
-idea.home=/Users/michi/Repositories/idea
+#
+
+# The directory with the master branch of git://git.jetbrains.org/idea/community.git
+ideax.source=/Users/michi/Repositories/jetbrains/idea-master
+
+# The directory where IntelliJ IDEA 10 CE is installed
+ideax.app=/Applications/IntelliJ IDEA 10 CE.app/lib/
+
+# The directory with the maia branch of git://git.jetbrains.org/idea/community.git
+maia.source=/Users/michi/Repositories/jetbrains/idea-maia
+
+# The directory where IntelliJ IDEA 9.0.3 CE is installed
+maia.app=/Applications/IntelliJ IDEA 9.0.3 CE.app/lib/
 

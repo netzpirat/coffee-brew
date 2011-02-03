@@ -10,7 +10,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import org.coffeebrew.file.CoffeeScriptFileElementType;
+
+import org.coffeebrew.file.CoffeeScriptFileType;
 import org.coffeebrew.lang.lexer.CoffeeScriptFlexLexer;
 import org.coffeebrew.lang.lexer.CoffeeScriptTokenSets;
 import org.coffeebrew.lang.psi.CoffeeScriptFile;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CoffeeScriptParserDefinition implements ParserDefinition {
 
-  private static final IFileElementType FILE_ELEMENT_TYPE = new CoffeeScriptFileElementType();
+  private static final IFileElementType FILE_ELEMENT_TYPE = new IFileElementType(CoffeeScriptFileType.COFFEE_SCRIPT_LANGUAGE);
 
   @NotNull
   public Lexer createLexer(Project project) {

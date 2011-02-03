@@ -106,7 +106,7 @@ class CoffeeScriptLexerExampleTestCase {
   private static StringBuffer readFile(String example, FileType type) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(getExampleFilePath(example, type)));
     StringBuffer buffer = new StringBuffer();
-    String line = "";
+    String line;
 
     while ((line = reader.readLine()) != null) {
       buffer.append(line).append(NL);

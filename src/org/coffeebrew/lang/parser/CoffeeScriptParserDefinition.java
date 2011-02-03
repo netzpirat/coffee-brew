@@ -11,10 +11,10 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.coffeebrew.file.CoffeeScriptFileElementType;
-import org.coffeebrew.file.CoffeeScriptFileType;
 import org.coffeebrew.lang.lexer.CoffeeScriptFlexLexer;
 import org.coffeebrew.lang.lexer.CoffeeScriptTokenSets;
-import org.coffeebrew.lang.psi.CoffeeScriptFileBase;
+import org.coffeebrew.lang.psi.CoffeeScriptFile;
+import org.coffeebrew.lang.psi.impl.CoffeeScriptElementImpl;
 import org.jetbrains.annotations.NotNull;
 
 public class CoffeeScriptParserDefinition implements ParserDefinition {
@@ -51,11 +51,11 @@ public class CoffeeScriptParserDefinition implements ParserDefinition {
 
   @NotNull
   public PsiElement createElement(ASTNode node) {
-    return null;
+    return new CoffeeScriptElementImpl(node);
   }
 
   public PsiFile createFile(FileViewProvider viewProvider) {
-    return (PsiFile) new CoffeeScriptFileBase(viewProvider);
+    return new CoffeeScriptFile(viewProvider);
   }
 
   public ParserDefinition.SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {

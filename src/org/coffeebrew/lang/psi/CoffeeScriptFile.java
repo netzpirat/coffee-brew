@@ -14,9 +14,9 @@ import static org.coffeebrew.file.CoffeeScriptFileType.*;
  * @author Michael Kessler
  * @since 0.1.0
  */
-public class CoffeeScriptFileBase extends PsiFileBase {
+public class CoffeeScriptFile extends PsiFileBase {
 
-  public CoffeeScriptFileBase(FileViewProvider viewProvider) {
+  public CoffeeScriptFile(FileViewProvider viewProvider) {
     super(viewProvider, COFFEE_SCRIPT_FILE_TYPE.getLanguage());
   }
 

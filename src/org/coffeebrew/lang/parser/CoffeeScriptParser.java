@@ -18,7 +18,19 @@ public class CoffeeScriptParser implements PsiParser {
 
   @NotNull
   public ASTNode parse(IElementType root, PsiBuilder builder) {
-    return new PlainTextASTFactory().createLeaf(PlainTextTokenTypes.PLAIN_TEXT, builder.getOriginalText());
+    final PsiBuilder.Marker rootMarker = builder.mark();
+
+    while (!builder.eof()) {
+      IElementType token = builder.getTokenType();
+      if (token != null) {
+        final PsiBuilder.Marker mark = builder.mark();
+        mark.done(token);
+        builder.advanceLexer();
+      }
+    }
+
+    rootMarker.done(root);
+    return builder.getTreeBuilt();
   }
 
 }

@@ -32,6 +32,11 @@ https://github.com/netzpirat/coffee-brew/raw/master/resources/theme/CoffeeBrew.x
 extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) theme with fine
 grained CoffeeScript colors. The font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font).
 
+To install the CoffeeBrew color scheme in RubyMine 3.0.1 on Max OS X, just download CoffeeBrew.xml to
+`~/Library/Preferences/RubyMine30/colors`, restart the IDE and select the new color scheme in your preferences.
+For other platforms the folder within the Preferences directory is different, e.g. RubyMine31, IntelliJIdea10CE or
+IntelliJIdea9, to just name a few.
+
 ## Development
 
 * Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew).

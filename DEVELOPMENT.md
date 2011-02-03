@@ -16,9 +16,8 @@ CoffeeBrew is developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/
 ### Development setup
 
 * You must have a JDK 1.6 and Ant installed.
-* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the IntelliJ IDEA 10
-and RubyMine 3.1 EAP (master Branch), or [IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to develop for the
-actual RubyMine 3 (maia branch).
+* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the IDEA X platform
+and [IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to verify the build against the older maia platform.
 * Fork CoffeeBrew and check your personal repository out.
 * Check out IntelliJ IDEA Community from `git://git.jetbrains.org/idea/community.git`.
 * Go into that directory and build IDEA by just calling `ant` on the command line.
@@ -36,6 +35,7 @@ under the 'Before launch' hooks
 ### Useful links
 
 * [Writing Plugins](http://www.jetbrains.org/display/IJOS/Writing+Plug-ins)
+* [The Basics of Plugin Development for IntelliJ IDEA](http://www.jetbrains.com/idea/documentation/howto_03.html)
 * [IntelliJ IDEA Plugin Development](http://confluence.jetbrains.net/display/IDEADEV/PluginDevelopment)
 * [IntelliJ IDEA Plugin Development FAQ](http://confluence.jetbrains.net/display/IDEADEV/Plugin+Development+FAQ)
 * [JFlex Documentation](http://jflex.de/docu.html)

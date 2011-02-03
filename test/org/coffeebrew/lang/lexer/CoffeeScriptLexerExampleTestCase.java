@@ -56,8 +56,9 @@ class CoffeeScriptLexerExampleTestCase {
    *
    * @param example The example file name
    * @return the lexer tokens
+   * @throws IOException when the example cannot be read
    */
-  private static Collection<CoffeeScriptLexerTestToken> getExampleTokens(String example) throws FileNotFoundException, IOException {
+  private static Collection<CoffeeScriptLexerTestToken> getExampleTokens(String example) throws IOException {
     ArrayList<CoffeeScriptLexerTestToken> tokens = new ArrayList<CoffeeScriptLexerTestToken>();
     StringBuffer content = readFile(example, FileType.TOKENS);
 
@@ -77,8 +78,9 @@ class CoffeeScriptLexerExampleTestCase {
    *
    * @param example The example file name
    * @return the lexer tokens
+   * @throws IOException when the example cannot be read
    */
-  private static Collection<CoffeeScriptLexerTestToken> getExpectedTokens(String example) throws FileNotFoundException, IOException {
+  private static Collection<CoffeeScriptLexerTestToken> getExpectedTokens(String example) throws IOException {
 
     final FlexAdapter lexer = new CoffeeScriptFlexLexer();
     lexer.start(readFile(example, FileType.COFFEE));
@@ -96,19 +98,18 @@ class CoffeeScriptLexerExampleTestCase {
   /**
    * Reads the given file and returns its content as StringBuffer
    *
-   * @param example
-   * @param type
-   * @return
-   * @throws FileNotFoundException
-   * @throws IOException
+   * @param example The example name
+   * @param type The example type
+   * @return the content of the file
+   * @throws IOException when the example cannot be read
    */
-  private static StringBuffer readFile(String example, FileType type) throws FileNotFoundException, IOException {
+  private static StringBuffer readFile(String example, FileType type) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(getExampleFilePath(example, type)));
     StringBuffer buffer = new StringBuffer();
     String line = "";
 
     while ((line = reader.readLine()) != null) {
-      buffer.append(line + NL);
+      buffer.append(line).append(NL);
     }
 
     return buffer;
@@ -117,27 +118,26 @@ class CoffeeScriptLexerExampleTestCase {
   /**
    * Returns the path and filename to the example file for the given type
    *
-   * @param example
-   * @param type
-   * @return
+   * @param example The example name
+   * @param type The example type
+   * @return the path and filename
    */
   private static String getExampleFilePath(String example, FileType type) {
     String filename;
-    String basepath = getProjectHome() + FS + "resources" + FS + "coffee-script" + FS + "tests" + FS;
+    String basePath = getProjectHome() + FS + "resources" + FS + "coffee-script" + FS + "tests" + FS;
 
     if (type == FileType.COFFEE) {
-      filename = basepath + example + ".coffee";
+      filename = basePath + example + ".coffee";
     } else {
-      filename = basepath + example + ".tokens";
+      filename = basePath + example + ".tokens";
     }
 
     return filename;
   }
 
   /**
-   * Returns the project home directory
    *
-   * @return
+   * @return the project home directory
    */
   private static String getProjectHome() {
     Properties props = System.getProperties();

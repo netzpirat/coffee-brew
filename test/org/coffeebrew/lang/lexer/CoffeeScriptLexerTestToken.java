@@ -11,13 +11,12 @@ import com.intellij.psi.tree.IElementType;
 class CoffeeScriptLexerTestToken {
 
   private String token;
-  private boolean hidden = false;
 
   /**
    * Construct a test lexer token form the plugin lexer token data
    *
-   * @param element
-   * @param content
+   * @param element The token element type
+   * @param content The token content
    */
   public CoffeeScriptLexerTestToken(IElementType element, CharSequence content) {
     this.token = "[" + element.toString() + " " + content.toString().replace("\n", "\\n").replace("\t", "\\t") + "]";
@@ -26,7 +25,7 @@ class CoffeeScriptLexerTestToken {
   /**
    * Construct a test lexer token from the CoffeeScript lexer token
    *
-   * @param token
+   * @param token The token name
    */
   public CoffeeScriptLexerTestToken(String token) {
     this.token = token;
@@ -47,10 +46,6 @@ class CoffeeScriptLexerTestToken {
 
   public String toString() {
     return token;
-  }
-
-  public boolean isHidden() {
-    return hidden;
   }
 
 }

@@ -18,7 +18,7 @@ public class CoffeeScriptLoader implements ApplicationComponent {
     ApplicationManager.getApplication().runWriteAction(
             new Runnable() {
               public void run() {
-                FileTypeManager.getInstance().registerFileType(CoffeeScriptFileType.COFFEE_SCRIPT_FILE_TYPE, new String[]{CoffeeScriptFileType.DEFAULT_EXTENSION});
+                FileTypeManager.getInstance().registerFileType(CoffeeScriptFileType.COFFEE_SCRIPT_FILE_TYPE, CoffeeScriptFileType.DEFAULT_EXTENSION);
               }
             }
     );

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="coffee-brew" default="install-idea">
+<project name="coffee-brew" default="install-rubymine-31">
 
     <!-- Define build properties -->
 
@@ -10,7 +10,6 @@
     </loadfile>
 
     <property file="build.properties"/>
-    <property name="idea.codename" value="ideax"/>
 
     <!-- Reference the IDEA classpath from the local IDE installation -->
 
@@ -120,14 +119,24 @@
                 <filter token="version" value="${version}"/>
             </filterset>
         </copy>
-        <jar destfile="target/jar/coffee-brew-${version}-${idea.codename}.jar" compress="true">
+        <jar destfile="target/jar/coffee-brew-${version}.jar" compress="true">
             <fileset dir="target/classes"/>
         </jar>
     </target>
 
+    <!-- Install plugin to IntelliJ IDEA 9.0.3 CE -->
+
+    <target name="install-idea-9" depends="jar" description="Install the plugin to IntelliJ IDEA 9.0.3 CE">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea90CE"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea90CE" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea90CE">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
+    </target>
+
     <!-- Install plugin to IntelliJ IDEA 10 CE -->
 
-    <target name="install-idea" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
+    <target name="install-idea-10" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
         <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
         <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="coffee-brew*.jar"/>
         <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
@@ -135,9 +144,19 @@
         </copy>
     </target>
 
+    <!-- Install plugin to RubyMine 3.0 -->
+
+    <target name="install-rubymine-30" depends="jar" description="Install the plugin to RubyMine 3.0">
+        <mkdir dir="${user.home}/Library/Application Support/RubyMine31"/>
+        <delete dir="${user.home}/Library/Application Support/RubyMine31" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/RubyMine31">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
+    </target>
+
     <!-- Install plugin to RubyMine 3.1 EAP -->
 
-    <target name="install-rubymine" depends="jar" description="Install the plugin to RubyMine 3.1 EAP">
+    <target name="install-rubymine-31" depends="jar" description="Install the plugin to RubyMine 3.1 EAP">
         <mkdir dir="${user.home}/Library/Application Support/RubyMine31"/>
         <delete dir="${user.home}/Library/Application Support/RubyMine31" includes="coffee-brew*.jar"/>
         <copy todir="${user.home}/Library/Application Support/RubyMine31">
@@ -164,23 +183,23 @@
         <echo file="VERSION">${release}</echo>
 
         <exec executable="git">
-            <arg line="commit VERSION -m 'New release v${release}-${idea.codename}.'" />
+            <arg line="commit VERSION -m 'New release v${release}'" />
         </exec>
         <exec executable="git">
-            <arg line="tag v${release}-${idea.codename}" />
+            <arg line="tag v${release}" />
         </exec>
         <exec executable="git">
             <arg line="push --tags origin master" />
         </exec>
 
-        <echo>Release is done. Please upload target/jar/coffee-brew-${release}-${idea.codename}.jar to GitHub and JetBrains Plugin Repository now.</echo>
+        <echo>Release is done. Please upload target/jar/coffee-brew-${release}.jar to GitHub and JetBrains Plugin Repository now.</echo>
         <exec executable="open">
             <arg value="https://github.com/netzpirat/coffee-brew/downloads" />
             <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920" />
         </exec>
         <echo>---------------------- CHANGELOG ------------------------</echo>
         <exec executable="git">
-            <arg line="shortlog v${version}-${idea.codename}..v${release}-${idea.codename}" />
+            <arg line="shortlog v${version}..v${release}" />
         </exec>
         <echo>---------------------------------------------------------</echo>
     </target>

@@ -192,9 +192,8 @@
             <arg line="push --tags origin master" />
         </exec>
 
-        <echo>Release is done. Please upload target/jar/coffee-brew-${release}.jar to GitHub and JetBrains Plugin Repository now.</echo>
+        <echo>Release is done. Please upload target/jar/coffee-brew-${release}.jar to JetBrains Plugin Repository now.</echo>
         <exec executable="open">
-            <arg value="https://github.com/netzpirat/coffee-brew/downloads" />
             <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920" />
         </exec>
         <echo>---------------------- CHANGELOG ------------------------</echo>

@@ -11,7 +11,7 @@ import com.intellij.lang.Language;
 public class CoffeeScriptLanguage extends Language {
 
   public CoffeeScriptLanguage() {
-    super("CoffeeScript");
+    super("CoffeeScript", "text/coffeescript");
   }
 
   @Override

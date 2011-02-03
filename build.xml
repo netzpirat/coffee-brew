@@ -144,12 +144,12 @@
         </copy>
     </target>
 
-    <!-- Install plugin to RubyMine 3.0 -->
+    <!-- Install plugin to RubyMine 3.0.1 -->
 
-    <target name="install-rubymine-30" depends="jar" description="Install the plugin to RubyMine 3.0">
-        <mkdir dir="${user.home}/Library/Application Support/RubyMine31"/>
-        <delete dir="${user.home}/Library/Application Support/RubyMine31" includes="coffee-brew*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/RubyMine31">
+    <target name="install-rubymine-30" depends="jar" description="Install the plugin to RubyMine 3.0.1">
+        <mkdir dir="${user.home}/Library/Application Support/RubyMine30"/>
+        <delete dir="${user.home}/Library/Application Support/RubyMine30" includes="coffee-brew*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/RubyMine30">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>
         </copy>
     </target>

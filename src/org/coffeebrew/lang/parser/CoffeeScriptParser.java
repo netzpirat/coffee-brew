@@ -22,11 +22,12 @@ public class CoffeeScriptParser implements PsiParser {
 
     while (!builder.eof()) {
       IElementType token = builder.getTokenType();
+
       if (token != null) {
-        final PsiBuilder.Marker mark = builder.mark();
-        mark.done(token);
-        builder.advanceLexer();
+        builder.mark().done(token);
       }
+
+      builder.advanceLexer();
     }
 
     rootMarker.done(root);

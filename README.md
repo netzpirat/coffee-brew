@@ -10,6 +10,14 @@
                            ------=== Brew your CoffeeScript in the JetBrains IDE ===------
 
 
+## Status
+
+JetBrain [has announced](http://youtrack.jetbrains.net/issue/RUBY-5943) to include official CoffeeScript support
+in the upcoming RubyMine 4 release and they took CoffeeBrew as a groundwork. So you can expect superior CoffeeScript
+integration in RubyMine soon.
+
+For this reason, CoffeeBrew is not developed actively anymore. Issues with the plugin will still be handled until
+the CoffeeScript support is available in RubyMine, but no more features will be developed.
 
 ## Features
 

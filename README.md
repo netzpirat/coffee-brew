@@ -46,6 +46,13 @@ To install the CoffeeBrew color scheme in RubyMine 3.0.1 on Max OS X, just downl
 For other platforms the folder within the Preferences directory is different, e.g. RubyMine31, IntelliJIdea10CE or
 IntelliJIdea9, to just name a few.
 
+## Shameless self promotion
+
+Developed by Michael Kessler, sponsored by [mksoft.ch](https://mksoft.ch).
+
+If you like CoffeeBrew, you can watch the repository at [GitHub](https://github.com/netzpirat/coffee-brew) and
+follow [@netzpirat](https://twitter.com/#!/netzpirat) on Twitter for project updates.
+
 ## Development
 
 * Source hosted at [GitHub](https://github.com/netzpirat/coffee-brew).
